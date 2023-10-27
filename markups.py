@@ -21,6 +21,11 @@ admin_task = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton('Назад в меню', callback_data='back_to_menu'),
 )
 
+file_exist = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton('Да', callback_data='file_exists'),
+    types.InlineKeyboardButton('Нет', callback_data='file_not_exists'),
+)
+
 back_to_dates = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton('Назад', callback_data='back_to_dates')
 )
@@ -32,6 +37,11 @@ admin_back_to_dates = types.InlineKeyboardMarkup().add(
 back_to_menu = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton('Назад в меню', callback_data='back_to_menu')
 )
+
+hide = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton('Скрыть', callback_data='hide')
+)
+
 def get_dates_markup(date_list):
     date_markup = types.InlineKeyboardMarkup(row_width=3)
     for date in date_list:
@@ -42,6 +52,18 @@ def get_dates_markup(date_list):
         types.InlineKeyboardButton('Назад в меню', callback_data='back_to_menu')
     )
     return date_markup
+
+def get_files_markup(task_list):
+    file_markup = types.InlineKeyboardMarkup(row_width=1)
+    for task in task_list:
+        if task[3] != 'None':
+            file_markup.insert(
+                types.InlineKeyboardButton(f'{task[1]} - Файл', callback_data=f'file{task[3]}')
+            )
+    file_markup.add(
+        types.InlineKeyboardButton('Назад', callback_data='hometask')
+    )
+    return file_markup
 
 def get_del_task_markup(task_list, date):
     task_markup = types.InlineKeyboardMarkup(row_width=2)

@@ -17,7 +17,8 @@ class Database():
                 """CREATE TABLE IF NOT EXISTS hometask(
                     date TEXT,
                     subject TEXT,
-                    task TEXT);
+                    task TEXT,
+                    document TEXT);
                 """
             )
     def add_user(self, user_id, nickname):
@@ -53,10 +54,10 @@ class Database():
             return self.cursor.execute(
                 "SELECT user_id FROM users WHERE nickname = ?", (nick,)
             ).fetchone()
-    def add_task(self, date, subject, task):
+    def add_task(self, date, subject, task, doc_path):
         with self.connection:
             return self.cursor.execute(
-                "INSERT INTO hometask (date, subject, task) VALUES (?,?,?)", (date, subject, task)
+                "INSERT INTO hometask (date, subject, task, document) VALUES (?,?,?,?)", (date, subject, task, doc_path)
             )
     def get_date_tasks(self, date):
         with self.connection:
