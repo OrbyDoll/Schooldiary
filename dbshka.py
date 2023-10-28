@@ -56,8 +56,11 @@ class Database():
             ).fetchone()
     def add_task(self, date, subject, task, doc_path):
         with self.connection:
+            docs = ''
+            for doc in doc_path:
+                docs += '|' + doc
             return self.cursor.execute(
-                "INSERT INTO hometask (date, subject, task, document) VALUES (?,?,?,?)", (date, subject, task, doc_path)
+                "INSERT INTO hometask (date, subject, task, document) VALUES (?,?,?,?)", (date, subject, task, docs)
             )
     def get_date_tasks(self, date):
         with self.connection:
@@ -78,3 +81,8 @@ class Database():
             return self.cursor.execute(
                 'SELECT date FROM hometask'
             ).fetchall()
+    def get_subject_files(self, date, subject):
+        with self.connection:
+            return self.cursor.execute(
+                "SELECT document FROM hometask WHERE date = ? AND subject = ?", (date, subject)
+            ).fetchone()

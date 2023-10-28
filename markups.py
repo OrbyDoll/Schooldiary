@@ -58,7 +58,7 @@ def get_files_markup(task_list):
     for task in task_list:
         if task[3] != 'None':
             file_markup.insert(
-                types.InlineKeyboardButton(f'{task[1]} - Файл', callback_data=f'file{task[3]}')
+                types.InlineKeyboardButton(f'{task[1]} - Файлы', callback_data=f'file_{task[0]}_{task[1]}')
             )
     file_markup.add(
         types.InlineKeyboardButton('Назад', callback_data='hometask')

@@ -48,7 +48,6 @@ async def err(e, chat):
 async def start(message: types.Message, state:FSMContext):
     try:
         chatid = message.chat.id
-        # await bot.send_document(chat_id=chatid, document=, caption='test')
         if not db.user_exists(chatid):
             await bot.send_message(chatid, f'Ты не прошел предварительную регистрацию, обратись к админу - {cfg.admin_nick}')
             return
@@ -71,7 +70,6 @@ async def admin(message: types.Message, state:FSMContext):
 @dp.callback_query_handler(state=ClientState.ADMIN)
 async def admin_callback(call: types.CallbackQuery, state: FSMContext):
     try:
-        print(call.data)
         await bot.answer_callback_query(callback_query_id=call.id)
         chatid = call.message.chat.id
         messageid = call.message.message_id
@@ -80,6 +78,7 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
         elif call.data == 'edit_hometask':
             await bot.edit_message_text("Выбери действие", chatid, messageid, reply_markup=nav.admin_task)
         elif call.data == 'add_hometask':
+            await state.update_data(doc_path=[])
             await bot.edit_message_text('Напиши дату в формате 27.10 обязательно с точкой!!!', chatid, messageid)
             await state.set_state(ClientState.NEW_TASK_DATE)
         elif call.data == 'del_hometask':
@@ -90,7 +89,7 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             await bot.edit_message_text('Выбери день', chatid, messageid, reply_markup=nav.get_dates_markup(all_dates))
         elif call.data == 'file_exists':
             await delete_msg(call.message, 1)
-            await bot.send_message(chatid, 'Пришли файл без лишнего текста и т.п.')
+            await bot.send_message(chatid, 'Пришли олин или несколько файлов без лишнего текста и т.п. Как закончишь напиши "-" без кавычек')
             await state.set_state(ClientState.NEW_TASK_FILE)
         elif call.data == 'file_not_exists':
             await delete_msg(call.message, 1)
@@ -145,7 +144,7 @@ async def new_task_subject(message: types.Message, state:FSMContext):
         await err(e, chatid)
 
 
-@dp.message_handler(content_types=['photo', 'document'],state=ClientState.NEW_TASK_FILE)
+@dp.message_handler(content_types=['photo', 'document', 'text'],state=ClientState.NEW_TASK_FILE)
 async def new_task_file(message: types.Message, state:FSMContext):
     try:
         chatid = message.chat.id
@@ -155,18 +154,28 @@ async def new_task_file(message: types.Message, state:FSMContext):
             file_info = await bot.get_file(message.photo[len(message.photo) - 1].file_id)
             downloaded_file = await bot.download_file(file_info.file_path)
             src = f'hometask_docs/' + file_info.file_path.replace('photos/', '')
-            await state.update_data(doc_path=file_info.file_path.replace('photos/', ''))
+            state_data = await state.get_data()
+            new_doc_path = state_data['doc_path']
+            new_doc_path.append(file_info.file_path.replace('photos/', ''))
+            await state.update_data(doc_path=new_doc_path)
             with open(src, 'wb') as new_file:
                 new_file.write(downloaded_file.getvalue())
+            await bot.send_message(chatid, 'Успешно добавлено')
         elif message.content_type == 'document':
             file_info = await bot.get_file(message.document.file_id)
             downloaded_file = await bot.download_file(file_info.file_path)
             src = f'hometask_docs/' + message.document.file_name
-            await state.update_data(doc_path=message.document.file_name)
+            state_data = await state.get_data()
+            print(state_data['doc_path'])
+            new_doc_path = state_data['doc_path']
+            new_doc_path.append(message.document.file_name)
+            await state.update_data(doc_path=new_doc_path)
             with open(src, 'wb') as new_file:
                 new_file.write(downloaded_file.getvalue())
-        await bot.send_message(chatid, 'Напиши текст дз')
-        await state.set_state(ClientState.NEW_TASK_FINISH)
+            await bot.send_message(chatid, 'Успешно добавлено')
+        elif message.text == '-':
+            await bot.send_message(chatid, 'Напиши текст дз')
+            await state.set_state(ClientState.NEW_TASK_FINISH)
     except Exception as e:
         await err(e, chatid)
 
@@ -174,8 +183,8 @@ async def new_task_file(message: types.Message, state:FSMContext):
 async def new_task_finish(message: types.Message, state:FSMContext):
     try:
         chatid = message.chat.id
-        await delete_msg(message, 2)
         state_data = await state.get_data()
+        await delete_msg(message, (len(state_data['doc_path']) * 2))
         task_text = message.text
         db.add_task(state_data['date'], state_data['subject'], task_text, state_data['doc_path'])
         await bot.send_message(chatid, 'Успешно добавлено', reply_markup=nav.back_to_menu)
@@ -209,11 +218,15 @@ async def callback(call: types.CallbackQuery, state:FSMContext):
         elif call.data == 'hide':
             await delete_msg(call.message, 1)
         elif 'file' in call.data:
-            file = open(f'hometask_docs/{call.data[4:]}', 'rb')
-            try:
-                await bot.send_photo(chatid, file, reply_markup=nav.hide)
-            except:
-                await bot.send_document(chatid, file, reply_markup=nav.hide)
+            data = call.data.split('_')
+            files = db.get_subject_files(data[1], data[2])[0][1:].split('|')
+            for f in files:
+                try:
+                    file = open(f'hometask_docs/{f}', 'rb')
+                    await bot.send_photo(chatid, file, reply_markup=nav.hide)
+                except:
+                    file = open(f'hometask_docs/{f}', 'rb')
+                    await bot.send_document(chatid, file, reply_markup=nav.hide)
         elif 'gettasklist' in call.data:
             date = call.data[12:]
             task_list = db.get_date_tasks(date)
