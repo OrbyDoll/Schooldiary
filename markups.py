@@ -3,7 +3,7 @@ from aiogram import types
 menu = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Оценки", callback_data="marks"),
     types.InlineKeyboardButton("Домашка", callback_data="hometask"),
-    types.InlineKeyboardButton("Социальный активность", callback_data="socialrate"),
+    types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
 )
 
 admin_menu = types.InlineKeyboardMarkup(row_width=2).add(
@@ -61,7 +61,6 @@ def get_dates_markup(date_list):
 
 def get_files_markup(task_list):
     file_markup = types.InlineKeyboardMarkup(row_width=1)
-    print(task_list)
     for task in task_list:
         if task[3][1:] != "None":
             file_markup.insert(

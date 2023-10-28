@@ -143,7 +143,7 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             await delete_msg(call.message, 1)
             await bot.send_message(
                 chatid,
-                'Пришли олин или несколько файлов без лишнего текста и т.п. Как закончишь напиши "-" без кавычек',
+                'Пришли один или несколько файлов без лишнего текста и т.п. Как закончишь напиши "-" без кавычек',
             )
             await state.set_state(ClientState.NEW_TASK_FILE)
         elif call.data == "file_not_exists":
@@ -255,7 +255,6 @@ async def new_task_file(message: types.Message, state: FSMContext):
             downloaded_file = await bot.download_file(file_info.file_path)
             src = f"hometask_docs/" + message.document.file_name
             state_data = await state.get_data()
-            print(state_data["doc_path"])
             new_doc_path = state_data["doc_path"]
             new_doc_path.append(message.document.file_name)
             await state.update_data(doc_path=new_doc_path)
@@ -377,28 +376,6 @@ async def text(message: types.Message, state: FSMContext):
         )
     except Exception as e:
         await err(e, chatid)
-
-
-# @dp.message_handler(commands=['getall'])
-# async def getall(message:types.Message):
-#     if message.from_user.id == cfg.admin:
-#         all_users = db.get_all_users()
-#         text = ''
-#         for user in all_users:
-#             text += f'{user[2]} - {user[1]}\n'
-#         text += f'\nВсего - {len(all_users)} зарегистрировавшихся'
-#         await bot.send_message(message.chat.id, text)
-
-# @dp.message_handler(commands=['del'])
-# async def getall(message:types.Message):
-#     try:
-#         if message.from_user.id == cfg.admin:
-#             desired_user = message.text.split()[1]
-#             db.set_info(db.get_id_from_nick(desired_user)[0], 'Пусто')
-#             await bot.send_message(message.chat.id, 'Удалено')
-#     except Exception as e:
-#         print(e)
-#         await bot.send_message(message.chat.id, f"Ошибка {e}")
 
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True)
