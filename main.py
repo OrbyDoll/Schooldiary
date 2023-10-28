@@ -3,7 +3,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from pathlib import Path
-
+import datetime
 
 class ClientState(StatesGroup):
     START = State()
@@ -20,11 +20,14 @@ import markups as nav
 from dbshka import Database
 
 storage = MemoryStorage()
-bot = Bot(token=cfg.TOKEN)
+bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(path.abspath(cfg.db_file))
 db.create_tables()
 
+weekdays = ['Понедельник', "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+group_OI = ['Хазин', "Ряжский", "Мовсесян", "Ширнин", "Горюнова", "Митин", "Мягков", "Благов", "Новиков", "Хаитова", "Смирнов", "Карасев"]
+group_EN = ['Хазин', "Чурилов", "Мовсесян", "Ширнин", "Данилова", "Ляпина", "Штарев", "Лаврентьев", "Кудрявцев", "Ватутина" , "Карасев"]
 
 def check_subject(subject):
     subjects = [
@@ -79,7 +82,7 @@ async def start(message: types.Message, state: FSMContext):
             )
             return
         await bot.send_message(
-            chatid, f"Привет, {message.from_user.username}", reply_markup=nav.menu
+            chatid, f"Привет, {message.from_user.username if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-Куст'}", reply_markup=nav.menu
         )
         await state.set_state(ClientState.START)
     except Exception as e:
@@ -119,6 +122,7 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "add_hometask":
             await state.update_data(doc_path=[])
+            await state.update_data(group='')
             await bot.edit_message_text(
                 "Напиши дату в формате 27.10 обязательно с точкой!!!", chatid, messageid
             )
@@ -167,6 +171,12 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.menu
             )
             await state.set_state(ClientState.START)
+        elif 'group' in call.data:
+            await delete_msg(call.message, 1)
+            await state.update_data(group=call.data.split("_")[1])
+            await bot.send_message(
+                chatid, "Добавить файл к заданию?", reply_markup=nav.file_exist
+            )
         elif "gettasklist" in call.data:
             date = call.data[12:]
             task_list = db.get_date_tasks(date)
@@ -221,6 +231,11 @@ async def new_task_subject(message: types.Message, state: FSMContext):
             )
             return
         await state.update_data(subject=message.text)
+        if message.text == 'Английский' or message.text == "Информатика":
+            markup = nav.en_group if message.text == 'Английский' else nav.info_group
+            await bot.send_message(chatid, 'Какой группе это дз?', reply_markup=markup)
+            await state.set_state(ClientState.ADMIN)
+            return
         await bot.send_message(
             chatid, "Добавить файл к заданию?", reply_markup=nav.file_exist
         )
@@ -275,6 +290,8 @@ async def new_task_finish(message: types.Message, state: FSMContext):
         state_data = await state.get_data()
         await delete_msg(message, (len(state_data["doc_path"]) * 2))
         task_text = message.text
+        if state_data['group'] != '':
+            task_text = f'{state_data["group"]} {message.text}'
         db.add_task(
             state_data["date"], state_data["subject"], task_text, state_data["doc_path"]
         )
@@ -352,15 +369,29 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                     await bot.send_document(chatid, file, reply_markup=nav.hide)
         elif "gettasklist" in call.data:
             date = call.data[12:]
+            day = datetime.datetime(2023, int(date.split('.')[1]), int(date.split('.')[0]))
             task_list = db.get_date_tasks(date)
-            task_text = f"{date}:\n"
+            task_text = f"{weekdays[day.weekday()]} - {date}\n"
+            second_name = db.get_user(chatid)[1].split()[1]
             for task in task_list:
-                task_text += f"{task[1]}: {task[2]}\n"
+                if task[1] == 'Английский':
+                    if task[2].startswith('ОИ') and second_name in group_OI:
+                        task_text += f"<i><b>{task[1]}</b></i>: {task[2][3:]}\n\n"
+                    elif task[2].startswith('ИС') and not second_name in group_OI:
+                        task_text += f"<i><b>{task[1]}</b></i>: {task[2][3:]}\n\n"
+                elif task[1] == 'Информатика':
+                    if task[2].startswith('ЕН') and second_name in group_EN:
+                        task_text += f"<i><b>{task[1]}</b></i>: {task[2][3:]}\n\n"
+                    elif task[2].startswith('ИВ') and not second_name in group_EN:
+                        task_text += f"<i><b>{task[1]}</b></i>: {task[2][3:]}\n\n"
+                else:
+                    task_text += f"<i><b>{task[1]}</b></i>: {task[2]}\n\n"
             await bot.edit_message_text(
                 task_text,
                 chatid,
                 messageid,
                 reply_markup=nav.get_files_markup(task_list),
+                parse_mode='HTML'
             )
     except Exception as e:
         await err(e, chatid)

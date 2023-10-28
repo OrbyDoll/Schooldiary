@@ -1,5 +1,6 @@
 from aiogram import types
-
+import datetime
+weekdays = ['Пн', "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 menu = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Оценки", callback_data="marks"),
     types.InlineKeyboardButton("Домашка", callback_data="hometask"),
@@ -23,6 +24,16 @@ admin_task = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Добавить дз", callback_data="add_hometask"),
     types.InlineKeyboardButton("Удалить дз", callback_data="del_hometask"),
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
+)
+
+en_group = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton('Ольга Ивановна', callback_data='group_ОИ'),
+    types.InlineKeyboardButton('Ирина Станиславовна', callback_data='group_ИС'),
+)
+
+info_group = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton('Елена Николаевна', callback_data='group_ЕН'),
+    types.InlineKeyboardButton('Ирина Вадимовна', callback_data='group_ИВ'),
 )
 
 file_exist = types.InlineKeyboardMarkup().add(
@@ -50,8 +61,12 @@ hide = types.InlineKeyboardMarkup().add(
 def get_dates_markup(date_list):
     date_markup = types.InlineKeyboardMarkup(row_width=3)
     for date in date_list:
+        try:
+            day_num = datetime.datetime(2023, int(date[0].split('.')[1]), int(date[0].split('.')[0])).weekday()
+        except:
+            pass
         date_markup.insert(
-            types.InlineKeyboardButton(date[0], callback_data=f"gettasklist_{date[0]}")
+            types.InlineKeyboardButton(f'{weekdays[day_num]} - {date[0]}', callback_data=f"gettasklist_{date[0]}")
         )
     date_markup.row(
         types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu")
