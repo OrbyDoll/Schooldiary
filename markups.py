@@ -1,7 +1,7 @@
 from aiogram import types
 import datetime
 weekdays = ['Пн', "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
-menu = types.InlineKeyboardMarkup(row_width=2).add(
+menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Оценки", callback_data="marks"),
     types.InlineKeyboardButton("Домашка", callback_data="hometask"),
     types.InlineKeyboardButton('Расписание', callback_data='schedule'),
