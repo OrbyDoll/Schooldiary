@@ -4,6 +4,7 @@ weekdays = ['Пн', "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 menu = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Оценки", callback_data="marks"),
     types.InlineKeyboardButton("Домашка", callback_data="hometask"),
+    types.InlineKeyboardButton('Расписание', callback_data='schedule'),
     types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
 )
 
@@ -24,6 +25,20 @@ admin_task = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Добавить дз", callback_data="add_hometask"),
     types.InlineKeyboardButton("Удалить дз", callback_data="del_hometask"),
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
+)
+
+schedule = types.InlineKeyboardMarkup(row_width=2).add(
+    types.InlineKeyboardButton('Понедельник', callback_data='dayПонедельник'),
+    types.InlineKeyboardButton('Вторник', callback_data='dayВторник'),
+    types.InlineKeyboardButton('Среда', callback_data='dayСреда'),
+    types.InlineKeyboardButton('Четверг', callback_data='dayЧетверг'),
+    types.InlineKeyboardButton('Пятница', callback_data='dayПятница'),
+    types.InlineKeyboardButton('Суббота', callback_data='dayСуббота'),
+    types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
+)
+
+back_to_schedule = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton("Назад в меню", callback_data="schedule")
 )
 
 en_group = types.InlineKeyboardMarkup().add(

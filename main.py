@@ -17,6 +17,7 @@ class ClientState(StatesGroup):
 from os import path
 import config as cfg
 import markups as nav
+import helpers as help
 from dbshka import Database
 
 storage = MemoryStorage()
@@ -24,10 +25,8 @@ bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(path.abspath(cfg.db_file))
 db.create_tables()
+flag = 0
 
-weekdays = ['Понедельник', "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
-group_OI = ['Хазин', "Ряжский", "Мовсесян", "Ширнин", "Горюнова", "Митин", "Мягков", "Благов", "Новиков", "Хаитова", "Смирнов", "Карасев"]
-group_EN = ['Хазин', "Чурилов", "Мовсесян", "Ширнин", "Данилова", "Ляпина", "Штарев", "Лаврентьев", "Кудрявцев", "Ватутина" , "Карасев"]
 
 def check_subject(subject):
     subjects = [
@@ -45,6 +44,7 @@ def check_subject(subject):
         "Астрономия",
         "Информатика",
         "Физкультура",
+        'ЕГЭ Математика'
     ]
     if subject in subjects:
         return True
@@ -82,7 +82,7 @@ async def start(message: types.Message, state: FSMContext):
             )
             return
         await bot.send_message(
-            chatid, f"Привет, {message.from_user.username if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-Куст'}", reply_markup=nav.menu
+            chatid, f"Привет, {message.from_user.username if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}", reply_markup=nav.menu, parse_mode='HTML'
         )
         await state.set_state(ClientState.START)
     except Exception as e:
@@ -340,6 +340,8 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.back_to_menu,
             )
+        elif call.data == 'schedule':
+            await bot.edit_message_text('Выберите день', chatid, messageid, reply_markup=nav.schedule)
         elif call.data == "back_to_dates":
             all_tasks = smart_sort(list(set(db.get_all_dates())))
             await bot.edit_message_text(
@@ -357,6 +359,14 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "hide":
             await delete_msg(call.message, 1)
+        elif 'day' in call.data:
+            desired_day = call.data[3:]
+            day_lst = help.get_schedule(flag)[desired_day]
+            timestable = help.get_timestable(desired_day)
+            schedule_str = ''
+            for i in range(len(day_lst)):
+                schedule_str += f'<i>{day_lst[i]}:</i> {timestable[i if desired_day != "Суббота" else i+1]}\n'
+            await bot.edit_message_text(f'<b>{desired_day}:</b> \n{schedule_str}', chatid, messageid, parse_mode='HTML', reply_markup=nav.back_to_schedule)
         elif "file" in call.data:
             data = call.data.split("_")
             files = db.get_subject_files(data[1], data[2])[0][1:].split("|")
@@ -371,18 +381,18 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             date = call.data[12:]
             day = datetime.datetime(2023, int(date.split('.')[1]), int(date.split('.')[0]))
             task_list = db.get_date_tasks(date)
-            task_text = f"{weekdays[day.weekday()]} - {date}\n"
+            task_text = f"{help.weekdays[day.weekday()]} - {date}\n"
             second_name = db.get_user(chatid)[1].split()[1]
             for task in task_list:
                 if task[1] == 'Английский':
-                    if task[2].startswith('ОИ') and second_name in group_OI:
+                    if task[2].startswith('ОИ') and second_name in help.group_OI:
                         task_text += f"<i><b>{task[1]}</b></i>: {task[2][3:]}\n\n"
-                    elif task[2].startswith('ИС') and not second_name in group_OI:
+                    elif task[2].startswith('ИС') and not second_name in help.group_OI:
                         task_text += f"<i><b>{task[1]}</b></i>: {task[2][3:]}\n\n"
                 elif task[1] == 'Информатика':
-                    if task[2].startswith('ЕН') and second_name in group_EN:
+                    if task[2].startswith('ЕН') and second_name in help.group_EN:
                         task_text += f"<i><b>{task[1]}</b></i>: {task[2][3:]}\n\n"
-                    elif task[2].startswith('ИВ') and not second_name in group_EN:
+                    elif task[2].startswith('ИВ') and not second_name in help.group_EN:
                         task_text += f"<i><b>{task[1]}</b></i>: {task[2][3:]}\n\n"
                 else:
                     task_text += f"<i><b>{task[1]}</b></i>: {task[2]}\n\n"
