@@ -4,6 +4,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from pathlib import Path
 import datetime
+import shutil
 
 class ClientState(StatesGroup):
     START = State()
@@ -12,9 +13,10 @@ class ClientState(StatesGroup):
     NEW_TASK_SUBJECT = State()
     NEW_TASK_FILE = State()
     NEW_TASK_FINISH = State()
+    MARKS_IMPORT = State()
 
 
-from os import path
+import os
 import config as cfg
 import markups as nav
 import helpers as help
@@ -23,32 +25,11 @@ from dbshka import Database
 storage = MemoryStorage()
 bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
-db = Database(path.abspath(cfg.db_file))
+db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
 flag = 0
 
 
-def check_subject(subject):
-    subjects = [
-        "Русский",
-        "Алгебра",
-        "Геометрия",
-        "Литература",
-        "Физика",
-        "История",
-        "Обществознание",
-        "Биология",
-        "Химия",
-        "ОБЖ",
-        "Английский",
-        "Астрономия",
-        "Информатика",
-        "Физкультура",
-        'ЕГЭ Математика'
-    ]
-    if subject in subjects:
-        return True
-    return False
 
 
 async def delete_msg(message, count):
@@ -120,6 +101,13 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             await bot.edit_message_text(
                 "Выбери действие", chatid, messageid, reply_markup=nav.admin_task
             )
+        elif call.data == 'marks_import':
+            await bot.edit_message_text(
+                "Пришли файл в формате '.doc' или введи '-' для отмены.",
+                chatid,
+                messageid,
+            )
+            await state.set_state(ClientState.MARKS_IMPORT)
         elif call.data == "add_hometask":
             await state.update_data(doc_path=[])
             await state.update_data(group='')
@@ -207,6 +195,21 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
         await err(e, chatid)
 
 
+@dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document"])
+async def marks_import(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 2)
+        file_info = await bot.get_file(message.document.file_id)
+        downloaded_file = await bot.download_file(file_info.file_path)
+        shutil.rmtree('convert/')
+        os.mkdir("convert/")
+        with open('convert/interim_word.docx', "wb") as new_file:
+            new_file.write(downloaded_file.getvalue())
+        help.convert_to_json()
+    except Exception as e:
+        await err(e, chatid)
+
 @dp.message_handler(state=ClientState.NEW_TASK_DATE)
 async def new_task_date(message: types.Message, state: FSMContext):
     try:
@@ -224,7 +227,7 @@ async def new_task_subject(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 2)
-        if not check_subject(message.text):
+        if not help.check_subject(message.text):
             await bot.send_message(
                 chatid,
                 "Такого предмета у нас нет. Вводи пожалуйста с большой буквы, например, Алгебра",
@@ -312,10 +315,10 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
         messageid = call.message.message_id
         if call.data == "marks":
             await bot.edit_message_text(
-                "Ждите пока мы придумаем как из циферок на бумаге сделать циферки в телефоне",
+                "Мы придумали, так что выбирайте предмет",
                 chatid,
                 messageid,
-                reply_markup=nav.back_to_menu,
+                reply_markup=nav.marks,
             )
         elif call.data == "hometask":
             all_tasks = smart_sort(list(set(db.get_all_dates())))
@@ -359,6 +362,11 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "hide":
             await delete_msg(call.message, 1)
+        elif 'grade' in call.data:
+            subject = call.data[5:]
+            marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])[subject]
+            marks_str = map(str, marks)
+            await bot.edit_message_text(f'<b>Оценки:</b> <i>{"Нет оценок" if len(marks) == 0 else ", ".join(marks_str)}</i> \n<b>Средний балл:</b> <i>{0 if len(marks) == 0 else round(sum(marks)/len(marks), 2)}</i>', chatid, messageid, reply_markup=nav.back_to_marks_subjects, parse_mode='HTML')
         elif 'day' in call.data:
             desired_day = call.data[3:]
             day_lst = help.get_schedule(flag)[desired_day]

@@ -8,14 +8,12 @@ menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
 )
 
-admin_menu = types.InlineKeyboardMarkup(row_width=2).add(
+admin_menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
     types.InlineKeyboardButton("Изменить оценки", callback_data="edit_marks"),
-    types.InlineKeyboardButton(
-        "Побаловаться с соц. рейтингом", callback_data="edit_socialrate"
-    ),
-)
-admin_menu.row(
+    types.InlineKeyboardButton("Соц. рейтингом", callback_data="edit_socialrate"),
+    types.InlineKeyboardButton('Импорт оценок', callback_data='marks_import')
+).row(
     types.InlineKeyboardButton(
         "Назад к обычным смертным", callback_data="back_to_start"
     )
@@ -37,6 +35,24 @@ schedule = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
+marks = types.InlineKeyboardMarkup(row_width=3).add(
+    types.InlineKeyboardButton('Математика', callback_data='gradeМатематика'),
+    types.InlineKeyboardButton('Физика', callback_data='gradeФизика'),
+    types.InlineKeyboardButton('Информатика', callback_data='gradeИнформатика'),
+    types.InlineKeyboardButton('Русский', callback_data='gradeРусский язык'),
+    types.InlineKeyboardButton('Литература', callback_data='gradeЛитература'),
+    types.InlineKeyboardButton('Биология', callback_data='gradeБиология'),
+    types.InlineKeyboardButton('Химия', callback_data='gradeХимия'),
+    types.InlineKeyboardButton('История', callback_data='gradeИстория'),
+    types.InlineKeyboardButton('Обществознание', callback_data='gradeОбществознание'),
+    types.InlineKeyboardButton('Английский', callback_data='gradeИностранный язык: Английский'),
+    types.InlineKeyboardButton('Астрономия', callback_data='gradeАстрономия'),
+    types.InlineKeyboardButton('ОБЖ', callback_data='gradeОБЖ'),
+    types.InlineKeyboardButton('Физкультура', callback_data='gradeФизическая культура'),
+).row(
+    types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
+)
+
 back_to_schedule = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Назад в меню", callback_data="schedule")
 )
@@ -54,6 +70,10 @@ info_group = types.InlineKeyboardMarkup().add(
 file_exist = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Да", callback_data="file_exists"),
     types.InlineKeyboardButton("Нет", callback_data="file_not_exists"),
+)
+
+back_to_marks_subjects = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton('Назад к предметам', callback_data='marks')
 )
 
 back_to_dates = types.InlineKeyboardMarkup().add(
