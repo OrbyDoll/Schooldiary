@@ -1,8 +1,8 @@
-# import asposecells
-# import jpype
+import asposecells
+import jpype
 
-# jpype.startJVM()
-# from asposecells.api import Workbook
+jpype.startJVM()
+from asposecells.api import Workbook
 import datetime
 import json
 import math
@@ -174,27 +174,36 @@ def get_timestable(weekday):
 
 
 def convert_to_json():
-    pass
-    # with open("convert/interim_word.docx", "rb") as doc_file:
-    #     doc_to_html = mammoth.convert_to_html(doc_file)
-    # with open("convert/interim_html.html", "w", encoding="utf-8") as htmlfile:
-    #     htmlfile.write(doc_to_html.value)
-    # book = Workbook("convert/interim_html.html")
-    # book.save("convert/result.json")
+    with open("convert/interim_word.docx", "rb") as doc_file:
+        doc_to_html = mammoth.convert_to_html(doc_file)
+    with open("convert/interim_html.html", "w", encoding="utf-8") as htmlfile:
+        htmlfile.write(doc_to_html.value)
+    book = Workbook("convert/interim_html.html")
+    book.save("convert/interim_result.json")
+
+def add_marks(old_marks, new_marks):
+    for student in old_marks:
+        subjects = old_marks[student]
+        for subject_name in subjects:
+            new_subject_marks = new_marks[student][subject_name]
+            for mark in new_subject_marks:
+                subjects[subject_name].append(mark)
+    return old_marks
 
 
-def get_marks_mass(lastname):
-    with open("convert/result.json", encoding="utf-8") as json_file:
+def form_marks_mass(type):
+    with open("convert/interim_result.json", encoding="utf-8") as json_file:
         raw_mass = json.load(json_file)
-        for i in range(raw_mass.count(None)):
-            raw_mass.remove(None)
+    for i in range(raw_mass.count(None)):
+        raw_mass.remove(None)
+    extra_key = list(raw_mass[0].keys())[0]
     divided_mass = list(func_chunk(raw_mass, 16))
     all_marks = {}
     for student in divided_mass:
-        student[0]["Ученик"] = student[0].pop("24 октября 2023 г.")
+        student[0]["Ученик"] = student[0].pop(extra_key)
         for data in student:
-            if "24 октября 2023 г." in data:
-                data["Предмет"] = data.pop("24 октября 2023 г.")
+            if extra_key in data:
+                data["Предмет"] = data.pop(extra_key)
         student_marks = {}
         for subject in student[3:]:
             keys = list(subject.keys())
@@ -207,10 +216,26 @@ def get_marks_mass(lastname):
                             marks.append(int(grade))
                         except:
                             pass
-            student_marks[
-                subject[keys[-1]]
-                if subject[keys[-1]] != "Основы безопасности жизнедеятельности"
-                else "ОБЖ"
-            ] = marks
+            key_name = subject[keys[-1]]
+            if subject[keys[-1]] == "Основы безопасности жизнедеятельности":
+                key_name = "ОБЖ"
+            elif subject[keys[-1]] == "Иностранный язык: Английский":
+                key_name = 'Английский'
+            elif subject[keys[-1]] == "Физическая культура":
+                key_name = 'Физкультура'
+            student_marks[key_name] = marks
         all_marks[student[0]["Ученик"].split()[0]] = student_marks
-    return all_marks[lastname]
+    if type == 'replace':
+        with open('final_marks.json', 'w', encoding='utf-8') as main_file:
+            json.dump(all_marks, main_file, ensure_ascii=False)
+    elif type == 'add':
+        with open('final_marks.json', 'r', encoding='utf-8') as main_file:
+            old_marks = json.load(main_file)
+        with open('final_marks.json', 'w', encoding='utf-8') as main_file:
+            new_marks = add_marks(old_marks, all_marks)
+            json.dump(new_marks, main_file, ensure_ascii=False)
+
+def get_marks_mass(lastname):
+    with open('final_marks.json', 'r', encoding='utf-8') as main_file:
+        old_marks = json.load(main_file)
+    return old_marks[lastname]

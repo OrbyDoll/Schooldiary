@@ -24,7 +24,7 @@ import helpers as help
 from dbshka import Database
 
 storage = MemoryStorage()
-bot = Bot(token=cfg.TOKEN)
+bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -55,6 +55,7 @@ async def err(e, chat):
 async def start(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
+        await delete_msg(message, 2)
         if not db.user_exists(chatid):
             await bot.send_message(
                 chatid,
@@ -83,6 +84,7 @@ async def start(message: types.Message, state: FSMContext):
 async def admin(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
+        await delete_msg(message, 2)
         if chatid == cfg.admin or chatid == cfg.glav_admin:
             await bot.send_message(
                 chatid, "Админ пришел, всем к ногам", reply_markup=nav.admin_menu
@@ -111,11 +113,11 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "marks_import":
             await bot.edit_message_text(
-                "Пришли файл в формате '.doc' или введи '-' для отмены.",
+                "Выбери действие",
                 chatid,
                 messageid,
+                reply_markup=nav.marks_choose
             )
-            await state.set_state(ClientState.MARKS_IMPORT)
         elif call.data == "add_hometask":
             await state.update_data(doc_path=[])
             await state.update_data(group="")
@@ -167,6 +169,14 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.menu
             )
             await state.set_state(ClientState.START)
+        elif 'marks' in call.data:
+            await state.update_data(form_type=call.data.split('_')[1])
+            await bot.edit_message_text(
+                "Пришли файл в формате '.doc' или введи '-' для отмены.",
+                chatid,
+                messageid,
+            )
+            await state.set_state(ClientState.MARKS_IMPORT)
         elif "group" in call.data:
             await delete_msg(call.message, 1)
             await state.update_data(group=call.data.split("_")[1])
@@ -203,11 +213,16 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
         await err(e, chatid)
 
 
-@dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document"])
+@dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document", 'text'])
 async def marks_import(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 2)
+        if message.content_type == 'text':
+            if message.text == '-':
+                await state.set_state(ClientState.ADMIN)
+                await bot.send_message(chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu)
+                return
         file_info = await bot.get_file(message.document.file_id)
         downloaded_file = await bot.download_file(file_info.file_path)
         shutil.rmtree("convert/")
@@ -215,6 +230,10 @@ async def marks_import(message: types.Message, state: FSMContext):
         with open("convert/interim_word.docx", "wb") as new_file:
             new_file.write(downloaded_file.getvalue())
         help.convert_to_json()
+        state_data = await state.get_data()
+        help.form_marks_mass(state_data['form_type'])
+        await bot.send_message(chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu)
+        await state.set_state(ClientState.ADMIN)
     except Exception as e:
         await err(e, chatid)
 
@@ -378,7 +397,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])[subject]
             marks_str = map(str, marks)
             await bot.edit_message_text(
-                f'<b>Оценки:</b> <i>{"Нет оценок" if len(marks) == 0 else ", ".join(marks_str)}</i> \n<b>Средний балл:</b> <i>{0 if len(marks) == 0 else round(sum(marks)/len(marks), 2)}</i>',
+                f'<b>{subject}</b>\n<b>Оценки:</b> <i>{"Нет оценок" if len(marks) == 0 else ", ".join(marks_str)}</i> \n<b>Средний балл:</b> <i>{0 if len(marks) == 0 else round(sum(marks)/len(marks), 2)}</i>',
                 chatid,
                 messageid,
                 reply_markup=nav.back_to_marks_subjects,
@@ -446,7 +465,19 @@ async def text(message: types.Message, state: FSMContext):
         chatid = message.chat.id
         await bot.send_message(
             message.chat.id,
-            "Ну и зачем ты мне отправил какой-то непонятный для меня текст?",
+            "Не знаю что ты хотел сделать, держи меню",reply_markup=nav.menu
+        )
+    except Exception as e:
+        await err(e, chatid)
+
+@dp.message_handler(content_types=["text"])
+async def text(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 1)
+        await bot.send_message(
+            message.chat.id,
+            "Бота видимо перезапустили, поэтому напиши /start пожалуйста"
         )
     except Exception as e:
         await err(e, chatid)

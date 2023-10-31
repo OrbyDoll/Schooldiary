@@ -19,6 +19,11 @@ admin_menu = types.InlineKeyboardMarkup(row_width=3).add(
     )
 )
 
+marks_choose = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton('Добавить оценки', callback_data='marks_add'),
+    types.InlineKeyboardButton('Заменить оценки', callback_data='marks_replace'),
+)
+
 admin_task = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Добавить дз", callback_data="add_hometask"),
     types.InlineKeyboardButton("Удалить дз", callback_data="del_hometask"),
@@ -39,16 +44,16 @@ marks = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton('Математика', callback_data='gradeМатематика'),
     types.InlineKeyboardButton('Физика', callback_data='gradeФизика'),
     types.InlineKeyboardButton('Информатика', callback_data='gradeИнформатика'),
-    types.InlineKeyboardButton('Русский', callback_data='gradeРусский язык'),
+    types.InlineKeyboardButton('Русский язык', callback_data='gradeРусский язык'),
     types.InlineKeyboardButton('Литература', callback_data='gradeЛитература'),
     types.InlineKeyboardButton('Биология', callback_data='gradeБиология'),
     types.InlineKeyboardButton('Химия', callback_data='gradeХимия'),
     types.InlineKeyboardButton('История', callback_data='gradeИстория'),
     types.InlineKeyboardButton('Обществознание', callback_data='gradeОбществознание'),
-    types.InlineKeyboardButton('Английский', callback_data='gradeИностранный язык: Английский'),
+    types.InlineKeyboardButton('Английский', callback_data='gradeАнглийский'),
     types.InlineKeyboardButton('Астрономия', callback_data='gradeАстрономия'),
     types.InlineKeyboardButton('ОБЖ', callback_data='gradeОБЖ'),
-    types.InlineKeyboardButton('Физкультура', callback_data='gradeФизическая культура'),
+    types.InlineKeyboardButton('Физкультура', callback_data='gradeФизкультура'),
 ).row(
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
