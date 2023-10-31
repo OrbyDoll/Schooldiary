@@ -61,6 +61,12 @@ async def start(message: types.Message, state: FSMContext):
                 f"Ты не прошел предварительную регистрацию, обратись к админу - {cfg.admin_nick}",
             )
             return
+        if db.get_user(chatid)[1] == "Пётр Новиков":
+            await bot.send_message(
+                chatid,
+                "Добро пожаловать, Педр.\nКрысам доступ в дневник ограничен",
+            )
+            return
         await bot.send_message(
             chatid,
             f"Добро пожаловать в наш электронный дневкик, {message.from_user.username if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}",
@@ -360,7 +366,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "back_to_menu":
             await bot.edit_message_text(
-                f"Добро пожаловать в меню, {db.get_user(chatid)[2]}",
+                f"Добро пожаловать в меню, {db.get_user(chatid)[2] if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-Куст'}",
                 chatid,
                 messageid,
                 reply_markup=nav.menu,
