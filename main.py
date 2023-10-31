@@ -24,7 +24,7 @@ import helpers as help
 from dbshka import Database
 
 storage = MemoryStorage()
-bot = Bot(token=cfg.TOKEN_TEST)
+bot = Bot(token=cfg.TOKEN)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -113,10 +113,7 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "marks_import":
             await bot.edit_message_text(
-                "Выбери действие",
-                chatid,
-                messageid,
-                reply_markup=nav.marks_choose
+                "Выбери действие", chatid, messageid, reply_markup=nav.marks_choose
             )
         elif call.data == "add_hometask":
             await state.update_data(doc_path=[])
@@ -169,8 +166,8 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.menu
             )
             await state.set_state(ClientState.START)
-        elif 'marks' in call.data:
-            await state.update_data(form_type=call.data.split('_')[1])
+        elif "marks" in call.data:
+            await state.update_data(form_type=call.data.split("_")[1])
             await bot.edit_message_text(
                 "Пришли файл в формате '.doc' или введи '-' для отмены.",
                 chatid,
@@ -213,15 +210,17 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
         await err(e, chatid)
 
 
-@dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document", 'text'])
+@dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document", "text"])
 async def marks_import(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 2)
-        if message.content_type == 'text':
-            if message.text == '-':
+        if message.content_type == "text":
+            if message.text == "-":
                 await state.set_state(ClientState.ADMIN)
-                await bot.send_message(chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu)
+                await bot.send_message(
+                    chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+                )
                 return
         file_info = await bot.get_file(message.document.file_id)
         downloaded_file = await bot.download_file(file_info.file_path)
@@ -231,8 +230,10 @@ async def marks_import(message: types.Message, state: FSMContext):
             new_file.write(downloaded_file.getvalue())
         help.convert_to_json()
         state_data = await state.get_data()
-        help.form_marks_mass(state_data['form_type'])
-        await bot.send_message(chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu)
+        help.form_marks_mass(state_data["form_type"])
+        await bot.send_message(
+            chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+        )
         await state.set_state(ClientState.ADMIN)
     except Exception as e:
         await err(e, chatid)
@@ -465,10 +466,12 @@ async def text(message: types.Message, state: FSMContext):
         chatid = message.chat.id
         await bot.send_message(
             message.chat.id,
-            "Не знаю что ты хотел сделать, держи меню",reply_markup=nav.menu
+            "Не знаю что ты хотел сделать, держи меню",
+            reply_markup=nav.menu,
         )
     except Exception as e:
         await err(e, chatid)
+
 
 @dp.message_handler(content_types=["text"])
 async def text(message: types.Message, state: FSMContext):
@@ -477,7 +480,7 @@ async def text(message: types.Message, state: FSMContext):
         await delete_msg(message, 1)
         await bot.send_message(
             message.chat.id,
-            "Бота видимо перезапустили, поэтому напиши /start пожалуйста"
+            "Бота видимо перезапустили, поэтому напиши /start пожалуйста",
         )
     except Exception as e:
         await err(e, chatid)
