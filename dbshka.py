@@ -21,6 +21,13 @@ class Database():
                     document TEXT);
                 """
             )
+            soc_rate = self.cursor.execute(
+                """CREATE TABLE IF NOT EXISTS soc_rate(
+                    lastname TEXT,
+                    rating TEXT,
+                    history TEXT);
+                """
+            )
     def add_user(self, user_id, nickname):
         with self.connection:
             return self.cursor.execute(
@@ -86,3 +93,48 @@ class Database():
             return self.cursor.execute(
                 "SELECT document FROM hometask WHERE date = ? AND subject = ?", (date, subject)
             ).fetchone()
+    
+    def get_rate(self,lastname):
+        with self.connection:
+            return self.cursor.execute(
+                "SELECT rating FROM soc_rate WHERE lastname = ?", (lastname,)
+            ).fetchone()
+
+    def get_all_rates(self):
+        with self.connection:
+            return self.cursor.execute(
+                "SELECT * FROM soc_rate"
+            ).fetchall()
+
+    def add_rate(self, lastname):
+        with self.connection:
+            return self.cursor.execute(
+                "INSERT INTO soc_rate (lastname, rating, history) VALUES (?,?,?)", (lastname, 0, '')
+            )
+    
+    def get_history(self, lastname):
+        with self.connection:
+            return self.cursor.execute(
+                "SELECT history FROM soc_rate WHERE lastname = ?", (lastname,)
+            ).fetchone()
+
+    def add_history(self, lastname, new_note):
+        with self.connection:
+            prev_history = self.get_history(lastname)[0]
+            new_history = prev_history + new_note + '/'
+            return self.cursor.execute(
+                "UPDATE soc_rate SET history = ? WHERE lastname = ?", (new_history,lastname,)
+            )
+
+    def change_rate(self, lastname, rate, new_note):
+        with self.connection:
+            self.add_history(lastname, new_note)
+            prev_rate = self.get_rate(lastname)[0]
+            if self.get_rate(lastname)[0] == "0":
+                new_rate = int(rate)
+            else:
+                new_rate = int(prev_rate) + int(rate)
+            return self.cursor.execute(
+                "UPDATE soc_rate SET rating = ? WHERE lastname = ?", (new_rate, lastname)
+            )
+    

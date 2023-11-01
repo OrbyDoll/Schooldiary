@@ -15,6 +15,8 @@ class ClientState(StatesGroup):
     NEW_TASK_FILE = State()
     NEW_TASK_FINISH = State()
     MARKS_IMPORT = State()
+    CHANGERATE_NUMBER = State()
+    CHANGERATE_DESC = State()
 
 
 import os
@@ -24,7 +26,7 @@ import helpers as help
 from dbshka import Database
 
 storage = MemoryStorage()
-bot = Bot(token=cfg.TOKEN)
+bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -48,6 +50,7 @@ def smart_sort(mass: list):
 async def err(e, chat):
     print(e)
     await bot.send_message(chat, "Что-то пошло не так")
+
 
 
 # Старт
@@ -155,21 +158,32 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 "Вот ваше меню господин", chatid, messageid, reply_markup=nav.admin_menu
             )
         elif call.data == "edit_socialrate":
+            #"Пока получилось сделать только фашистскую Германию..."
+            students = db.get_all_users()
+            rates = db.get_all_rates()
             await bot.edit_message_text(
-                "Пока получилось сделать только фашистскую Германию...",
+                "Выбери ученика",
                 chatid,
                 messageid,
-                reply_markup=nav.back_to_menu,
+                reply_markup=nav.get_students_page(0, students, rates),
             )
         elif call.data == "back_to_start":
             await bot.edit_message_text(
                 "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.menu
             )
             await state.set_state(ClientState.START)
+        elif 'changerate' in call.data:
+            await state.update_data(change_student=call.data.split("_")[1])
+            await bot.edit_message_text('Напиши насколько ты хочешь изменить рейтинг этого ученика. Например, +3 или -5, знак обязателен', chatid, messageid)
+            await state.set_state(ClientState.CHANGERATE_NUMBER)
+        elif 'page' in call.data:
+            students = db.get_all_users()
+            rates = db.get_all_rates()
+            await bot.edit_message_reply_markup(chatid, messageid, reply_markup=nav.get_students_page(int(call.data.split()[1]), students, rates))
         elif "marks" in call.data:
             await state.update_data(form_type=call.data.split("_")[1])
             await bot.edit_message_text(
-                "Пришли файл в формате '.doc' или введи '-' для отмены.",
+                "Пришли файл в формате '.docx' или введи '-' для отмены.",
                 chatid,
                 messageid,
             )
@@ -209,6 +223,42 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
     except Exception as e:
         await err(e, chatid)
 
+
+@dp.message_handler(state=ClientState.CHANGERATE_NUMBER)
+async def changerate_number(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 2)
+        if not message.text.startswith('+') and not message.text.startswith('-'):
+            await bot.send_message(chatid, 'Я же просил начинать со знака "+" или "-"')
+            return
+        try:
+            int(message.text[1:])
+        except:
+            await bot.send_message(chatid, 'Ты ввел не число')
+            return
+        await state.update_data(change_number=message.text)
+        await bot.send_message(chatid, 'За что его так?' if message.text[0] == '-' else 'И что же такого хорошего он сделал?')
+        await state.set_state(ClientState.CHANGERATE_DESC)
+    except Exception as e:
+        await err(e, chatid)
+
+@dp.message_handler(state=ClientState.CHANGERATE_DESC)
+async def changerate_desc(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 2)
+        state_data = await state.get_data()
+        change = state_data['change_number']
+        lastname = state_data['change_student']
+        day = '.'.join(str(datetime.date.today()).split('-')[1:][::-1])
+        note = f'{day}_{change}_{message.text}'
+        rate = change[1] if change[0] == '+' else int(change[1:]) * -1
+        db.change_rate(lastname, rate, note)
+        await state.set_state(ClientState.ADMIN)
+        await bot.send_message(chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu)
+    except Exception as e:
+        await err(e, chatid)
 
 @dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document", "text"])
 async def marks_import(message: types.Message, state: FSMContext):
@@ -366,12 +416,26 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 reply_markup=nav.get_dates_markup(all_tasks),
             )
         elif call.data == "socialrate":
+            #"Ждите пока мы придумаем как сделать из нашего класса новый Китай"
+            user_lastname = db.get_user(chatid)[1].split()[1]
+            rate_text = f'Система оценивания субъективна, т.к. ей заправляет Дима)\n<b>Рейтинг:</b>  <i>{db.get_rate(user_lastname)[0]}</i>'
             await bot.edit_message_text(
-                "Ждите пока мы придумаем как сделать из нашего класса новый Китай",
+                rate_text,
                 chatid,
                 messageid,
-                reply_markup=nav.back_to_menu,
+                reply_markup=nav.rating_history,
+                parse_mode='HTML'
             )
+        elif call.data == 'rating_history':
+            user_lastname = db.get_user(chatid)[1].split()[1]
+            history_mass = db.get_history(user_lastname)[0].split('/')
+            history_mass.pop(len(history_mass) - 1)
+            history_mass = history_mass[::-1]
+            history_text = 'Все изменения вашего социального рейтинга:\n'
+            for case in history_mass:
+                case_data = case.split('_')
+                history_text += f'● {case_data[0]}: Изменен на {case_data[1]}. Причина: {case_data[2]}\n'
+            await bot.edit_message_text(history_text, chatid, messageid, reply_markup=nav.back_to_socialrate)
         elif call.data == "schedule":
             await bot.edit_message_text(
                 "Выберите день", chatid, messageid, reply_markup=nav.schedule

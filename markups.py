@@ -11,7 +11,7 @@ menu = types.InlineKeyboardMarkup(row_width=3).add(
 admin_menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
     types.InlineKeyboardButton("Изменить оценки", callback_data="edit_marks"),
-    types.InlineKeyboardButton("Соц. рейтингом", callback_data="edit_socialrate"),
+    types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
     types.InlineKeyboardButton('Импорт оценок', callback_data='marks_import')
 ).row(
     types.InlineKeyboardButton(
@@ -58,8 +58,9 @@ marks = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
-back_to_schedule = types.InlineKeyboardMarkup().add(
-    types.InlineKeyboardButton("Назад в меню", callback_data="schedule")
+rating_history = types.InlineKeyboardMarkup(row_width=1).add(
+    types.InlineKeyboardButton('История изменений', callback_data='rating_history'),
+    types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
 en_group = types.InlineKeyboardMarkup().add(
@@ -75,6 +76,14 @@ info_group = types.InlineKeyboardMarkup().add(
 file_exist = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Да", callback_data="file_exists"),
     types.InlineKeyboardButton("Нет", callback_data="file_not_exists"),
+)
+
+back_to_socialrate = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton('Назад к рейтингу', callback_data='socialrate')
+)
+
+back_to_schedule = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton("Назад в меню", callback_data="schedule")
 )
 
 back_to_marks_subjects = types.InlineKeyboardMarkup().add(
@@ -144,3 +153,37 @@ def get_del_task_markup(task_list, date):
         types.InlineKeyboardButton("Назад к датам", callback_data=f"del_hometask")
     )
     return task_markup
+
+
+def get_students_page(page, students, rates):
+    students.sort(key=lambda x: x[1].split()[1][0])
+    rates.sort(key=lambda x:x[0][0])
+    item_choose = types.InlineKeyboardMarkup(row_width=1)
+    if 8 * page <= 16 and 8 * page >= 0:
+        for student in range(
+            8 * page,
+            8 * (page + 1)
+            if 8 * (page + 1) < 24
+            else 24,
+        ):
+            item_choose.insert(
+                types.InlineKeyboardButton(
+                    text=f"{students[student][1]}: {rates[student][1]}",
+                    callback_data=f"changerate_{students[student][1].split()[1]}",
+                )
+            )
+        button_back = types.InlineKeyboardButton(
+            text="Назад", callback_data=f"page {page - 1}"
+        )
+        button_forward = types.InlineKeyboardButton(
+            text="Вперед", callback_data=f"page {page + 1}"
+        )
+        button_middle = types.InlineKeyboardButton(
+            text=f"{page + 1}/3", callback_data="aboba"
+        )
+        item_choose.row(button_back, button_middle, button_forward)
+        return item_choose
+    elif 8 * page > 16:
+        return get_students_page(0, students, rates)
+    elif page < 0:
+        return get_students_page(2, students, rates)
