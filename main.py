@@ -52,7 +52,6 @@ async def err(e, chat):
     await bot.send_message(chat, "Что-то пошло не так")
 
 
-
 # Старт
 @dp.message_handler(commands=["start"])
 async def start(message: types.Message, state: FSMContext):
@@ -103,12 +102,13 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
         await bot.answer_callback_query(callback_query_id=call.id)
         chatid = call.message.chat.id
         messageid = call.message.message_id
-        if call.data == "edit_marks":
+        if call.data == "marks":
+            students = db.get_all_users()
             await bot.edit_message_text(
-                "Мы еще этого не придумали",
+                "Выбери ученика",
                 chatid,
                 messageid,
-                reply_markup=nav.back_to_menu,
+                reply_markup=nav.get_students_page(0, students, [], "getmarks"),
             )
         elif call.data == "edit_hometask":
             await bot.edit_message_text(
@@ -158,28 +158,54 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 "Вот ваше меню господин", chatid, messageid, reply_markup=nav.admin_menu
             )
         elif call.data == "edit_socialrate":
-            #"Пока получилось сделать только фашистскую Германию..."
+            # "Пока получилось сделать только фашистскую Германию..."
             students = db.get_all_users()
             rates = db.get_all_rates()
             await bot.edit_message_text(
                 "Выбери ученика",
                 chatid,
                 messageid,
-                reply_markup=nav.get_students_page(0, students, rates),
+                reply_markup=nav.get_students_page(0, students, rates, "changerate"),
             )
         elif call.data == "back_to_start":
             await bot.edit_message_text(
                 "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.menu
             )
             await state.set_state(ClientState.START)
-        elif 'changerate' in call.data:
+        elif "getmarks_" in call.data:
+            data = call.data.split("_")
+            all_marks = help.get_marks_mass(data[1])
+            marks_text = f"<b>{data[1]}</b>\n"
+            for subject in all_marks:
+                student_marks = all_marks[subject]
+                student_marks_str = map(str, student_marks)
+                marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
+            await bot.edit_message_text(
+                marks_text,
+                chatid,
+                messageid,
+                parse_mode="HTML",
+                reply_markup=nav.back_to_marks_students,
+            )
+
+        elif "changerate_" in call.data:
             await state.update_data(change_student=call.data.split("_")[1])
-            await bot.edit_message_text('Напиши насколько ты хочешь изменить рейтинг этого ученика. Например, +3 или -5, знак обязателен', chatid, messageid)
+            await bot.edit_message_text(
+                "Напиши насколько ты хочешь изменить рейтинг этого ученика. Например, +3 или -5, знак обязателен",
+                chatid,
+                messageid,
+            )
             await state.set_state(ClientState.CHANGERATE_NUMBER)
-        elif 'page' in call.data:
+        elif "page" in call.data:
             students = db.get_all_users()
             rates = db.get_all_rates()
-            await bot.edit_message_reply_markup(chatid, messageid, reply_markup=nav.get_students_page(int(call.data.split()[1]), students, rates))
+            await bot.edit_message_reply_markup(
+                chatid,
+                messageid,
+                reply_markup=nav.get_students_page(
+                    int(call.data.split()[1]), students, rates, call.data.split()[2]
+                ),
+            )
         elif "marks" in call.data:
             await state.update_data(form_type=call.data.split("_")[1])
             await bot.edit_message_text(
@@ -229,19 +255,25 @@ async def changerate_number(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 2)
-        if not message.text.startswith('+') and not message.text.startswith('-'):
+        if not message.text.startswith("+") and not message.text.startswith("-"):
             await bot.send_message(chatid, 'Я же просил начинать со знака "+" или "-"')
             return
         try:
             int(message.text[1:])
         except:
-            await bot.send_message(chatid, 'Ты ввел не число')
+            await bot.send_message(chatid, "Ты ввел не число")
             return
         await state.update_data(change_number=message.text)
-        await bot.send_message(chatid, 'За что его так?' if message.text[0] == '-' else 'И что же такого хорошего он сделал?')
+        await bot.send_message(
+            chatid,
+            "За что его так?"
+            if message.text[0] == "-"
+            else "И что же такого хорошего он сделал?",
+        )
         await state.set_state(ClientState.CHANGERATE_DESC)
     except Exception as e:
         await err(e, chatid)
+
 
 @dp.message_handler(state=ClientState.CHANGERATE_DESC)
 async def changerate_desc(message: types.Message, state: FSMContext):
@@ -249,16 +281,19 @@ async def changerate_desc(message: types.Message, state: FSMContext):
         chatid = message.chat.id
         await delete_msg(message, 2)
         state_data = await state.get_data()
-        change = state_data['change_number']
-        lastname = state_data['change_student']
-        day = '.'.join(str(datetime.date.today()).split('-')[1:][::-1])
-        note = f'{day}_{change}_{message.text}'
-        rate = change[1] if change[0] == '+' else int(change[1:]) * -1
+        change = state_data["change_number"]
+        lastname = state_data["change_student"]
+        day = ".".join(str(datetime.date.today()).split("-")[1:][::-1])
+        note = f"{day}_{change}_{message.text}"
+        rate = change[1] if change[0] == "+" else int(change[1:]) * -1
         db.change_rate(lastname, rate, note)
         await state.set_state(ClientState.ADMIN)
-        await bot.send_message(chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu)
+        await bot.send_message(
+            chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+        )
     except Exception as e:
         await err(e, chatid)
+
 
 @dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document", "text"])
 async def marks_import(message: types.Message, state: FSMContext):
@@ -394,7 +429,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
         messageid = call.message.message_id
         if call.data == "marks":
             await bot.edit_message_text(
-                "Мы придумали, так что выбирайте предмет",
+                "Выбирайте предмет",
                 chatid,
                 messageid,
                 reply_markup=nav.marks,
@@ -416,26 +451,28 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 reply_markup=nav.get_dates_markup(all_tasks),
             )
         elif call.data == "socialrate":
-            #"Ждите пока мы придумаем как сделать из нашего класса новый Китай"
+            # "Ждите пока мы придумаем как сделать из нашего класса новый Китай"
             user_lastname = db.get_user(chatid)[1].split()[1]
-            rate_text = f'Система оценивания субъективна, т.к. ей заправляет Дима)\n<b>Рейтинг:</b>  <i>{db.get_rate(user_lastname)[0]}</i>'
+            rate_text = f"Лучшая система оценивания на свете\n<b>Рейтинг:</b> <i>{db.get_rate(user_lastname)[0]}</i>"
             await bot.edit_message_text(
                 rate_text,
                 chatid,
                 messageid,
                 reply_markup=nav.rating_history,
-                parse_mode='HTML'
+                parse_mode="HTML",
             )
-        elif call.data == 'rating_history':
+        elif call.data == "rating_history":
             user_lastname = db.get_user(chatid)[1].split()[1]
-            history_mass = db.get_history(user_lastname)[0].split('/')
+            history_mass = db.get_history(user_lastname)[0].split("/")
             history_mass.pop(len(history_mass) - 1)
             history_mass = history_mass[::-1]
-            history_text = 'Все изменения вашего социального рейтинга:\n'
+            history_text = "Все изменения вашего социального рейтинга:\n"
             for case in history_mass:
-                case_data = case.split('_')
-                history_text += f'● {case_data[0]}: Изменен на {case_data[1]}. Причина: {case_data[2]}\n'
-            await bot.edit_message_text(history_text, chatid, messageid, reply_markup=nav.back_to_socialrate)
+                case_data = case.split("_")
+                history_text += f"● {case_data[0]}: Изменен на {case_data[1]}. Причина: {case_data[2]}\n"
+            await bot.edit_message_text(
+                history_text, chatid, messageid, reply_markup=nav.back_to_socialrate
+            )
         elif call.data == "schedule":
             await bot.edit_message_text(
                 "Выберите день", chatid, messageid, reply_markup=nav.schedule
@@ -457,6 +494,20 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "hide":
             await delete_msg(call.message, 1)
+        elif call.data == "get_all_marks":
+            all_marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])
+            marks_text = f"<b>Ваши оценки</b>\n"
+            for subject in all_marks:
+                student_marks = all_marks[subject]
+                student_marks_str = map(str, student_marks)
+                marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
+            await bot.edit_message_text(
+                marks_text,
+                chatid,
+                messageid,
+                parse_mode="HTML",
+                reply_markup=nav.back_to_marks_subjects,
+            )
         elif "grade" in call.data:
             subject = call.data[5:]
             marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])[subject]
@@ -533,6 +584,7 @@ async def text(message: types.Message, state: FSMContext):
             "Не знаю что ты хотел сделать, держи меню",
             reply_markup=nav.menu,
         )
+        await state.set_state(ClientState.START)
     except Exception as e:
         await err(e, chatid)
 

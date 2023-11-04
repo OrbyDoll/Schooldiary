@@ -1,27 +1,32 @@
 from aiogram import types
 import datetime
-weekdays = ['Пн', "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+
+weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Оценки", callback_data="marks"),
     types.InlineKeyboardButton("Домашка", callback_data="hometask"),
-    types.InlineKeyboardButton('Расписание', callback_data='schedule'),
+    types.InlineKeyboardButton("Расписание", callback_data="schedule"),
     types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
 )
 
-admin_menu = types.InlineKeyboardMarkup(row_width=3).add(
-    types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
-    types.InlineKeyboardButton("Изменить оценки", callback_data="edit_marks"),
-    types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
-    types.InlineKeyboardButton('Импорт оценок', callback_data='marks_import')
-).row(
-    types.InlineKeyboardButton(
-        "Назад к обычным смертным", callback_data="back_to_start"
+admin_menu = (
+    types.InlineKeyboardMarkup(row_width=3)
+    .add(
+        types.InlineKeyboardButton("Оценки", callback_data="marks"),
+        types.InlineKeyboardButton("Изменить оценки", callback_data="edit_marks"),
+        types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
+        types.InlineKeyboardButton("Импорт оценок", callback_data="marks_import"),
+    )
+    .row(
+        types.InlineKeyboardButton(
+            "Назад к обычным смертным", callback_data="back_to_start"
+        )
     )
 )
 
 marks_choose = types.InlineKeyboardMarkup().add(
-    types.InlineKeyboardButton('Добавить оценки', callback_data='marks_add'),
-    types.InlineKeyboardButton('Заменить оценки', callback_data='marks_replace'),
+    types.InlineKeyboardButton("Добавить оценки", callback_data="marks_add"),
+    types.InlineKeyboardButton("Заменить оценки", callback_data="marks_replace"),
 )
 
 admin_task = types.InlineKeyboardMarkup(row_width=2).add(
@@ -31,46 +36,53 @@ admin_task = types.InlineKeyboardMarkup(row_width=2).add(
 )
 
 schedule = types.InlineKeyboardMarkup(row_width=2).add(
-    types.InlineKeyboardButton('Понедельник', callback_data='dayПонедельник'),
-    types.InlineKeyboardButton('Вторник', callback_data='dayВторник'),
-    types.InlineKeyboardButton('Среда', callback_data='dayСреда'),
-    types.InlineKeyboardButton('Четверг', callback_data='dayЧетверг'),
-    types.InlineKeyboardButton('Пятница', callback_data='dayПятница'),
-    types.InlineKeyboardButton('Суббота', callback_data='dayСуббота'),
+    types.InlineKeyboardButton("Понедельник", callback_data="dayПонедельник"),
+    types.InlineKeyboardButton("Вторник", callback_data="dayВторник"),
+    types.InlineKeyboardButton("Среда", callback_data="dayСреда"),
+    types.InlineKeyboardButton("Четверг", callback_data="dayЧетверг"),
+    types.InlineKeyboardButton("Пятница", callback_data="dayПятница"),
+    types.InlineKeyboardButton("Суббота", callback_data="dayСуббота"),
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
-marks = types.InlineKeyboardMarkup(row_width=3).add(
-    types.InlineKeyboardButton('Математика', callback_data='gradeМатематика'),
-    types.InlineKeyboardButton('Физика', callback_data='gradeФизика'),
-    types.InlineKeyboardButton('Информатика', callback_data='gradeИнформатика'),
-    types.InlineKeyboardButton('Русский язык', callback_data='gradeРусский язык'),
-    types.InlineKeyboardButton('Литература', callback_data='gradeЛитература'),
-    types.InlineKeyboardButton('Биология', callback_data='gradeБиология'),
-    types.InlineKeyboardButton('Химия', callback_data='gradeХимия'),
-    types.InlineKeyboardButton('История', callback_data='gradeИстория'),
-    types.InlineKeyboardButton('Обществознание', callback_data='gradeОбществознание'),
-    types.InlineKeyboardButton('Английский', callback_data='gradeАнглийский'),
-    types.InlineKeyboardButton('Астрономия', callback_data='gradeАстрономия'),
-    types.InlineKeyboardButton('ОБЖ', callback_data='gradeОБЖ'),
-    types.InlineKeyboardButton('Физкультура', callback_data='gradeФизкультура'),
-).row(
-    types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
+marks = (
+    types.InlineKeyboardMarkup(row_width=3)
+    .add(
+        types.InlineKeyboardButton("Математика", callback_data="gradeМатематика"),
+        types.InlineKeyboardButton("Физика", callback_data="gradeФизика"),
+        types.InlineKeyboardButton("Информатика", callback_data="gradeИнформатика"),
+        types.InlineKeyboardButton("Русский язык", callback_data="gradeРусский язык"),
+        types.InlineKeyboardButton("Литература", callback_data="gradeЛитература"),
+        types.InlineKeyboardButton("Биология", callback_data="gradeБиология"),
+        types.InlineKeyboardButton("Химия", callback_data="gradeХимия"),
+        types.InlineKeyboardButton("История", callback_data="gradeИстория"),
+        types.InlineKeyboardButton(
+            "Обществознание", callback_data="gradeОбществознание"
+        ),
+        types.InlineKeyboardButton("Английский", callback_data="gradeАнглийский"),
+        types.InlineKeyboardButton("Астрономия", callback_data="gradeАстрономия"),
+        types.InlineKeyboardButton("ОБЖ", callback_data="gradeОБЖ"),
+        types.InlineKeyboardButton("Физкультура", callback_data="gradeФизкультура"),
+    )
+    .row(types.InlineKeyboardButton("Все лценки сразу", callback_data="get_all_marks"))
+    .row(
+        types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
+    )
 )
 
 rating_history = types.InlineKeyboardMarkup(row_width=1).add(
-    types.InlineKeyboardButton('История изменений', callback_data='rating_history'),
+    types.InlineKeyboardButton("История изменений", callback_data="rating_history"),
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
 en_group = types.InlineKeyboardMarkup().add(
-    types.InlineKeyboardButton('Ольга Ивановна', callback_data='group_ОИ'),
-    types.InlineKeyboardButton('Ирина Станиславовна', callback_data='group_ИС'),
+    types.InlineKeyboardButton("Ольга Ивановна", callback_data="group_ОИ"),
+    types.InlineKeyboardButton("Ирина Станиславовна", callback_data="group_ИС"),
 )
 
 info_group = types.InlineKeyboardMarkup().add(
-    types.InlineKeyboardButton('Елена Николаевна', callback_data='group_ЕН'),
-    types.InlineKeyboardButton('Ирина Вадимовна', callback_data='group_ИВ'),
+    types.InlineKeyboardButton("Елена Николаевна", callback_data="group_ЕН"),
+    types.InlineKeyboardButton("Ирина Вадимовна", callback_data="group_ИВ"),
 )
 
 file_exist = types.InlineKeyboardMarkup().add(
@@ -78,8 +90,12 @@ file_exist = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Нет", callback_data="file_not_exists"),
 )
 
+back_to_marks_students = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton("Назад к ученикам", callback_data="marks")
+)
+
 back_to_socialrate = types.InlineKeyboardMarkup().add(
-    types.InlineKeyboardButton('Назад к рейтингу', callback_data='socialrate')
+    types.InlineKeyboardButton("Назад к рейтингу", callback_data="socialrate")
 )
 
 back_to_schedule = types.InlineKeyboardMarkup().add(
@@ -87,7 +103,7 @@ back_to_schedule = types.InlineKeyboardMarkup().add(
 )
 
 back_to_marks_subjects = types.InlineKeyboardMarkup().add(
-    types.InlineKeyboardButton('Назад к предметам', callback_data='marks')
+    types.InlineKeyboardButton("Назад к предметам", callback_data="marks")
 )
 
 back_to_dates = types.InlineKeyboardMarkup().add(
@@ -111,11 +127,16 @@ def get_dates_markup(date_list):
     date_markup = types.InlineKeyboardMarkup(row_width=3)
     for date in date_list:
         try:
-            day_num = datetime.datetime(2023, int(date[0].split('.')[1]), int(date[0].split('.')[0])).weekday()
+            day_num = datetime.datetime(
+                2023, int(date[0].split(".")[1]), int(date[0].split(".")[0])
+            ).weekday()
         except:
             pass
         date_markup.insert(
-            types.InlineKeyboardButton(f'{weekdays[day_num]} - {date[0]}', callback_data=f"gettasklist_{date[0]}")
+            types.InlineKeyboardButton(
+                f"{weekdays[day_num]} - {date[0]}",
+                callback_data=f"gettasklist_{date[0]}",
+            )
         )
     date_markup.row(
         types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu")
@@ -155,35 +176,41 @@ def get_del_task_markup(task_list, date):
     return task_markup
 
 
-def get_students_page(page, students, rates):
+def get_students_page(page, students, rates, type):
     students.sort(key=lambda x: x[1].split()[1][0])
-    rates.sort(key=lambda x:x[0][0])
+    rates.sort(key=lambda x: x[0][0])
     item_choose = types.InlineKeyboardMarkup(row_width=1)
     if 8 * page <= 16 and 8 * page >= 0:
         for student in range(
             8 * page,
-            8 * (page + 1)
-            if 8 * (page + 1) < 24
-            else 24,
+            8 * (page + 1) if 8 * (page + 1) < 24 else 24,
         ):
+            text = (
+                f"{students[student][1]}: {rates[student][1]}"
+                if type != "getmarks"
+                else f"{students[student][1]}"
+            )
             item_choose.insert(
                 types.InlineKeyboardButton(
-                    text=f"{students[student][1]}: {rates[student][1]}",
-                    callback_data=f"changerate_{students[student][1].split()[1]}",
+                    text=text,
+                    callback_data=f"{type}_{students[student][1].split()[1]}",
                 )
             )
         button_back = types.InlineKeyboardButton(
-            text="Назад", callback_data=f"page {page - 1}"
+            text="Назад", callback_data=f"page {page - 1} {type}"
         )
         button_forward = types.InlineKeyboardButton(
-            text="Вперед", callback_data=f"page {page + 1}"
+            text="Вперед", callback_data=f"page {page + 1} {type}"
         )
         button_middle = types.InlineKeyboardButton(
             text=f"{page + 1}/3", callback_data="aboba"
         )
         item_choose.row(button_back, button_middle, button_forward)
+        item_choose.row(
+            types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu")
+        )
         return item_choose
     elif 8 * page > 16:
-        return get_students_page(0, students, rates)
+        return get_students_page(0, students, rates, type)
     elif page < 0:
-        return get_students_page(2, students, rates)
+        return get_students_page(2, students, rates, type)

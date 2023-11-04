@@ -181,6 +181,7 @@ def convert_to_json():
     book = Workbook("convert/interim_html.html")
     book.save("convert/interim_result.json")
 
+
 def add_marks(old_marks, new_marks):
     for student in old_marks:
         subjects = old_marks[student]
@@ -220,22 +221,23 @@ def form_marks_mass(type):
             if subject[keys[-1]] == "Основы безопасности жизнедеятельности":
                 key_name = "ОБЖ"
             elif subject[keys[-1]] == "Иностранный язык: Английский":
-                key_name = 'Английский'
+                key_name = "Английский"
             elif subject[keys[-1]] == "Физическая культура":
-                key_name = 'Физкультура'
+                key_name = "Физкультура"
             student_marks[key_name] = marks
         all_marks[student[0]["Ученик"].split()[0]] = student_marks
-    if type == 'replace':
-        with open('final_marks.json', 'w', encoding='utf-8') as main_file:
+    if type == "replace":
+        with open("final_marks.json", "w", encoding="utf-8") as main_file:
             json.dump(all_marks, main_file, ensure_ascii=False)
-    elif type == 'add':
-        with open('final_marks.json', 'r', encoding='utf-8') as main_file:
+    elif type == "add":
+        with open("final_marks.json", "r", encoding="utf-8") as main_file:
             old_marks = json.load(main_file)
-        with open('final_marks.json', 'w', encoding='utf-8') as main_file:
+        with open("final_marks.json", "w", encoding="utf-8") as main_file:
             new_marks = add_marks(old_marks, all_marks)
             json.dump(new_marks, main_file, ensure_ascii=False)
 
+
 def get_marks_mass(lastname):
-    with open('final_marks.json', 'r', encoding='utf-8') as main_file:
+    with open("final_marks.json", "r", encoding="utf-8") as main_file:
         old_marks = json.load(main_file)
     return old_marks[lastname]
