@@ -1,7 +1,7 @@
 from aiogram import types
+import helpers as help
 import datetime
 
-weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Оценки", callback_data="marks"),
     types.InlineKeyboardButton("Домашка", callback_data="hometask"),
@@ -25,8 +25,8 @@ admin_menu = (
 )
 
 marks_choose = types.InlineKeyboardMarkup().add(
-    types.InlineKeyboardButton("Добавить оценки", callback_data="marks_add"),
-    types.InlineKeyboardButton("Заменить оценки", callback_data="marks_replace"),
+    types.InlineKeyboardButton("Добавить оценки", callback_data="importmarks_add"),
+    types.InlineKeyboardButton("Заменить оценки", callback_data="importmarks_replace"),
 )
 
 admin_task = types.InlineKeyboardMarkup(row_width=2).add(
@@ -45,7 +45,7 @@ schedule = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
-marks = (
+marks_with_dates = (
     types.InlineKeyboardMarkup(row_width=3)
     .add(
         types.InlineKeyboardButton("Математика", callback_data="gradeМатематика"),
@@ -64,10 +64,14 @@ marks = (
         types.InlineKeyboardButton("ОБЖ", callback_data="gradeОБЖ"),
         types.InlineKeyboardButton("Физкультура", callback_data="gradeФизкультура"),
     )
-    .row(types.InlineKeyboardButton("Все оценки сразу", callback_data="get_all_marks"))
     .row(
-        types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
+        types.InlineKeyboardButton("Назад ко всем оценкам", callback_data="marks"),
     )
+)
+
+all_marks = types.InlineKeyboardMarkup(row_width=1).add(
+    types.InlineKeyboardButton("Оценки с датами", callback_data="marks_with_dates"),
+    types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
 rating_history = types.InlineKeyboardMarkup(row_width=1).add(
@@ -103,7 +107,7 @@ back_to_schedule = types.InlineKeyboardMarkup().add(
 )
 
 back_to_marks_subjects = types.InlineKeyboardMarkup().add(
-    types.InlineKeyboardButton("Назад к предметам", callback_data="marks")
+    types.InlineKeyboardButton("Назад к предметам", callback_data="marks_with_dates")
 )
 
 back_to_dates = types.InlineKeyboardMarkup().add(
@@ -134,7 +138,7 @@ def get_dates_markup(date_list):
             pass
         date_markup.insert(
             types.InlineKeyboardButton(
-                f"{weekdays[day_num]} - {date[0]}",
+                f"{help.weekdays_short[day_num]} - {date[0]}",
                 callback_data=f"gettasklist_{date[0]}",
             )
         )

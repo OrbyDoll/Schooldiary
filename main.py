@@ -26,7 +26,7 @@ import helpers as help
 from dbshka import Database
 
 storage = MemoryStorage()
-bot = Bot(token=cfg.TOKEN)
+bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -177,7 +177,9 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             all_marks = help.get_marks_mass(data[1])
             marks_text = f"<b>{data[1]}</b>\n"
             for subject in all_marks:
-                student_marks = all_marks[subject]
+                student_marks = []
+                for mark in all_marks[subject]:
+                    student_marks.append(list(mark.values())[0])
                 student_marks_str = map(str, student_marks)
                 marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
             await bot.edit_message_text(
@@ -206,7 +208,7 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                     int(call.data.split()[1]), students, rates, call.data.split()[2]
                 ),
             )
-        elif "marks" in call.data:
+        elif "importmarks" in call.data:
             await state.update_data(form_type=call.data.split("_")[1])
             await bot.edit_message_text(
                 "Пришли файл в формате '.docx' или введи '-' для отмены.",
@@ -438,7 +440,9 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             all_marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])
             marks_text = f"<b>Ваши оценки</b>\n"
             for subject in all_marks:
-                student_marks = all_marks[subject]
+                student_marks = []
+                for mark in all_marks[subject]:
+                    student_marks.append(list(mark.values())[0])
                 student_marks_str = map(str, student_marks)
                 marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
             await bot.edit_message_text(
@@ -446,7 +450,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 chatid,
                 messageid,
                 parse_mode="HTML",
-                reply_markup=nav.back_to_menu,
+                reply_markup=nav.all_marks,
             )
             # await bot.edit_message_text(
             #     "Выбирайте предмет",
@@ -454,6 +458,10 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             #     messageid,
             #     reply_markup=nav.marks,
             # )
+        elif call.data == "marks_with_dates":
+            await bot.edit_message_text(
+                "Выберите предмет", chatid, messageid, reply_markup=nav.marks_with_dates
+            )
         elif call.data == "hometask":
             all_tasks = smart_sort(list(set(db.get_all_dates())))
             if len(all_tasks) == 0:
@@ -530,14 +538,25 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif "grade" in call.data:
             subject = call.data[5:]
-            marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])[subject]
-            marks_str = map(str, marks)
+            subject_marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])[
+                subject
+            ]
+            marks_text = f"<b>{subject}</b>\n"
+            if len(subject_marks) == 0:
+                marks_text += "Нет оценок"
+            for mark in subject_marks:
+                mark_key = list(mark.keys())[0]
+                data_split = mark_key.split(".")
+                day_num = datetime.datetime(
+                    2023, int(data_split[1]), int(data_split[0])
+                ).weekday()
+                marks_text += f"{help.weekdays_short[day_num]} {data_split[0]} {help.months_names[int(data_split[1]) - 1][:-1] + 'я'} - {mark[mark_key]}\n"
             await bot.edit_message_text(
-                f'<b>{subject}</b>\n<b>Оценки:</b> <i>{"Нет оценок" if len(marks) == 0 else ", ".join(marks_str)}</i> \n<b>Средний балл:</b> <i>{0 if len(marks) == 0 else round(sum(marks)/len(marks), 2)}</i>',
+                marks_text,
                 chatid,
                 messageid,
-                reply_markup=nav.back_to_marks_subjects,
                 parse_mode="HTML",
+                reply_markup=nav.back_to_marks_subjects,
             )
         elif "day" in call.data:
             desired_day = call.data[3:]

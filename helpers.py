@@ -9,6 +9,20 @@ import math
 import mammoth
 
 
+months_names = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+]
 weekdays = [
     "Понедельник",
     "Вторник",
@@ -18,6 +32,7 @@ weekdays = [
     "Суббота",
     "Воскресенье",
 ]
+weekdays_short = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 group_OI = [
     "Хазин",
     "Ряжских",
@@ -202,7 +217,41 @@ def form_marks_mass(type):
             raw_mass.remove(obj)
     extra_key = list(raw_mass[0].keys())[0]
     divided_mass = list(func_chunk(raw_mass, 16))
+    date_guide = {}
     all_marks = {}
+
+    # Распределение дат по колонкам
+    months_column = divided_mass[0][1]
+    months_keys = list(months_column.keys())
+    for date in divided_mass[0][2]:
+        # print(int(date[6:]), int(months_keys[len(months_column) - 1][6:]))
+        if len(months_column) == 1:
+            unformatted_date_month = months_names.index(months_column[months_keys[0]]) + 1
+        elif int(date[6:]) >= int(months_keys[len(months_column) - 1][6:]):
+            unformatted_date_month = months_names.index(
+                months_column[months_keys[len(months_column) - 1]]
+            ) + 1
+        else:
+            keys = list(map(lambda x: int(x[6:]), list(months_keys)))
+            ranges = [range(keys[i - 1], keys[i]) for i in range(1, len(keys))]
+            for rng in ranges:
+                if int(date[6:]) in rng:
+                    unformatted_date_month = months_names.index(
+                        months_column[months_keys[ranges.index(rng)]]
+                    ) + 1
+        date_month = (
+            unformatted_date_month
+            if len(str(unformatted_date_month)) == 2
+            else "0" + str(unformatted_date_month)
+        )
+        day = (
+            divided_mass[0][2][date]
+            if len(str(divided_mass[0][2][date])) == 2
+            else "0" + str(divided_mass[0][2][date])
+        )
+        date_guide[date] = f"{day}.{date_month}"
+
+    # Формирование словаря - ученик : [{Предмет : Оценка}, ...]
     for student in divided_mass:
         student[0]["Ученик"] = student[0].pop(extra_key)
         for data in student:
@@ -217,7 +266,7 @@ def form_marks_mass(type):
                     for grade in str(subject[mark]).replace("\n", "").split():
                         try:
                             # Отсеивание не чисел
-                            marks.append(int(grade))
+                            marks.append({date_guide[mark]: int(grade)})
                         except:
                             pass
             key_name = subject[keys[-1]]
@@ -229,6 +278,8 @@ def form_marks_mass(type):
                 key_name = "Физкультура"
             student_marks[key_name] = marks
         all_marks[student[0]["Ученик"].split()[0]] = student_marks
+
+    # Замена или добавление оценок
     if type == "replace":
         with open("final_marks.json", "w", encoding="utf-8") as main_file:
             json.dump(all_marks, main_file, ensure_ascii=False)
@@ -244,3 +295,4 @@ def get_marks_mass(lastname):
     with open("final_marks.json", "r", encoding="utf-8") as main_file:
         old_marks = json.load(main_file)
     return old_marks[lastname]
+

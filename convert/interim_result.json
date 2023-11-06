@@ -5,73 +5,165 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column8": 3,
+  "Column9": 3,
+  "Column26": 5,
+  "Column27": 5,
+  "Column50": 3
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column5": 4
+  "Column10": 5,
+  "Column16": 4,
+  "Column22": 4,
+  "Column24": 5,
+  "Column30": 5,
+  "Column34": 5,
+  "Column43": 4
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": "н \nн "
+  "Column14": 4,
+  "Column20": 4,
+  "Column23": "+ ",
+  "Column29": 4,
+  "Column38": 4,
+  "Column44": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "2 \n3 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 3
+  "Column14": "4 \n5 ",
+  "Column19": 5,
+  "Column26": 4,
+  "Column44": 3
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 3,
-  "Column6": "3 \n2 ",
-  "Column7": 4,
-  "Column8": "2 \n2 "
+  "Column9": 4,
+  "Column10": "3 \n3 ",
+  "Column14": 2,
+  "Column15": 2,
+  "Column17": 3,
+  "Column20": 3,
+  "Column26": 4,
+  "Column28": 3,
+  "Column29": 2,
+  "Column32": 3,
+  "Column34": 5,
+  "Column38": "н \nн ",
+  "Column41": 3,
+  "Column44": "3 \n2 ",
+  "Column45": 4,
+  "Column46": "2 \n2 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 3,
+  "Column19": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n2 ",
+  "Column18": 5,
+  "Column24": 4,
+  "Column30": 5,
+  "Column34": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 3
+  "Column15": 3,
+  "Column45": 3
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column4": 4,
-  "Column8": 5
+  "Column4": 3,
+  "Column7": 4,
+  "Column13": 4,
+  "Column19": 4,
+  "Column24": 3,
+  "Column30": 3,
+  "Column31": 5,
+  "Column36": 3,
+  "Column37": "2 \n4 ",
+  "Column42": 4,
+  "Column46": 5
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -81,75 +173,169 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": "н "
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": "н "
+  "Column8": 4,
+  "Column9": 3,
+  "Column15": "н ",
+  "Column26": 5,
+  "Column50": "н "
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column6": 4,
+  "Column7": 5,
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 2,
+  "Column16": 4,
+  "Column22": 3,
+  "Column25": 2
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5,
-  "Column12": "н \nн "
+  "Column14": 3,
+  "Column20": 5,
+  "Column23": "+ ",
+  "Column29": 5,
+  "Column38": 5,
+  "Column44": 5,
+  "Column50": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "3 \n2 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 4,
+  "Column14": "4 \n5 ",
+  "Column19": 4,
+  "Column20": 5,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 2,
-  "Column6": "4 \n4 ",
-  "Column7": 5,
-  "Column8": "3 \n3 "
+  "Column9": 3,
+  "Column10": 4,
+  "Column14": 2,
+  "Column15": 5,
+  "Column17": "5 \n4 ",
+  "Column20": 3,
+  "Column26": 4,
+  "Column28": 4,
+  "Column29": "3 \n4 ",
+  "Column32": 3,
+  "Column38": 4,
+  "Column41": 2,
+  "Column44": "4 \n4 ",
+  "Column45": 5,
+  "Column46": "3 \n3 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": 5,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": 4,
+  "Column18": 4,
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 4
+  "Column15": 3,
+  "Column21": 5,
+  "Column45": 4
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 5,
-  "Column4": 4,
-  "Column5": 5,
-  "Column10": 4
+  "Column4": 5,
+  "Column12": 5,
+  "Column18": 3,
+  "Column19": 4,
+  "Column24": 2,
+  "Column30": 4,
+  "Column31": 5,
+  "Column36": 4,
+  "Column40": 5,
+  "Column42": 4,
+  "Column43": 5,
+  "Column48": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -159,75 +345,181 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column12": "н ",
+  "Column18": "н ",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 5
+  "Column8": 5,
+  "Column9": 5,
+  "Column14": "н ",
+  "Column15": "н ",
+  "Column20": "н ",
+  "Column21": "н ",
+  "Column32": "н ",
+  "Column50": 5
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column4": 5,
-  "Column5": 5
+  "Column10": 5,
+  "Column12": "н ",
+  "Column13": "н ",
+  "Column16": "н ",
+  "Column18": "н ",
+  "Column19": "н ",
+  "Column22": 5,
+  "Column24": 5,
+  "Column30": 5,
+  "Column34": 5,
+  "Column42": 5,
+  "Column43": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column11": "н \nн ",
+  "Column14": "н \nн ",
+  "Column17": "н \nн ",
+  "Column20": "н \nн ",
+  "Column23": "+ ",
+  "Column29": "н \nн ",
+  "Column38": 5,
+  "Column44": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 5,
+  "Column34": "5 \n5 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 5
+  "Column26": 5,
+  "Column31": 5,
+  "Column44": 5
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 3,
-  "Column6": "5 \n5 ",
-  "Column7": 5,
-  "Column8": "5 \n5 "
+  "Column9": 4,
+  "Column10": 5,
+  "Column14": "н \nн ",
+  "Column15": "н \nн ",
+  "Column16": "н \nн ",
+  "Column17": "н \nн ",
+  "Column20": "н \nн ",
+  "Column21": "н \nн ",
+  "Column26": 4,
+  "Column28": "5 \n4 ",
+  "Column29": "н \nн ",
+  "Column32": "н \nн ",
+  "Column38": 5,
+  "Column41": 3,
+  "Column44": "5 \n5 ",
+  "Column45": 5,
+  "Column46": "5 \n5 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": "н ",
+  "Column19": "н ",
+  "Column31": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": 5,
+  "Column18": 5,
+  "Column24": 5,
+  "Column30": 5,
+  "Column34": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 5
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Физика",
   "Column4": 5,
-  "Column5": 5,
-  "Column8": 5
+  "Column12": "н \nн ",
+  "Column13": "н \nн ",
+  "Column16": "н ",
+  "Column18": "н \nн ",
+  "Column19": "н \nн ",
+  "Column24": 5,
+  "Column25": 5,
+  "Column30": 5,
+  "Column31": 5,
+  "Column36": 5,
+  "Column37": 5,
+  "Column42": 5,
+  "Column43": 5,
+  "Column46": 5
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": "н \nн ",
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -237,78 +529,169 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column18": 5,
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 2
+  "Column8": 3,
+  "Column9": 3,
+  "Column27": 4,
+  "Column50": 2
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 2,
-  "Column4": 3,
-  "Column5": 4,
-  "Column8": 5
+  "Column10": 3,
+  "Column16": 4,
+  "Column22": 4,
+  "Column30": 4,
+  "Column40": 2,
+  "Column42": 3,
+  "Column43": 4,
+  "Column46": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 5
+  "Column11": 3,
+  "Column17": 4,
+  "Column20": 5,
+  "Column32": 5,
+  "Column38": 5,
+  "Column41": 5
  },
  {
   "6 ноября 2023 г.": "История",
-  "Column2": 4
+  "Column22": 2,
+  "Column34": "4 \n2 ",
+  "Column40": 4
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column14": "4 \n5 ",
+  "Column19": 5,
+  "Column26": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 3,
-  "Column6": "5 \n3 ",
+  "Column9": 1,
+  "Column10": 3,
+  "Column14": 2,
+  "Column15": 2,
+  "Column17": 3,
+  "Column20": 2,
+  "Column26": 3,
+  "Column28": 2,
+  "Column29": 2,
+  "Column32": 3,
+  "Column38": "н \nн ",
+  "Column41": 3,
+  "Column44": "5 \n3 ",
+  "Column45": 4,
+  "Column46": "4 \n4 "
+ },
+ {
+  "6 ноября 2023 г.": "Обществознание",
   "Column7": 4,
-  "Column8": "4 \n4 "
+  "Column13": 4,
+  "Column19": 4,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
- },
- {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n4 ",
+  "Column18": 5,
+  "Column24": 5,
+  "Column30": 3,
+  "Column34": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 4
+  "Column15": 3,
+  "Column45": 4
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 3,
   "Column4": 3,
-  "Column8": 2,
-  "Column10": 4
+  "Column7": 3,
+  "Column16": 4,
+  "Column19": 4,
+  "Column24": 3,
+  "Column28": 3,
+  "Column31": 2,
+  "Column36": 3,
+  "Column40": 3,
+  "Column42": 3,
+  "Column46": 2,
+  "Column48": 4
  },
  {
-  "6 ноября 2023 г.": "Физическая культура"
+  "6 ноября 2023 г.": "Физическая культура",
+  "Column15": 5,
+  "Column21": 5,
+  "Column33": 5,
+  "Column39": "н \nн "
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -318,73 +701,172 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 4
+  "Column8": 3,
+  "Column9": 4,
+  "Column20": 5,
+  "Column27": 5,
+  "Column50": 4
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column7": 4,
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 4,
+  "Column16": 5,
+  "Column22": 3,
+  "Column25": 3
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column14": 2,
+  "Column20": 2,
+  "Column23": "+ ",
+  "Column29": 5,
+  "Column35": "н \nн ",
+  "Column38": 5,
+  "Column44": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "5 \n4 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 5
+  "Column8": 5,
+  "Column14": "4 \n5 ",
+  "Column19": 5,
+  "Column20": 5,
+  "Column26": 5,
+  "Column44": 5
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 2,
-  "Column6": "2 \n4 ",
-  "Column7": "3 \n4 ",
-  "Column8": "3 \n4 "
+  "Column9": 3,
+  "Column10": 4,
+  "Column14": 2,
+  "Column15": 2,
+  "Column17": 2,
+  "Column20": 2,
+  "Column26": 4,
+  "Column28": 3,
+  "Column29": 2,
+  "Column32": 3,
+  "Column33": 5,
+  "Column34": 5,
+  "Column35": 5,
+  "Column41": 2,
+  "Column44": "2 \n4 ",
+  "Column45": "3 \n4 ",
+  "Column46": "3 \n4 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": 5,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n5 ",
+  "Column18": 4,
+  "Column24": 5,
+  "Column30": 5,
+  "Column34": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 3
+  "Column15": 4,
+  "Column21": 5,
+  "Column45": 3
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column4": 3,
-  "Column5": 3,
-  "Column8": 3,
-  "Column10": 5
+  "Column4": 5,
+  "Column12": 3,
+  "Column13": 4,
+  "Column19": 3,
+  "Column24": 4,
+  "Column30": 4,
+  "Column31": 3,
+  "Column36": 5,
+  "Column42": 3,
+  "Column43": 3,
+  "Column46": 3,
+  "Column48": 5
  },
  {
-  "6 ноября 2023 г.": "Физическая культура"
+  "6 ноября 2023 г.": "Физическая культура",
+  "Column15": 5,
+  "Column21": 5,
+  "Column33": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -394,77 +876,175 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column7": "н ",
-  "Column12": 5
+  "Column8": 3,
+  "Column9": 4,
+  "Column27": 4,
+  "Column45": "н ",
+  "Column50": 5
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column6": 5,
+  "Column7": 5,
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 4,
+  "Column16": 5,
+  "Column22": 3,
+  "Column25": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": "н \nн ",
-  "Column6": "н \nн "
+  "Column11": 3,
+  "Column17": 3,
+  "Column20": 5,
+  "Column32": 4,
+  "Column38": 4,
+  "Column41": "н \nн ",
+  "Column44": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "5 \n2 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 5
+  "Column8": 5,
+  "Column14": "4 \n5 ",
+  "Column19": 5,
+  "Column26": 4,
+  "Column44": 5
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column2": "н \nн ",
-  "Column3": "н \nн ",
-  "Column6": "н \nн ",
-  "Column7": "н \nн ",
-  "Column8": "4 \n4 ",
-  "Column9": 3
+  "Column9": 4,
+  "Column10": 3,
+  "Column14": 2,
+  "Column15": 4,
+  "Column16": 5,
+  "Column17": 4,
+  "Column20": 3,
+  "Column26": 4,
+  "Column28": 4,
+  "Column29": 3,
+  "Column32": 4,
+  "Column33": 3,
+  "Column34": 5,
+  "Column38": "н \nн ",
+  "Column39": "н \nн ",
+  "Column40": "н \nн ",
+  "Column41": "н \nн ",
+  "Column44": "н \nн ",
+  "Column45": "н \nн ",
+  "Column46": "4 \n4 ",
+  "Column47": 3
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 5,
+  "Column19": 5,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n5 ",
+  "Column18": 5,
+  "Column24": 5,
+  "Column30": 4,
+  "Column34": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": "н "
+  "Column15": 3,
+  "Column21": 5,
+  "Column45": "н "
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": "н ",
-  "Column4": "н \nн ",
-  "Column5": "н \nн ",
-  "Column10": 5
+  "Column4": 3,
+  "Column7": 4,
+  "Column18": 5,
+  "Column19": 4,
+  "Column25": 4,
+  "Column30": 3,
+  "Column36": 5,
+  "Column40": "н ",
+  "Column42": "н \nн ",
+  "Column43": "н \nн ",
+  "Column48": 5
  },
  {
-  "6 ноября 2023 г.": "Физическая культура"
+  "6 ноября 2023 г.": "Физическая культура",
+  "Column15": 5,
+  "Column21": 5,
+  "Column33": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -474,73 +1054,170 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column3": "н ",
+  "Column8": 3,
+  "Column9": 5,
+  "Column50": 3
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column6": 5,
+  "Column7": 5,
+  "Column10": 5,
+  "Column12": 5,
+  "Column13": 3,
+  "Column16": 4,
+  "Column22": 4,
+  "Column25": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 5
+  "Column11": 4,
+  "Column17": 5,
+  "Column20": 5,
+  "Column32": 5,
+  "Column38": 4,
+  "Column41": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "4 \n4 \n4 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 3
+  "Column8": 5,
+  "Column14": "4 \n5 ",
+  "Column19": 5,
+  "Column26": 4,
+  "Column44": 3
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 5,
-  "Column6": "5 \n5 ",
+  "Column9": 4,
+  "Column10": 5,
+  "Column14": 4,
+  "Column15": 4,
+  "Column17": 4,
+  "Column20": 5,
+  "Column26": 5,
+  "Column28": 5,
+  "Column29": 5,
+  "Column32": 5,
+  "Column34": 5,
+  "Column38": 5,
+  "Column41": 5,
+  "Column44": "5 \n5 ",
+  "Column45": 4,
+  "Column46": "4 \n5 "
+ },
+ {
+  "6 ноября 2023 г.": "Обществознание",
   "Column7": 4,
-  "Column8": "4 \n5 "
+  "Column13": 4,
+  "Column19": 5
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
- },
- {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n5 ",
+  "Column18": 5,
+  "Column24": 4,
+  "Column30": 5,
+  "Column34": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 3
+  "Column15": 3,
+  "Column21": 5,
+  "Column45": 3
  },
  {
   "6 ноября 2023 г.": "Физика",
   "Column4": 5,
-  "Column5": 5,
-  "Column8": 5
+  "Column12": 5,
+  "Column16": 5,
+  "Column19": 5,
+  "Column25": 5,
+  "Column30": 5,
+  "Column31": 5,
+  "Column36": 5,
+  "Column37": 5,
+  "Column42": 5,
+  "Column43": 5,
+  "Column46": 5
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -550,78 +1227,167 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 5
+  "Column8": 4,
+  "Column9": 5,
+  "Column50": 5
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 4,
-  "Column4": 5,
-  "Column5": 5
+  "Column10": 5,
+  "Column13": 5,
+  "Column16": 4,
+  "Column22": 5,
+  "Column30": 5,
+  "Column40": 4,
+  "Column42": 5,
+  "Column43": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column14": 5,
+  "Column20": 4,
+  "Column23": "+ ",
+  "Column29": 5,
+  "Column38": 4,
+  "Column44": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "2 \n2 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 5,
+  "Column14": "5 \n5 ",
+  "Column19": 4,
+  "Column20": 5,
+  "Column26": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 4,
-  "Column6": "5 \n4 ",
-  "Column7": 3,
-  "Column8": "4 \n3 ",
-  "Column9": 4
+  "Column9": 3,
+  "Column10": 4,
+  "Column14": 4,
+  "Column15": 4,
+  "Column17": 3,
+  "Column20": 3,
+  "Column26": 4,
+  "Column28": 3,
+  "Column29": 3,
+  "Column32": 3,
+  "Column41": 4,
+  "Column44": "5 \n4 ",
+  "Column45": 3,
+  "Column46": "4 \n3 ",
+  "Column47": 4
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": 5,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "4 \n4 ",
+  "Column18": 5,
+  "Column24": 5,
+  "Column30": 5,
+  "Column34": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 4
+  "Column15": 3,
+  "Column45": 4
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 2,
   "Column4": 3,
-  "Column5": 4,
-  "Column10": 4
+  "Column7": 5,
+  "Column13": 3,
+  "Column19": 3,
+  "Column24": 3,
+  "Column28": 2,
+  "Column31": 3,
+  "Column36": 5,
+  "Column40": 2,
+  "Column42": 3,
+  "Column43": 4,
+  "Column48": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -631,77 +1397,169 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 5
+  "Column8": 3,
+  "Column9": 5,
+  "Column50": 5
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column4": 5,
-  "Column5": 5
+  "Column6": 4,
+  "Column10": 5,
+  "Column16": 2,
+  "Column22": 5,
+  "Column24": 5,
+  "Column30": 5,
+  "Column34": 3,
+  "Column42": 5,
+  "Column43": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column14": 5,
+  "Column20": 3,
+  "Column23": "+ ",
+  "Column29": 4,
+  "Column38": 3,
+  "Column44": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column10": 5,
+  "Column22": 2,
+  "Column34": "3 \n3 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 5,
+  "Column14": "5 \n5 ",
+  "Column19": 4,
+  "Column20": 5,
+  "Column26": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 2,
-  "Column6": "3 \n2 ",
-  "Column7": 2,
-  "Column8": "4 \n3 ",
-  "Column9": 2
+  "Column9": 3,
+  "Column10": 2,
+  "Column14": 2,
+  "Column15": 4,
+  "Column17": 3,
+  "Column20": 4,
+  "Column26": "н ",
+  "Column28": 2,
+  "Column29": 2,
+  "Column32": 3,
+  "Column38": 3,
+  "Column41": 2,
+  "Column44": "3 \n2 ",
+  "Column45": 2,
+  "Column46": "4 \n3 ",
+  "Column47": 2
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 5,
+  "Column19": "4 \n5 "
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "4 \n4 ",
+  "Column18": 5,
+  "Column24": 4,
+  "Column30": 5,
+  "Column34": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 4
+  "Column15": 4,
+  "Column45": 4
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column4": 2,
-  "Column5": 2,
-  "Column8": 2,
-  "Column10": 4
+  "Column4": 3,
+  "Column10": 2,
+  "Column18": 3,
+  "Column19": 3,
+  "Column24": 2,
+  "Column30": 2,
+  "Column31": 3,
+  "Column36": 3,
+  "Column42": 2,
+  "Column43": 2,
+  "Column46": 2,
+  "Column48": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -711,77 +1569,173 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column12": "н ",
+  "Column18": 5,
+  "Column24": "н ",
+  "Column30": "н "
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 2
+  "Column8": 3,
+  "Column9": 3,
+  "Column50": 2
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 2,
-  "Column4": 3,
-  "Column5": 2
+  "Column6": 2,
+  "Column10": 2,
+  "Column16": 2,
+  "Column18": "н ",
+  "Column22": 4,
+  "Column24": 3,
+  "Column30": 4,
+  "Column40": 2,
+  "Column42": 3,
+  "Column43": 2
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 4
+  "Column11": 5,
+  "Column17": 4,
+  "Column20": 5,
+  "Column23": "н \nн ",
+  "Column26": "н \nн ",
+  "Column29": 2,
+  "Column32": 3,
+  "Column38": 5,
+  "Column41": 4
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 2,
+  "Column34": "3 \n2 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column14": "5 \n3 ",
+  "Column19": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 5,
-  "Column6": "4 \n2 ",
-  "Column7": 3,
-  "Column8": "4 \n3 "
+  "Column9": 4,
+  "Column10": 4,
+  "Column14": 2,
+  "Column15": 4,
+  "Column17": 3,
+  "Column20": 3,
+  "Column26": "н \nн ",
+  "Column28": 4,
+  "Column29": 3,
+  "Column32": 3,
+  "Column33": 5,
+  "Column34": 5,
+  "Column35": 5,
+  "Column38": 5,
+  "Column41": 5,
+  "Column44": "4 \n2 ",
+  "Column45": 3,
+  "Column46": "4 \n3 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": "2 \n3 "
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": 4,
+  "Column18": 5,
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 4
+  "Column15": 2,
+  "Column45": 4
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 2,
-  "Column4": 2,
-  "Column5": 2,
-  "Column10": 4
+  "Column4": 3,
+  "Column12": 3,
+  "Column16": 4,
+  "Column19": 3,
+  "Column25": 5,
+  "Column30": 4,
+  "Column31": 3,
+  "Column36": 2,
+  "Column37": 2,
+  "Column40": 2,
+  "Column42": 2,
+  "Column43": 2,
+  "Column48": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -791,78 +1745,168 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column12": "н ",
+  "Column24": "н ",
+  "Column30": "н "
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column7": "н ",
-  "Column12": 3
+  "Column8": 3,
+  "Column9": 3,
+  "Column45": "н ",
+  "Column50": 3
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 4,
-  "Column4": 3,
-  "Column5": "н "
+  "Column6": 2,
+  "Column10": 2,
+  "Column13": 4,
+  "Column16": 5,
+  "Column18": "н ",
+  "Column22": 4,
+  "Column30": 4,
+  "Column40": 4,
+  "Column42": 3,
+  "Column43": "н "
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 5,
-  "Column6": "н \nн "
+  "Column11": 2,
+  "Column17": 2,
+  "Column20": 2,
+  "Column29": "н \nн ",
+  "Column32": 3,
+  "Column38": 2,
+  "Column41": 5,
+  "Column44": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 2,
+  "Column34": "2 \n2 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 5
+  "Column14": "5 \n3 ",
+  "Column19": 3,
+  "Column44": 5
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 2,
-  "Column6": "н \nн ",
-  "Column7": "н \nн ",
-  "Column8": "2 \n2 "
+  "Column9": 2,
+  "Column10": "3 \n2 ",
+  "Column14": 2,
+  "Column15": 3,
+  "Column17": 3,
+  "Column20": 2,
+  "Column26": 5,
+  "Column28": 2,
+  "Column29": 2,
+  "Column32": 2,
+  "Column34": 5,
+  "Column38": 3,
+  "Column41": 2,
+  "Column44": "н \nн ",
+  "Column45": "н \nн ",
+  "Column46": "2 \n2 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 5,
+  "Column19": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": 4,
+  "Column18": 4,
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": "н "
+  "Column15": 3,
+  "Column45": "н "
  },
  {
   "6 ноября 2023 г.": "Физика",
   "Column4": 2,
-  "Column5": "н \nн ",
-  "Column10": 4
+  "Column7": 3,
+  "Column13": 2,
+  "Column19": 3,
+  "Column25": 3,
+  "Column30": 4,
+  "Column31": 3,
+  "Column36": 2,
+  "Column42": 2,
+  "Column43": "н \nн ",
+  "Column48": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -872,77 +1916,164 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column8": 3,
+  "Column9": 3,
+  "Column50": 3
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 2,
-  "Column4": 3,
-  "Column5": 2,
-  "Column8": 5
+  "Column10": 4,
+  "Column16": 2,
+  "Column22": 4,
+  "Column30": 4,
+  "Column40": 2,
+  "Column42": 3,
+  "Column43": 2,
+  "Column46": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 3
+  "Column11": 3,
+  "Column17": 2,
+  "Column20": 3,
+  "Column32": 3,
+  "Column38": 3,
+  "Column41": 3
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "3 \n2 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column14": "5 \n4 ",
+  "Column19": 4,
+  "Column26": 3,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 2,
-  "Column6": "2 \n3 ",
-  "Column7": 3,
-  "Column8": "2 \n3 "
+  "Column9": 2,
+  "Column10": "3 \n2 ",
+  "Column14": 2,
+  "Column15": 2,
+  "Column17": 3,
+  "Column20": 2,
+  "Column26": "2 \n3 ",
+  "Column28": 3,
+  "Column29": 2,
+  "Column32": 2,
+  "Column33": 3,
+  "Column41": 2,
+  "Column44": "2 \n3 ",
+  "Column45": 3,
+  "Column46": "2 \n3 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": "4 \n5 ",
+  "Column19": 4,
+  "Column25": "3 \n5 "
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n5 ",
+  "Column18": 5,
+  "Column24": 4,
+  "Column30": 5,
+  "Column34": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 3
+  "Column15": 3,
+  "Column45": 3
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 2,
-  "Column4": 2,
-  "Column8": 2,
-  "Column10": 5
+  "Column4": 3,
+  "Column12": 3,
+  "Column16": 2,
+  "Column19": 3,
+  "Column24": 2,
+  "Column28": 3,
+  "Column31": 3,
+  "Column36": 3,
+  "Column40": 2,
+  "Column42": 2,
+  "Column46": 2,
+  "Column48": 5
  },
  {
-  "6 ноября 2023 г.": "Физическая культура"
+  "6 ноября 2023 г.": "Физическая культура",
+  "Column15": 5,
+  "Column21": 5,
+  "Column33": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -952,83 +2083,175 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column7": "н ",
-  "Column12": "н "
+  "Column8": 4,
+  "Column9": 4,
+  "Column27": 5,
+  "Column32": "н ",
+  "Column45": "н ",
+  "Column50": "н "
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 4,
+  "Column7": 5,
+  "Column10": 5,
+  "Column12": 5,
+  "Column13": 4,
+  "Column22": 5,
+  "Column25": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": "н \nн ",
-  "Column6": "н \nн ",
-  "Column12": "н \nн "
+  "Column14": 3,
+  "Column20": 5,
+  "Column23": "+ ",
+  "Column29": "н ",
+  "Column38": 3,
+  "Column41": "н \nн ",
+  "Column44": "н \nн ",
+  "Column50": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 4,
+  "Column34": "4 \n4 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": "н "
+  "Column8": 5,
+  "Column14": "4 \n5 ",
+  "Column44": "н "
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column2": "н \nн ",
-  "Column3": "н \nн ",
-  "Column6": "н \nн ",
-  "Column7": "н \nн ",
-  "Column8": "н \nн ",
-  "Column9": "н \nн ",
-  "Column12": "н \nн ",
-  "Column13": "н \nн "
+  "Column9": 4,
+  "Column10": "3 \n4 ",
+  "Column14": 3,
+  "Column15": 4,
+  "Column17": "3 \n4 ",
+  "Column20": 4,
+  "Column26": 4,
+  "Column28": 4,
+  "Column29": "н \nн ",
+  "Column32": "н \nн ",
+  "Column38": 4,
+  "Column40": "н \nн ",
+  "Column41": "н \nн ",
+  "Column44": "н \nн ",
+  "Column45": "н \nн ",
+  "Column46": "н \nн ",
+  "Column47": "н \nн ",
+  "Column50": "н \nн ",
+  "Column51": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 5,
+  "Column19": 5,
+  "Column25": "3 \n5 "
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n5 ",
+  "Column18": 5,
+  "Column24": 5,
+  "Column30": 5,
+  "Column34": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": "н "
+  "Column15": 5,
+  "Column45": "н "
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 3,
-  "Column4": "н \nн ",
-  "Column5": "н \nн ",
-  "Column8": "н ",
-  "Column10": "н \nн ",
-  "Column11": "н \nн "
+  "Column4": 4,
+  "Column7": 5,
+  "Column18": 5,
+  "Column19": 5,
+  "Column28": 3,
+  "Column30": 5,
+  "Column31": 5,
+  "Column36": 5,
+  "Column37": 4,
+  "Column40": 3,
+  "Column42": "н \nн ",
+  "Column43": "н \nн ",
+  "Column46": "н ",
+  "Column48": "н \nн ",
+  "Column49": "н \nн "
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1038,75 +2261,175 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column3": "н ",
+  "Column8": 3,
+  "Column9": 3,
+  "Column15": "н ",
+  "Column27": 3,
+  "Column32": "н ",
+  "Column50": 5
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 4,
+  "Column7": "н ",
+  "Column10": 5,
+  "Column12": 5,
+  "Column13": 5,
+  "Column16": 5,
+  "Column22": 4,
+  "Column25": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 4
+  "Column11": 3,
+  "Column17": 5,
+  "Column20": 4,
+  "Column26": "н ",
+  "Column32": 3,
+  "Column38": 5,
+  "Column41": 4
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 4,
+  "Column34": "5 \n3 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column14": "3 \n5 ",
+  "Column19": 3,
+  "Column26": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 5,
-  "Column6": "4 \n5 ",
-  "Column7": 5,
-  "Column8": "4 \n4 "
+  "Column9": 4,
+  "Column10": "3 \n3 ",
+  "Column14": 5,
+  "Column15": "5 \nн ",
+  "Column17": 3,
+  "Column20": 4,
+  "Column26": 5,
+  "Column28": 4,
+  "Column29": 3,
+  "Column32": 4,
+  "Column34": 5,
+  "Column41": 5,
+  "Column44": "4 \n5 ",
+  "Column45": 5,
+  "Column46": "4 \n4 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": 5,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n4 ",
+  "Column18": 5,
+  "Column24": 4,
+  "Column30": 4,
+  "Column34": "н "
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 4
+  "Column15": 3,
+  "Column21": 5,
+  "Column45": 4
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 5,
   "Column4": 5,
-  "Column5": 5,
-  "Column8": 5,
-  "Column10": "н \nн "
+  "Column7": "н \nн ",
+  "Column12": 5,
+  "Column16": 5,
+  "Column19": 4,
+  "Column25": 4,
+  "Column30": 4,
+  "Column31": 5,
+  "Column34": 5,
+  "Column36": "н \nн ",
+  "Column37": "н \nн ",
+  "Column40": 5,
+  "Column42": 5,
+  "Column43": 5,
+  "Column46": 5,
+  "Column48": "н \nн "
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1116,74 +2439,167 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": "н ",
+  "Column30": "н "
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 2
+  "Column8": 4,
+  "Column9": 4,
+  "Column32": "н ",
+  "Column50": 3
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column7": 3,
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 2,
+  "Column16": 4,
+  "Column22": 3,
+  "Column25": "н "
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column14": 4,
+  "Column17": 5,
+  "Column20": 5,
+  "Column23": "+ ",
+  "Column29": "н \nн ",
+  "Column38": 5,
+  "Column44": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "3 \n3 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column14": "4 \n5 ",
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 5,
-  "Column6": "4 \n4 ",
-  "Column7": 3,
-  "Column8": "4 \n5 ",
-  "Column9": 4
+  "Column9": 4,
+  "Column10": 5,
+  "Column14": 4,
+  "Column15": 4,
+  "Column17": "5 \n4 ",
+  "Column20": 4,
+  "Column26": 3,
+  "Column28": "н \nн ",
+  "Column29": "н \nн ",
+  "Column32": "н \nн ",
+  "Column34": 5,
+  "Column38": 5,
+  "Column41": 5,
+  "Column44": "4 \n4 ",
+  "Column45": 3,
+  "Column46": "4 \n5 ",
+  "Column47": 4
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 5,
+  "Column19": 4,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "4 \n5 ",
+  "Column18": 4,
+  "Column24": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 5
+  "Column15": 4,
+  "Column21": 4,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column4": 4,
-  "Column8": 3,
-  "Column10": 4
+  "Column4": 5,
+  "Column7": 3,
+  "Column18": 3,
+  "Column19": 3,
+  "Column28": "н ",
+  "Column30": "н \nн ",
+  "Column31": "н \nн ",
+  "Column36": 4,
+  "Column37": 2,
+  "Column42": 4,
+  "Column46": 3,
+  "Column48": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1193,76 +2609,174 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column18": 5,
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column7": "н ",
-  "Column12": 2
+  "Column8": 4,
+  "Column9": 3,
+  "Column21": 5,
+  "Column45": "н ",
+  "Column50": 2
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column6": "н ",
+  "Column7": "н ",
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 2,
+  "Column16": 5,
+  "Column22": 2,
+  "Column25": 2
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column14": 3,
+  "Column20": 4,
+  "Column23": "+ ",
+  "Column29": 5,
+  "Column38": 5,
+  "Column44": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "4 \n2 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 5,
+  "Column14": "3 \n5 ",
+  "Column19": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 3,
-  "Column6": "3 \n2 ",
-  "Column7": "н \nн ",
-  "Column8": "3 \n3 ",
-  "Column9": 2
+  "Column9": 3,
+  "Column10": 4,
+  "Column14": 2,
+  "Column15": 2,
+  "Column16": "н ",
+  "Column17": 2,
+  "Column20": 2,
+  "Column21": 2,
+  "Column26": 3,
+  "Column28": 3,
+  "Column29": 2,
+  "Column32": 2,
+  "Column34": 5,
+  "Column38": 5,
+  "Column41": 3,
+  "Column44": "3 \n2 ",
+  "Column45": "н \nн ",
+  "Column46": "3 \n3 ",
+  "Column47": 2
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": "4 \n5 ",
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "4 \n4 ",
+  "Column24": 5,
+  "Column30": 4,
+  "Column34": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": "н "
+  "Column15": 2,
+  "Column45": "н "
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 2,
-  "Column4": 3,
-  "Column5": 3,
-  "Column10": 4
+  "Column4": 2,
+  "Column6": "н \nн ",
+  "Column7": "н \nн ",
+  "Column12": 2,
+  "Column16": 2,
+  "Column19": 4,
+  "Column24": 2,
+  "Column28": 3,
+  "Column30": 3,
+  "Column36": 2,
+  "Column40": 2,
+  "Column42": 3,
+  "Column43": 3,
+  "Column48": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1272,75 +2786,172 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column7": "н ",
-  "Column12": 5
+  "Column8": 4,
+  "Column9": 3,
+  "Column27": "н ",
+  "Column32": "н ",
+  "Column45": "н ",
+  "Column50": 5
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column6": 5,
+  "Column7": 5,
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 3,
+  "Column16": 5,
+  "Column22": 3,
+  "Column25": 3
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column14": 4,
+  "Column20": 5,
+  "Column23": "+ ",
+  "Column29": 5,
+  "Column38": 5,
+  "Column44": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 5,
+  "Column34": "5 \n5 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 5,
+  "Column14": "5 \n5 ",
+  "Column26": 5,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 5,
-  "Column6": "5 \n5 ",
-  "Column7": "н \nн ",
-  "Column8": "5 \n5 ",
-  "Column9": 4
+  "Column9": 4,
+  "Column10": 5,
+  "Column14": 5,
+  "Column15": 4,
+  "Column17": 4,
+  "Column20": 5,
+  "Column26": 4,
+  "Column28": 5,
+  "Column29": 5,
+  "Column32": 4,
+  "Column33": 5,
+  "Column34": 5,
+  "Column35": 5,
+  "Column38": 5,
+  "Column41": 5,
+  "Column44": "5 \n5 ",
+  "Column45": "н \nн ",
+  "Column46": "5 \n5 ",
+  "Column47": 4
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": 5,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n5 ",
+  "Column18": "н ",
+  "Column30": 4,
+  "Column34": "н "
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": "н "
+  "Column15": 3,
+  "Column21": 5,
+  "Column45": "н "
  },
  {
   "6 ноября 2023 г.": "Физика",
   "Column4": 5,
-  "Column5": 5,
-  "Column8": 5
+  "Column7": 5,
+  "Column13": 5,
+  "Column19": 5,
+  "Column25": 5,
+  "Column30": 5,
+  "Column31": 5,
+  "Column36": "5 \n5 ",
+  "Column42": 5,
+  "Column43": 5,
+  "Column46": 5
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1350,77 +2961,176 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column12": "н ",
+  "Column24": "н "
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 2
+  "Column8": 3,
+  "Column9": 4,
+  "Column14": 3,
+  "Column26": "н ",
+  "Column27": "н ",
+  "Column50": 2
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 3,
-  "Column4": 5,
-  "Column5": 2
+  "Column10": 2,
+  "Column12": "н ",
+  "Column16": 4,
+  "Column24": "н ",
+  "Column28": "н ",
+  "Column30": 5,
+  "Column34": 3,
+  "Column40": 3,
+  "Column42": 5,
+  "Column43": 2
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column14": 3,
+  "Column20": 2,
+  "Column23": "+ ",
+  "Column26": "н \nн ",
+  "Column29": 4,
+  "Column38": 4,
+  "Column44": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": 3,
+  "Column34": "4 \n4 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 5,
+  "Column14": "4 \n5 ",
+  "Column19": 4,
+  "Column26": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 2,
-  "Column6": "4 \n4 ",
-  "Column7": "3 \n4 ",
-  "Column8": "4 \n3 ",
-  "Column9": 4
+  "Column9": 2,
+  "Column10": "3 \n4 ",
+  "Column14": 2,
+  "Column15": 2,
+  "Column17": 3,
+  "Column20": 2,
+  "Column21": 3,
+  "Column26": "н \nн ",
+  "Column27": "н \nн ",
+  "Column28": "н \nн ",
+  "Column29": 2,
+  "Column32": 2,
+  "Column41": 2,
+  "Column44": "4 \n4 ",
+  "Column45": "3 \n4 ",
+  "Column46": "4 \n3 ",
+  "Column47": 4
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 3,
+  "Column19": 5,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "н ",
+  "Column18": "н ",
+  "Column34": 2
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 3
+  "Column15": 5,
+  "Column45": 3
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column4": 2,
-  "Column5": 2,
-  "Column10": 4
+  "Column4": 4,
+  "Column7": 3,
+  "Column12": "н \nн ",
+  "Column16": 3,
+  "Column19": 3,
+  "Column24": "н \nн ",
+  "Column25": "н \nн ",
+  "Column28": "н ",
+  "Column30": 3,
+  "Column31": 5,
+  "Column36": 3,
+  "Column37": 2,
+  "Column42": 2,
+  "Column43": 2,
+  "Column48": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1430,77 +3140,176 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column18": "н ",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column8": 3,
+  "Column9": 5,
+  "Column20": "н ",
+  "Column21": "н ",
+  "Column50": 3
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 2,
-  "Column4": 2,
-  "Column5": "н "
+  "Column10": 4,
+  "Column16": "н ",
+  "Column18": "н ",
+  "Column19": "н ",
+  "Column22": "н ",
+  "Column24": 3,
+  "Column30": 4,
+  "Column40": 2,
+  "Column42": 2,
+  "Column43": "н "
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 3
+  "Column14": 3,
+  "Column17": "н \nн ",
+  "Column20": "н \nн ",
+  "Column23": "+ ",
+  "Column29": 5,
+  "Column38": 4,
+  "Column44": 3
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column22": "н ",
+  "Column34": "4 \n2 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 3
+  "Column14": "4 \n3 ",
+  "Column19": 4,
+  "Column26": 4,
+  "Column44": 3
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 4,
-  "Column6": "3 \n2 ",
-  "Column7": 3,
-  "Column8": "3 \n3 ",
-  "Column13": "н \nн "
+  "Column9": 2,
+  "Column10": 2,
+  "Column14": 2,
+  "Column15": "н \nн ",
+  "Column16": "н \nн ",
+  "Column17": "н \nн ",
+  "Column20": "н \nн ",
+  "Column21": "н \nн ",
+  "Column22": "н \nн ",
+  "Column26": 3,
+  "Column28": 2,
+  "Column29": 2,
+  "Column32": 3,
+  "Column38": 4,
+  "Column41": 4,
+  "Column44": "3 \n2 ",
+  "Column45": 3,
+  "Column46": "3 \n3 ",
+  "Column51": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": "2 \nн ",
+  "Column19": 4,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": 4,
+  "Column18": 5,
+  "Column24": 5,
+  "Column34": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 3
+  "Column15": 3,
+  "Column45": 3
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 2,
-  "Column5": 2,
-  "Column8": 2,
-  "Column11": 4
+  "Column4": 3,
+  "Column10": 4,
+  "Column13": "н \nн ",
+  "Column16": "н ",
+  "Column18": "н \nн ",
+  "Column19": "н \nн ",
+  "Column22": "н ",
+  "Column25": 2,
+  "Column30": 3,
+  "Column31": 2,
+  "Column36": 3,
+  "Column40": 2,
+  "Column43": 2,
+  "Column46": 2,
+  "Column49": 4
  },
  {
-  "6 ноября 2023 г.": "Физическая культура"
+  "6 ноября 2023 г.": "Физическая культура",
+  "Column15": 5,
+  "Column21": 5,
+  "Column33": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1510,81 +3319,191 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column6": "н ",
+  "Column12": "н ",
+  "Column18": "н ",
+  "Column24": 5,
+  "Column30": "н "
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 5
+  "Column3": "н ",
+  "Column8": 3,
+  "Column9": 5,
+  "Column27": "н ",
+  "Column32": "н ",
+  "Column33": "н ",
+  "Column38": "н ",
+  "Column39": "н ",
+  "Column50": 5
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": "н ",
+  "Column6": "н ",
+  "Column7": "н ",
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 4,
+  "Column16": 5,
+  "Column22": 3,
+  "Column25": "н "
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": "н \nн ",
-  "Column6": "н \nн ",
-  "Column12": "н \nн "
+  "Column5": "н \nн ",
+  "Column14": 5,
+  "Column23": "н \nн ",
+  "Column26": "н \nн ",
+  "Column29": "н \nн ",
+  "Column32": "н \nн ",
+  "Column35": "н \nн ",
+  "Column38": "н \nн ",
+  "Column41": "н \nн ",
+  "Column44": "н \nн ",
+  "Column50": "н \nн "
  },
  {
   "6 ноября 2023 г.": "История",
-  "Column13": 5
+  "Column22": 4,
+  "Column34": "н \nн ",
+  "Column51": 5
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 5,
+  "Column14": "5 \n4 ",
+  "Column19": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column2": "н \nн ",
   "Column3": "н \nн ",
-  "Column6": "н \nн ",
-  "Column7": "н \nн ",
-  "Column8": "н \nн ",
-  "Column9": "н \nн ",
-  "Column12": "н \nн ",
-  "Column13": "н \nн "
+  "Column4": "н \nн ",
+  "Column17": "н \nн ",
+  "Column22": "н \nн ",
+  "Column23": "н \nн ",
+  "Column26": "н \nн ",
+  "Column27": "н \nн ",
+  "Column28": "н \nн ",
+  "Column29": "н \nн ",
+  "Column32": "н \nн ",
+  "Column33": "н \nн ",
+  "Column34": "н \nн ",
+  "Column35": "н \nн ",
+  "Column38": "н \nн ",
+  "Column39": "н \nн ",
+  "Column40": "н \nн ",
+  "Column41": "н \nн ",
+  "Column44": "н \nн ",
+  "Column45": "н \nн ",
+  "Column46": "н \nн ",
+  "Column47": "н \nн ",
+  "Column50": "н \nн ",
+  "Column51": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": "4 \n5 ",
+  "Column19": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "4 \n4 ",
+  "Column18": 5,
+  "Column24": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": "н "
+  "Column45": "н "
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": "н ",
-  "Column4": "н \nн ",
-  "Column5": 5,
-  "Column8": 4
+  "Column4": 5,
+  "Column6": "н \nн ",
+  "Column7": "н \nн ",
+  "Column12": 5,
+  "Column18": 5,
+  "Column19": 4,
+  "Column25": 5,
+  "Column28": "н ",
+  "Column30": "н \nн ",
+  "Column31": "н \nн ",
+  "Column34": "н ",
+  "Column36": "н \nн ",
+  "Column37": "н \nн ",
+  "Column40": "н ",
+  "Column42": "н \nн ",
+  "Column43": 5,
+  "Column46": 4
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1594,74 +3513,172 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": "н "
+  "Column8": "н ",
+  "Column9": 4,
+  "Column14": "н ",
+  "Column15": "н ",
+  "Column27": 5,
+  "Column50": "н "
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column6": 5,
+  "Column7": 5,
+  "Column10": 3,
+  "Column12": 5,
+  "Column13": 4,
+  "Column16": 5,
+  "Column22": 3,
+  "Column25": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 5
+  "Column11": 4,
+  "Column14": "н \nн ",
+  "Column17": 5,
+  "Column20": 5,
+  "Column32": 5,
+  "Column38": 4,
+  "Column41": 5
  },
  {
-  "6 ноября 2023 г.": "История"
+  "6 ноября 2023 г.": "История",
+  "Column16": 4,
+  "Column22": 5,
+  "Column34": "5 \n3 "
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column14": "5 \n4 ",
+  "Column19": 3,
+  "Column26": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 3,
-  "Column6": "4 \n5 ",
-  "Column7": 5,
-  "Column8": "4 \n4 ",
-  "Column13": "н \nн "
+  "Column9": 4,
+  "Column10": 4,
+  "Column14": "н \nн ",
+  "Column15": "н \nн ",
+  "Column17": 3,
+  "Column20": 3,
+  "Column26": 5,
+  "Column28": 5,
+  "Column29": 4,
+  "Column32": 4,
+  "Column33": 5,
+  "Column34": 5,
+  "Column35": 5,
+  "Column38": "н \nн ",
+  "Column41": 3,
+  "Column44": "4 \n5 ",
+  "Column45": 5,
+  "Column46": "4 \n4 ",
+  "Column51": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": 4,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "5 \n4 ",
+  "Column18": 4,
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 3
+  "Column15": 3,
+  "Column45": 3
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": "н ",
-  "Column5": 4,
-  "Column10": 5
+  "Column4": 5,
+  "Column10": 5,
+  "Column13": 5,
+  "Column19": 4,
+  "Column24": 4,
+  "Column30": 3,
+  "Column31": 5,
+  "Column36": 4,
+  "Column40": "н ",
+  "Column43": 4,
+  "Column48": 5
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": "н \nн ",
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1671,75 +3688,168 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column8": 3,
+  "Column9": 5,
+  "Column27": 3,
+  "Column50": 3
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 4,
+  "Column6": 5,
+  "Column7": 5,
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 4,
+  "Column16": 5,
+  "Column22": 3,
+  "Column25": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column6": 5
+  "Column14": 5,
+  "Column20": 2,
+  "Column23": "+ ",
+  "Column29": 4,
+  "Column38": 4,
+  "Column44": 5
  },
  {
   "6 ноября 2023 г.": "История",
-  "Column2": 4
+  "Column22": 2,
+  "Column34": "3 \n2 ",
+  "Column40": 4
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 5,
+  "Column14": "5 \n4 ",
+  "Column19": 5,
+  "Column26": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 3,
-  "Column6": "4 \n4 ",
-  "Column7": 2,
-  "Column8": "н \nн ",
-  "Column13": "н \nн "
+  "Column9": 2,
+  "Column10": "3 \n3 ",
+  "Column14": 2,
+  "Column15": 4,
+  "Column17": 2,
+  "Column20": 4,
+  "Column26": 4,
+  "Column28": 3,
+  "Column29": 2,
+  "Column32": 3,
+  "Column41": 3,
+  "Column44": "4 \n4 ",
+  "Column45": 2,
+  "Column46": "н \nн ",
+  "Column51": "н \nн "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": "4 \n5 ",
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "4 \n4 ",
+  "Column18": 5,
+  "Column24": 4,
+  "Column30": 5,
+  "Column34": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 4
+  "Column15": 5,
+  "Column45": 4
  },
  {
   "6 ноября 2023 г.": "Физика",
   "Column4": 3,
-  "Column8": 2,
-  "Column10": "н \nн ",
-  "Column11": 4
+  "Column6": 3,
+  "Column16": 3,
+  "Column19": 3,
+  "Column28": 4,
+  "Column30": 4,
+  "Column31": 2,
+  "Column36": 3,
+  "Column37": 2,
+  "Column42": 3,
+  "Column46": 2,
+  "Column48": "н \nн ",
+  "Column49": 4
  },
  {
-  "6 ноября 2023 г.": "Физическая культура"
+  "6 ноября 2023 г.": "Физическая культура",
+  "Column21": 5,
+  "Column33": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1749,78 +3859,171 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column8": 4,
+  "Column9": 3,
+  "Column50": 3
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 2,
-  "Column4": 5,
-  "Column5": 2,
-  "Column8": 5
+  "Column6": 2,
+  "Column10": 4,
+  "Column16": 2,
+  "Column22": 4,
+  "Column24": 3,
+  "Column30": 5,
+  "Column40": 2,
+  "Column42": 5,
+  "Column43": 2,
+  "Column46": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 3
+  "Column11": 3,
+  "Column17": 3,
+  "Column20": 5,
+  "Column32": 3,
+  "Column38": 4,
+  "Column41": 3
  },
  {
   "6 ноября 2023 г.": "История",
-  "Column2": 2
+  "Column22": 2,
+  "Column34": "3 \n2 ",
+  "Column40": 2
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column8": 4,
+  "Column14": "5 \n4 ",
+  "Column19": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 5,
-  "Column6": "4 \n5 ",
-  "Column7": 3,
-  "Column8": "5 \n4 "
+  "Column9": 3,
+  "Column10": 4,
+  "Column14": 4,
+  "Column15": 4,
+  "Column16": 5,
+  "Column17": 3,
+  "Column20": 4,
+  "Column26": 5,
+  "Column28": 4,
+  "Column29": 3,
+  "Column32": 4,
+  "Column33": 5,
+  "Column34": 5,
+  "Column38": 4,
+  "Column41": 5,
+  "Column44": "4 \n5 ",
+  "Column45": 3,
+  "Column46": "5 \n4 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 4,
+  "Column19": 3,
+  "Column37": 3
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": 4,
+  "Column18": 4,
+  "Column24": 5,
+  "Column30": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 4
+  "Column15": 3,
+  "Column21": 4,
+  "Column45": 4
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column2": 4,
   "Column4": 3,
-  "Column8": 3
+  "Column7": 4,
+  "Column13": 3,
+  "Column19": 4,
+  "Column25": 3,
+  "Column30": 4,
+  "Column31": 3,
+  "Column36": 4,
+  "Column37": 3,
+  "Column40": 4,
+  "Column42": 3,
+  "Column46": 3
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1830,75 +4033,173 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column18": 5,
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column8": 3,
+  "Column9": 3,
+  "Column14": "н ",
+  "Column15": "н ",
+  "Column21": 5,
+  "Column50": 3
  },
  {
-  "6 ноября 2023 г.": "Иностранный язык: Английский"
+  "6 ноября 2023 г.": "Иностранный язык: Английский",
+  "Column4": 3,
+  "Column7": 5,
+  "Column10": 4,
+  "Column12": 5,
+  "Column13": 3,
+  "Column16": 4,
+  "Column22": 3,
+  "Column25": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 4
+  "Column11": 3,
+  "Column14": "н \nн ",
+  "Column17": 4,
+  "Column20": 2,
+  "Column32": 2,
+  "Column38": 4,
+  "Column41": 4
  },
  {
   "6 ноября 2023 г.": "История",
-  "Column13": 5
+  "Column10": 5,
+  "Column22": 5,
+  "Column34": "4 \n4 ",
+  "Column51": 5
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
   "6 ноября 2023 г.": "Литература",
-  "Column6": 4
+  "Column14": "5 \n5 ",
+  "Column19": 4,
+  "Column20": 5,
+  "Column26": 4,
+  "Column44": 4
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": 4,
-  "Column6": "3 \n3 ",
-  "Column7": 4,
-  "Column8": "4 \n3 ",
-  "Column9": 4
+  "Column9": 3,
+  "Column10": 3,
+  "Column14": "н \n2 ",
+  "Column15": "н \nн ",
+  "Column17": 2,
+  "Column20": 2,
+  "Column26": 3,
+  "Column28": 3,
+  "Column29": "2 \n3 ",
+  "Column32": 4,
+  "Column38": "н \nн ",
+  "Column41": 4,
+  "Column44": "3 \n3 ",
+  "Column45": 4,
+  "Column46": "4 \n3 ",
+  "Column47": 4
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": "н ",
+  "Column19": 5,
+  "Column25": "5 \n5 "
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": "4 \n4 ",
+  "Column24": "5 \n5 ",
+  "Column30": 5,
+  "Column34": 5
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 3
+  "Column45": 3
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column4": 3,
-  "Column5": 2,
-  "Column10": 5
+  "Column4": 4,
+  "Column12": 3,
+  "Column13": 3,
+  "Column18": 3,
+  "Column19": "н \nн ",
+  "Column25": 4,
+  "Column30": 2,
+  "Column31": 3,
+  "Column36": 3,
+  "Column37": 2,
+  "Column42": 3,
+  "Column43": 2,
+  "Column48": 5
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
@@ -1908,77 +4209,165 @@
  },
  null,
  {
-  "Column2": "Октябрь",
-  "Column10": "Ноябрь"
+  "Column2": "Сентябрь",
+  "Column28": "Октябрь",
+  "Column48": "Ноябрь"
  },
  {
-  "Column2": 23,
-  "Column3": 24,
-  "Column4": 25,
-  "Column5": 26,
-  "Column6": 27,
-  "Column7": 28,
-  "Column8": 30,
-  "Column9": 31,
-  "Column10": 1,
-  "Column11": 2,
-  "Column12": 3,
-  "Column13": 6
+  "Column2": 1,
+  "Column3": 2,
+  "Column4": 4,
+  "Column5": 5,
+  "Column6": 6,
+  "Column7": 7,
+  "Column8": 8,
+  "Column9": 9,
+  "Column10": 11,
+  "Column11": 12,
+  "Column12": 13,
+  "Column13": 14,
+  "Column14": 15,
+  "Column15": 16,
+  "Column16": 18,
+  "Column17": 19,
+  "Column18": 20,
+  "Column19": 21,
+  "Column20": 22,
+  "Column21": 23,
+  "Column22": 25,
+  "Column23": 26,
+  "Column24": 27,
+  "Column25": 28,
+  "Column26": 29,
+  "Column27": 30,
+  "Column28": 2,
+  "Column29": 3,
+  "Column30": 4,
+  "Column31": 5,
+  "Column32": 6,
+  "Column33": 7,
+  "Column34": 16,
+  "Column35": 17,
+  "Column36": 18,
+  "Column37": 19,
+  "Column38": 20,
+  "Column39": 21,
+  "Column40": 23,
+  "Column41": 24,
+  "Column42": 25,
+  "Column43": 26,
+  "Column44": 27,
+  "Column45": 28,
+  "Column46": 30,
+  "Column47": 31,
+  "Column48": 1,
+  "Column49": 2,
+  "Column50": 3,
+  "Column51": 6
  },
  {
-  "6 ноября 2023 г.": "Астрономия"
+  "6 ноября 2023 г.": "Астрономия",
+  "Column24": 5
  },
  {
   "6 ноября 2023 г.": "Биология",
-  "Column12": 3
+  "Column8": 3,
+  "Column9": 3,
+  "Column15": "н ",
+  "Column50": 3
  },
  {
   "6 ноября 2023 г.": "Иностранный язык: Английский",
-  "Column2": 3,
-  "Column4": 2,
-  "Column5": "н "
+  "Column6": 5,
+  "Column7": "н ",
+  "Column10": 5,
+  "Column16": "н ",
+  "Column24": 3,
+  "Column30": 4,
+  "Column31": 4,
+  "Column40": 3,
+  "Column42": 2,
+  "Column43": "н "
  },
  {
   "6 ноября 2023 г.": "Информатика",
-  "Column3": 4
+  "Column11": 3,
+  "Column17": 3,
+  "Column20": 2,
+  "Column32": 3,
+  "Column35": "н \nн ",
+  "Column38": 3,
+  "Column41": 4
  },
  {
   "6 ноября 2023 г.": "История",
-  "Column13": 5
+  "Column22": 3,
+  "Column34": "2 \n2 ",
+  "Column51": 5
  },
  {
   "6 ноября 2023 г.": "Классный час"
  },
  {
-  "6 ноября 2023 г.": "Литература"
+  "6 ноября 2023 г.": "Литература",
+  "Column14": "4 \n3 ",
+  "Column19": 3
  },
  {
   "6 ноября 2023 г.": "Математика",
-  "Column3": "н \nн ",
-  "Column6": "4 \n4 ",
-  "Column7": 4,
-  "Column8": "4 \n3 "
+  "Column9": 1,
+  "Column10": 4,
+  "Column14": 2,
+  "Column15": "4 \nн ",
+  "Column17": 3,
+  "Column20": 3,
+  "Column26": 4,
+  "Column28": 3,
+  "Column29": 4,
+  "Column32": 4,
+  "Column35": "н \nн ",
+  "Column41": "н \nн ",
+  "Column44": "4 \n4 ",
+  "Column45": 4,
+  "Column46": "4 \n3 "
  },
  {
-  "6 ноября 2023 г.": "Обществознание"
+  "6 ноября 2023 г.": "Обществознание",
+  "Column13": 2,
+  "Column19": 5,
+  "Column25": 5
  },
  {
-  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности"
+  "6 ноября 2023 г.": "Основы безопасности жизнедеятельности",
+  "Column12": 4,
+  "Column24": 4
  },
  {
   "6 ноября 2023 г.": "Русский язык",
-  "Column7": 5
+  "Column15": 4,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Физика",
-  "Column4": "4 \n2 ",
-  "Column8": 3,
-  "Column10": 5,
-  "Column11": "н \nн "
+  "Column4": 3,
+  "Column7": "н \nн ",
+  "Column13": 3,
+  "Column16": 2,
+  "Column19": 3,
+  "Column24": 2,
+  "Column30": 3,
+  "Column36": 3,
+  "Column42": "4 \n2 ",
+  "Column46": 3,
+  "Column48": 5,
+  "Column49": "н \nн "
  },
  {
   "6 ноября 2023 г.": "Физическая культура",
-  "Column7": 5
+  "Column9": 5,
+  "Column21": 5,
+  "Column27": 5,
+  "Column45": 5
  },
  {
   "6 ноября 2023 г.": "Химия"
