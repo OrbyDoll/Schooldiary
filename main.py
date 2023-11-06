@@ -26,7 +26,7 @@ import helpers as help
 from dbshka import Database
 
 storage = MemoryStorage()
-bot = Bot(token=cfg.TOKEN_TEST)
+bot = Bot(token=cfg.TOKEN)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -72,7 +72,7 @@ async def start(message: types.Message, state: FSMContext):
             return
         await bot.send_message(
             chatid,
-            f"Добро пожаловать в наш электронный дневкик, {message.from_user.username if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}",
+            f"Добро пожаловать в наш электронный дневкик, {'@' + message.from_user.username if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}",
             reply_markup=nav.menu,
             parse_mode="HTML",
         )
@@ -307,6 +307,7 @@ async def marks_import(message: types.Message, state: FSMContext):
                     chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
                 )
                 return
+        await state.set_state(ClientState.ADMIN)
         file_info = await bot.get_file(message.document.file_id)
         downloaded_file = await bot.download_file(file_info.file_path)
         shutil.rmtree("convert/")
@@ -319,9 +320,9 @@ async def marks_import(message: types.Message, state: FSMContext):
         await bot.send_message(
             chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
         )
-        await state.set_state(ClientState.ADMIN)
     except Exception as e:
         await err(e, chatid)
+        print("marks_import")
 
 
 @dp.message_handler(state=ClientState.NEW_TASK_DATE)
@@ -329,6 +330,12 @@ async def new_task_date(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 2)
+        if not "." in message.text:
+            await bot.send_message(
+                chatid,
+                "Неверный формат даты. Обязательно вводить через точку, например 02.01",
+            )
+            return
         await state.update_data(date=message.text)
         await bot.send_message(chatid, "По какому предмету это дз?")
         await state.set_state(ClientState.NEW_TASK_SUBJECT)
@@ -428,12 +435,25 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
         chatid = call.message.chat.id
         messageid = call.message.message_id
         if call.data == "marks":
+            all_marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])
+            marks_text = f"<b>Ваши оценки</b>\n"
+            for subject in all_marks:
+                student_marks = all_marks[subject]
+                student_marks_str = map(str, student_marks)
+                marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
             await bot.edit_message_text(
-                "Выбирайте предмет",
+                marks_text,
                 chatid,
                 messageid,
-                reply_markup=nav.marks,
+                parse_mode="HTML",
+                reply_markup=nav.back_to_menu,
             )
+            # await bot.edit_message_text(
+            #     "Выбирайте предмет",
+            #     chatid,
+            #     messageid,
+            #     reply_markup=nav.marks,
+            # )
         elif call.data == "hometask":
             all_tasks = smart_sort(list(set(db.get_all_dates())))
             if len(all_tasks) == 0:

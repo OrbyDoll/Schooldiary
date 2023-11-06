@@ -197,6 +197,9 @@ def form_marks_mass(type):
         raw_mass = json.load(json_file)
     for i in range(raw_mass.count(None)):
         raw_mass.remove(None)
+    for obj in raw_mass:
+        if list(obj.items())[0][1] == "Классный час":
+            raw_mass.remove(obj)
     extra_key = list(raw_mass[0].keys())[0]
     divided_mass = list(func_chunk(raw_mass, 16))
     all_marks = {}

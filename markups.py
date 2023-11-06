@@ -13,7 +13,7 @@ admin_menu = (
     types.InlineKeyboardMarkup(row_width=3)
     .add(
         types.InlineKeyboardButton("Оценки", callback_data="marks"),
-        types.InlineKeyboardButton("Изменить оценки", callback_data="edit_marks"),
+        types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
         types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
         types.InlineKeyboardButton("Импорт оценок", callback_data="marks_import"),
     )
@@ -64,7 +64,7 @@ marks = (
         types.InlineKeyboardButton("ОБЖ", callback_data="gradeОБЖ"),
         types.InlineKeyboardButton("Физкультура", callback_data="gradeФизкультура"),
     )
-    .row(types.InlineKeyboardButton("Все лценки сразу", callback_data="get_all_marks"))
+    .row(types.InlineKeyboardButton("Все оценки сразу", callback_data="get_all_marks"))
     .row(
         types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
     )
