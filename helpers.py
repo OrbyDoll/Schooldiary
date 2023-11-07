@@ -201,9 +201,11 @@ def add_marks(old_marks, new_marks):
     for student in old_marks:
         subjects = old_marks[student]
         for subject_name in subjects:
+            prev_subject_marks = old_marks[student][subject_name]
             new_subject_marks = new_marks[student][subject_name]
             for mark in new_subject_marks:
-                subjects[subject_name].append(mark)
+                if not mark in prev_subject_marks:
+                    subjects[subject_name].append(mark)
     return old_marks
 
 
@@ -226,19 +228,25 @@ def form_marks_mass(type):
     for date in divided_mass[0][2]:
         # print(int(date[6:]), int(months_keys[len(months_column) - 1][6:]))
         if len(months_column) == 1:
-            unformatted_date_month = months_names.index(months_column[months_keys[0]]) + 1
+            unformatted_date_month = (
+                months_names.index(months_column[months_keys[0]]) + 1
+            )
         elif int(date[6:]) >= int(months_keys[len(months_column) - 1][6:]):
-            unformatted_date_month = months_names.index(
-                months_column[months_keys[len(months_column) - 1]]
-            ) + 1
+            unformatted_date_month = (
+                months_names.index(months_column[months_keys[len(months_column) - 1]])
+                + 1
+            )
         else:
             keys = list(map(lambda x: int(x[6:]), list(months_keys)))
             ranges = [range(keys[i - 1], keys[i]) for i in range(1, len(keys))]
             for rng in ranges:
                 if int(date[6:]) in rng:
-                    unformatted_date_month = months_names.index(
-                        months_column[months_keys[ranges.index(rng)]]
-                    ) + 1
+                    unformatted_date_month = (
+                        months_names.index(
+                            months_column[months_keys[ranges.index(rng)]]
+                        )
+                        + 1
+                    )
         date_month = (
             unformatted_date_month
             if len(str(unformatted_date_month)) == 2
@@ -296,3 +304,5 @@ def get_marks_mass(lastname):
         old_marks = json.load(main_file)
     return old_marks[lastname]
 
+
+print(get_marks_mass("Хазин"))

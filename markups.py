@@ -16,6 +16,7 @@ admin_menu = (
         types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
         types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
         types.InlineKeyboardButton("Импорт оценок", callback_data="marks_import"),
+        types.InlineKeyboardButton("Рассылка", callback_data="sendall"),
     )
     .row(
         types.InlineKeyboardButton(

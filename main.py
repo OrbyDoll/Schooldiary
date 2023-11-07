@@ -2,6 +2,7 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import StatesGroup, State
+from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from pathlib import Path
 import datetime
 import shutil
@@ -17,6 +18,7 @@ class ClientState(StatesGroup):
     MARKS_IMPORT = State()
     CHANGERATE_NUMBER = State()
     CHANGERATE_DESC = State()
+    SENDALL = State()
 
 
 import os
@@ -25,7 +27,7 @@ import markups as nav
 import helpers as help
 from dbshka import Database
 
-storage = MemoryStorage()
+storage = RedisStorage2()
 bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
@@ -118,6 +120,13 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             await bot.edit_message_text(
                 "Выбери действие", chatid, messageid, reply_markup=nav.marks_choose
             )
+        elif call.data == "sendall":
+            await bot.edit_message_text(
+                'Напиши текст для рассылки или отправь "-" для отмены',
+                chatid,
+                messageid,
+            )
+            await state.set_state(ClientState.SENDALL)
         elif call.data == "add_hometask":
             await state.update_data(doc_path=[])
             await state.update_data(group="")
@@ -248,6 +257,36 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.get_del_task_markup(all_task, task_info[1]),
             )
+    except Exception as e:
+        await err(e, chatid)
+
+
+@dp.message_handler(state=ClientState.SENDALL)
+async def sendall(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await state.set_state(ClientState.ADMIN)
+        await delete_msg(message, 2)
+        if message.text == "-":
+            await bot.send_message(
+                chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+            )
+            return
+        all_users = db.get_all_users()
+        for user in all_users:
+            chat_id = user[0]
+            try:
+                await bot.send_message(chat_id, message.text, reply_markup=nav.hide)
+            except Exception as e:
+                await bot.send_message(
+                    chatid,
+                    f"Сообщение не отправлено пользователю: {user[1]}\nПо причине: {e}",
+                    reply_markup=nav.hide,
+                )
+        await bot.send_message(
+            chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+        )
+
     except Exception as e:
         await err(e, chatid)
 
@@ -444,7 +483,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 for mark in all_marks[subject]:
                     student_marks.append(list(mark.values())[0])
                 student_marks_str = map(str, student_marks)
-                marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
+                marks_text += f'<i>{subject}:</i> <b>[{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}]</b> - {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)}\n'
             await bot.edit_message_text(
                 marks_text,
                 chatid,
@@ -528,7 +567,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             for subject in all_marks:
                 student_marks = all_marks[subject]
                 student_marks_str = map(str, student_marks)
-                marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
+                marks_text += f'<i>{subject}:</i> <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b> - {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)}\n'
             await bot.edit_message_text(
                 marks_text,
                 chatid,
@@ -541,7 +580,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             subject_marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])[
                 subject
             ]
-            marks_text = f"<b>{subject}</b>\n"
+            marks_text = f"<b>{subject}</b>\n<code>"
             if len(subject_marks) == 0:
                 marks_text += "Нет оценок"
             for mark in subject_marks:
@@ -551,6 +590,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                     2023, int(data_split[1]), int(data_split[0])
                 ).weekday()
                 marks_text += f"{help.weekdays_short[day_num]} {data_split[0]} {help.months_names[int(data_split[1]) - 1][:-1] + 'я'} - {mark[mark_key]}\n"
+            marks_text += "</code>"
             await bot.edit_message_text(
                 marks_text,
                 chatid,
