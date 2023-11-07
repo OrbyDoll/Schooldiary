@@ -303,6 +303,3 @@ def get_marks_mass(lastname):
     with open("final_marks.json", "r", encoding="utf-8") as main_file:
         old_marks = json.load(main_file)
     return old_marks[lastname]
-
-
-print(get_marks_mass("Хазин"))

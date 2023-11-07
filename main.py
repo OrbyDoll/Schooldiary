@@ -19,6 +19,7 @@ class ClientState(StatesGroup):
     CHANGERATE_NUMBER = State()
     CHANGERATE_DESC = State()
     SENDALL = State()
+    SUPPORT = State()
 
 
 import os
@@ -326,7 +327,7 @@ async def changerate_desc(message: types.Message, state: FSMContext):
         lastname = state_data["change_student"]
         day = ".".join(str(datetime.date.today()).split("-")[1:][::-1])
         note = f"{day}_{change}_{message.text}"
-        rate = change[1] if change[0] == "+" else int(change[1:]) * -1
+        rate = change[1:] if change[0] == "+" else int(change[1:]) * -1
         db.change_rate(lastname, rate, note)
         await state.set_state(ClientState.ADMIN)
         await bot.send_message(
@@ -501,6 +502,13 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             await bot.edit_message_text(
                 "Выберите предмет", chatid, messageid, reply_markup=nav.marks_with_dates
             )
+        elif call.data == "support":
+            await bot.edit_message_text(
+                'Напишите ниже ваши пожелания или возникшие ошибки. Для отмены отправьте "-" без кавычек',
+                chatid,
+                messageid,
+            )
+            await state.set_state(ClientState.SUPPORT)
         elif call.data == "hometask":
             all_tasks = smart_sort(list(set(db.get_all_dates())))
             if len(all_tasks) == 0:
@@ -654,10 +662,37 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
         await err(e, chatid)
 
 
+@dp.message_handler(state=ClientState.SUPPORT)
+async def new_task_finish(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 2)
+        if message.text == "-":
+            await bot.send_message(
+                chatid, "Так уж и быть, держи меню", reply_markup=nav.menu
+            )
+            await state.set_state(ClientState.START)
+            return
+        await bot.send_message(
+            cfg.admin,
+            f"Новое обращение от {db.get_user(chatid)[1]}:\n{message.text}",
+            reply_markup=nav.hide,
+        )
+        await bot.send_message(
+            chatid,
+            "Спасибо за обращение, очень ответственный админ постарается рассмотреть его в ближайшее время",
+            reply_markup=nav.menu,
+        )
+        await state.set_state(ClientState.START)
+    except Exception as e:
+        await err(e, chatid)
+
+
 @dp.message_handler(content_types=["text"], state=ClientState.all_states)
 async def text(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
+        await delete_msg(message, 1)
         await bot.send_message(
             message.chat.id,
             "Не знаю что ты хотел сделать, держи меню",

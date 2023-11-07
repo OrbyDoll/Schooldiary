@@ -7,6 +7,7 @@ menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Домашка", callback_data="hometask"),
     types.InlineKeyboardButton("Расписание", callback_data="schedule"),
     types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
+    types.InlineKeyboardButton('Поддержка', callback_data='support')
 )
 
 admin_menu = (
