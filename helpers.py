@@ -271,7 +271,7 @@ def form_marks_mass(type):
             marks = []
             for mark in subject:
                 if "Column" in mark:
-                    for grade in str(subject[mark]).replace("\n", "").split():
+                    for grade in str(subject[mark]).replace("\n", " ").split():
                         try:
                             # Отсеивание не чисел
                             marks.append({date_guide[mark]: int(grade)})

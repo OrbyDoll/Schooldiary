@@ -251,7 +251,13 @@
   "Column13": 2,
   "Column16": 4,
   "Column22": 3,
-  "Column25": 2
+  "Column25": 2,
+  "Column28": 2,
+  "Column30": "5 ",
+  "Column36": 5,
+  "Column40": 4,
+  "Column42": "2 ",
+  "Column43": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -778,7 +784,14 @@
   "Column13": 4,
   "Column16": 5,
   "Column22": 3,
-  "Column25": 3
+  "Column25": 3,
+  "Column28": "3 ",
+  "Column30": "5 ",
+  "Column34": "5 ",
+  "Column36": 5,
+  "Column40": "5 ",
+  "Column42": "5 ",
+  "Column43": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -954,7 +967,15 @@
   "Column13": 4,
   "Column16": 5,
   "Column22": 3,
-  "Column25": 5
+  "Column25": 5,
+  "Column28": 5,
+  "Column30": "5 ",
+  "Column36": "4 ",
+  "Column40": "н ",
+  "Column42": "н",
+  "Column43": "н ",
+  "Column46": "н ",
+  "Column48": "5\n5 "
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -1131,7 +1152,14 @@
   "Column13": 3,
   "Column16": 4,
   "Column22": 4,
-  "Column25": 5
+  "Column25": 5,
+  "Column28": "5 ",
+  "Column30": 5,
+  "Column36": 3,
+  "Column40": "5 ",
+  "Column42": "5 ",
+  "Column43": 5,
+  "Column48": "5 "
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -2160,7 +2188,12 @@
   "Column12": 5,
   "Column13": 4,
   "Column22": 5,
-  "Column25": 5
+  "Column25": 5,
+  "Column28": 5,
+  "Column30": 5,
+  "Column36": 5,
+  "Column42": 5,
+  "Column43": "н"
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -2340,7 +2373,14 @@
   "Column13": 5,
   "Column16": 5,
   "Column22": 4,
-  "Column25": 5
+  "Column25": 5,
+  "Column28": "5 ",
+  "Column30": "н ",
+  "Column36": 4,
+  "Column40": 5,
+  "Column42": 5,
+  "Column43": "5 ",
+  "Column48": "н"
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -2516,7 +2556,14 @@
   "Column13": 2,
   "Column16": 4,
   "Column22": 3,
-  "Column25": "н "
+  "Column25": "н ",
+  "Column28": "н",
+  "Column30": "н",
+  "Column31": "н",
+  "Column36": 5,
+  "Column40": 2,
+  "Column42": 2,
+  "Column43": 4
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -2688,7 +2735,15 @@
   "Column13": 2,
   "Column16": 5,
   "Column22": 2,
-  "Column25": 2
+  "Column25": 2,
+  "Column28": 2,
+  "Column30": "5 ",
+  "Column34": 2,
+  "Column36": 3,
+  "Column40": 2,
+  "Column42": 3,
+  "Column43": 2,
+  "Column48": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -2865,7 +2920,14 @@
   "Column13": 3,
   "Column16": 5,
   "Column22": 3,
-  "Column25": 3
+  "Column25": 3,
+  "Column28": 3,
+  "Column29": "н ",
+  "Column34": 5,
+  "Column36": "4 ",
+  "Column40": 5,
+  "Column42": 5,
+  "Column43": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -3405,7 +3467,17 @@
   "Column13": 4,
   "Column16": 5,
   "Column22": 3,
-  "Column25": "н "
+  "Column25": "н ",
+  "Column28": "н ",
+  "Column30": "н ",
+  "Column31": "н ",
+  "Column34": "н",
+  "Column36": "н ",
+  "Column37": "н",
+  "Column40": "н",
+  "Column42": "н",
+  "Column43": 5,
+  "Column48": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -3592,7 +3664,13 @@
   "Column13": 4,
   "Column16": 5,
   "Column22": 3,
-  "Column25": 5
+  "Column25": 5,
+  "Column28": 5,
+  "Column34": 5,
+  "Column36": 5,
+  "Column40": "н ",
+  "Column43": 5,
+  "Column48": "5 "
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -3765,7 +3843,13 @@
   "Column13": 4,
   "Column16": 5,
   "Column22": 3,
-  "Column25": 5
+  "Column25": 5,
+  "Column28": 5,
+  "Column30": 5,
+  "Column36": "3 ",
+  "Column40": "5 ",
+  "Column42": "5 ",
+  "Column43": "5 "
  },
  {
   "6 ноября 2023 г.": "Информатика",
@@ -4112,7 +4196,15 @@
   "Column13": 3,
   "Column16": 4,
   "Column22": 3,
-  "Column25": 5
+  "Column25": 5,
+  "Column28": 5,
+  "Column30": 5,
+  "Column34": 5,
+  "Column36": 3,
+  "Column40": 5,
+  "Column42": "5 ",
+  "Column43": "5 ",
+  "Column48": 5
  },
  {
   "6 ноября 2023 г.": "Информатика",
