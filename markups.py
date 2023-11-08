@@ -7,7 +7,7 @@ menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Домашка", callback_data="hometask"),
     types.InlineKeyboardButton("Расписание", callback_data="schedule"),
     types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
-    types.InlineKeyboardButton('Поддержка', callback_data='support')
+    types.InlineKeyboardButton("Поддержка", callback_data="support"),
 )
 
 admin_menu = (
@@ -17,6 +17,7 @@ admin_menu = (
         types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
         types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
         types.InlineKeyboardButton("Импорт оценок", callback_data="marks_import"),
+        types.InlineKeyboardButton("Бан система", callback_data="bansystem"),
         types.InlineKeyboardButton("Рассылка", callback_data="sendall"),
     )
     .row(
@@ -70,6 +71,7 @@ marks_with_dates = (
         types.InlineKeyboardButton("Назад ко всем оценкам", callback_data="marks"),
     )
 )
+
 
 all_marks = types.InlineKeyboardMarkup(row_width=1).add(
     types.InlineKeyboardButton("Оценки с датами", callback_data="marks_with_dates"),
@@ -182,6 +184,15 @@ def get_del_task_markup(task_list, date):
     return task_markup
 
 
+def get_bansystem_markup(student):
+    bansystem = types.InlineKeyboardMarkup(row_width=2).add(
+        types.InlineKeyboardButton("Забанить", callback_data=f"ban_{student}"),
+        types.InlineKeyboardButton("Разбанить", callback_data=f"unban_{student}"),
+        types.InlineKeyboardButton("Назад к выбору ученика", callback_data="bansystem"),
+    )
+    return bansystem
+
+
 def get_students_page(page, students, rates, type):
     students.sort(key=lambda x: x[1].split()[1][0])
     rates.sort(key=lambda x: x[0][0])
@@ -193,7 +204,7 @@ def get_students_page(page, students, rates, type):
         ):
             text = (
                 f"{students[student][1]}: {rates[student][1]}"
-                if type != "getmarks"
+                if type == "changerate"
                 else f"{students[student][1]}"
             )
             item_choose.insert(

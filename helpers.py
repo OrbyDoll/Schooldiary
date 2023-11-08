@@ -37,6 +37,7 @@ group_OI = [
     "Хазин",
     "Ряжских",
     "Мовсесян",
+    "Данилова",
     "Ширнин",
     "Горюнова",
     "Митин",
@@ -297,6 +298,7 @@ def form_marks_mass(type):
         with open("final_marks.json", "w", encoding="utf-8") as main_file:
             new_marks = add_marks(old_marks, all_marks)
             json.dump(new_marks, main_file, ensure_ascii=False)
+
 
 def get_marks_mass(lastname):
     with open("final_marks.json", "r", encoding="utf-8") as main_file:

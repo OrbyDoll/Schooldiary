@@ -29,7 +29,7 @@ import helpers as help
 from dbshka import Database
 
 storage = RedisStorage2()
-bot = Bot(token=cfg.TOKEN)
+bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -67,10 +67,10 @@ async def start(message: types.Message, state: FSMContext):
                 f"Ты не прошел предварительную регистрацию, обратись к админу - {cfg.admin_nick}",
             )
             return
-        if db.get_user(chatid)[1] == "Пётр Новиков":
+        if db.get_user(chatid)[3] == 1:
             await bot.send_message(
                 chatid,
-                "Добро пожаловать, Педр.\nКрысам доступ в дневник ограничен",
+                "К сожалению вы получили блокировку.",
             )
             return
         await bot.send_message(
@@ -151,11 +151,20 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.get_dates_markup(all_dates),
             )
+        elif call.data == "bansystem":
+            await bot.edit_message_text(
+                "Выбери ученика",
+                chatid,
+                messageid,
+                reply_markup=nav.get_students_page(
+                    0, db.get_all_users(), [], "bansyschoose"
+                ),
+            )
         elif call.data == "file_exists":
             await delete_msg(call.message, 1)
             await bot.send_message(
                 chatid,
-                'Пришли один или несколько файлов без лишнего текста и т.п. Как закончишь напиши "-" без кавычек',
+                'Пришли один или несколько файлов без лишнего текста и т.п. Как закончишь, напиши "-" без кавычек',
             )
             await state.set_state(ClientState.NEW_TASK_FILE)
         elif call.data == "file_not_exists":
@@ -168,7 +177,6 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 "Вот ваше меню господин", chatid, messageid, reply_markup=nav.admin_menu
             )
         elif call.data == "edit_socialrate":
-            # "Пока получилось сделать только фашистскую Германию..."
             students = db.get_all_users()
             rates = db.get_all_rates()
             await bot.edit_message_text(
@@ -182,6 +190,43 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.menu
             )
             await state.set_state(ClientState.START)
+        elif "page" in call.data:
+            students = db.get_all_users()
+            rates = db.get_all_rates()
+            await bot.edit_message_reply_markup(
+                chatid,
+                messageid,
+                reply_markup=nav.get_students_page(
+                    int(call.data.split()[1]), students, rates, call.data.split()[2]
+                ),
+            )
+        elif "bansyschoose" in call.data:
+            student = call.data.split("_")[1]
+            await bot.edit_message_text(
+                "Выбери действие",
+                chatid,
+                messageid,
+                reply_markup=nav.get_bansystem_markup(student),
+            )
+        elif "ban" in call.data:
+            data_split = call.data.split("_")
+            user_id = db.get_id_from_lastname(data_split[1])
+            if data_split[0] == "ban":
+                db.ban(user_id)
+                await bot.edit_message_text(
+                    "Ученик успешно забанен",
+                    chatid,
+                    messageid,
+                    reply_markup=nav.back_to_menu,
+                )
+            else:
+                db.unban(user_id)
+                await bot.edit_message_text(
+                    "Ученик успешно разбанен",
+                    chatid,
+                    messageid,
+                    reply_markup=nav.back_to_menu,
+                )
         elif "getmarks_" in call.data:
             data = call.data.split("_")
             all_marks = help.get_marks_mass(data[1])
@@ -208,16 +253,6 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
             )
             await state.set_state(ClientState.CHANGERATE_NUMBER)
-        elif "page" in call.data:
-            students = db.get_all_users()
-            rates = db.get_all_rates()
-            await bot.edit_message_reply_markup(
-                chatid,
-                messageid,
-                reply_markup=nav.get_students_page(
-                    int(call.data.split()[1]), students, rates, call.data.split()[2]
-                ),
-            )
         elif "importmarks" in call.data:
             await state.update_data(form_type=call.data.split("_")[1])
             await bot.edit_message_text(
@@ -277,7 +312,7 @@ async def sendall(message: types.Message, state: FSMContext):
         for user in all_users:
             chat_id = user[0]
             try:
-                if user[1].split()[1] != 'Новиков':
+                if user[1].split()[1] != "Новиков":
                     await bot.send_message(chat_id, message.text, reply_markup=nav.hide)
             except Exception as e:
                 await bot.send_message(
@@ -477,6 +512,9 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
         await bot.answer_callback_query(callback_query_id=call.id)
         chatid = call.message.chat.id
         messageid = call.message.message_id
+        if db.get_user(chatid)[3] == 1:
+            await bot.edit_message_text("Вы получили блокировку.", chatid, messageid)
+            return
         if call.data == "marks":
             all_marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])
             marks_text = f"<b>Ваши оценки</b>\n"
@@ -493,12 +531,6 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 parse_mode="HTML",
                 reply_markup=nav.all_marks,
             )
-            # await bot.edit_message_text(
-            #     "Выбирайте предмет",
-            #     chatid,
-            #     messageid,
-            #     reply_markup=nav.marks,
-            # )
         elif call.data == "marks_with_dates":
             await bot.edit_message_text(
                 "Выберите предмет", chatid, messageid, reply_markup=nav.marks_with_dates
@@ -527,7 +559,6 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 reply_markup=nav.get_dates_markup(all_tasks),
             )
         elif call.data == "socialrate":
-            # "Ждите пока мы придумаем как сделать из нашего класса новый Китай"
             user_lastname = db.get_user(chatid)[1].split()[1]
             rate_text = f"Лучшая система оценивания на свете\n<b>Рейтинг:</b> <i>{db.get_rate(user_lastname)[0]}</i>"
             await bot.edit_message_text(
@@ -694,8 +725,11 @@ async def text(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 1)
+        if db.get_user(chatid)[3] == 1:
+            await bot.send_message(chatid, "Вы получили блокировку.")
+            return
         await bot.send_message(
-            message.chat.id,
+            chatid,
             "Не знаю что ты хотел сделать, держи меню",
             reply_markup=nav.menu,
         )
