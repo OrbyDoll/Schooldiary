@@ -29,7 +29,7 @@ import helpers as help
 from dbshka import Database
 
 storage = RedisStorage2()
-bot = Bot(token=cfg.TOKEN_TEST)
+bot = Bot(token=cfg.TOKEN)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -75,7 +75,7 @@ async def start(message: types.Message, state: FSMContext):
             return
         await bot.send_message(
             chatid,
-            f"Добро пожаловать в наш электронный дневкик, {db.get_user(chatid)[1] if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}",
+            f"Добро пожаловать в наш электронный дневкик, {db.get_user(chatid) if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}",
             reply_markup=nav.menu,
             parse_mode="HTML",
         )
@@ -277,7 +277,8 @@ async def sendall(message: types.Message, state: FSMContext):
         for user in all_users:
             chat_id = user[0]
             try:
-                await bot.send_message(chat_id, message.text, reply_markup=nav.hide)
+                if user[1].split()[1] != 'Новиков':
+                    await bot.send_message(chat_id, message.text, reply_markup=nav.hide)
             except Exception as e:
                 await bot.send_message(
                     chatid,
@@ -674,7 +675,7 @@ async def new_task_finish(message: types.Message, state: FSMContext):
             await state.set_state(ClientState.START)
             return
         await bot.send_message(
-            cfg.admin,
+            cfg.glav_admin,
             f"Новое обращение от {db.get_user(chatid)[1]}:\n{message.text}",
             reply_markup=nav.hide,
         )
