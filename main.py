@@ -61,6 +61,14 @@ async def start(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 2)
+        if chatid == cfg.teacher:
+            await bot.send_message(
+                chatid,
+                "Здравствуйте, Татьяна Алексеевна",
+                reply_markup=nav.get_admin_menu("teacher"),
+            )
+            await state.set_state(ClientState.ADMIN)
+            return
         if not db.user_exists(chatid):
             await bot.send_message(
                 chatid,
@@ -90,9 +98,11 @@ async def admin(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 2)
-        if chatid == cfg.admin or chatid == cfg.glav_admin:
+        if db.get_user(chatid)[4] != "user":
             await bot.send_message(
-                chatid, "Админ пришел, всем к ногам", reply_markup=nav.admin_menu
+                chatid,
+                "Админ пришел, всем к ногам",
+                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
             )
             await state.set_state(ClientState.ADMIN)
     except Exception as e:
@@ -128,6 +138,10 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
             )
             await state.set_state(ClientState.SENDALL)
+        elif call.data == "schedule":
+            await bot.edit_message_text(
+                "Выберите день", chatid, messageid, reply_markup=nav.schedule
+            )
         elif call.data == "add_hometask":
             await state.update_data(doc_path=[])
             await state.update_data(group="")
@@ -151,6 +165,13 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.get_dates_markup(all_dates),
             )
+        elif call.data == "support":
+            await bot.edit_message_text(
+                'Напишите ниже ваши пожелания или возникшие ошибки. Для отмены отправьте "-" без кавычек',
+                chatid,
+                messageid,
+            )
+            await state.set_state(ClientState.SUPPORT)
         elif call.data == "bansystem":
             await bot.edit_message_text(
                 "Выбери ученика",
@@ -174,7 +195,10 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             await state.update_data(doc_path=["None"])
         elif call.data == "back_to_menu":
             await bot.edit_message_text(
-                "Вот ваше меню господин", chatid, messageid, reply_markup=nav.admin_menu
+                "Вот ваше меню господин админ",
+                chatid,
+                messageid,
+                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
             )
         elif call.data == "edit_socialrate":
             students = db.get_all_users()
@@ -305,7 +329,9 @@ async def sendall(message: types.Message, state: FSMContext):
         await delete_msg(message, 2)
         if message.text == "-":
             await bot.send_message(
-                chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+                chatid,
+                "Вот ваше меню господин",
+                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
             )
             return
         all_users = db.get_all_users()
@@ -321,7 +347,9 @@ async def sendall(message: types.Message, state: FSMContext):
                     reply_markup=nav.hide,
                 )
         await bot.send_message(
-            chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+            chatid,
+            "Вот ваше меню господин",
+            reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
         )
 
     except Exception as e:
@@ -367,7 +395,9 @@ async def changerate_desc(message: types.Message, state: FSMContext):
         db.change_rate(lastname, rate, note)
         await state.set_state(ClientState.ADMIN)
         await bot.send_message(
-            chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+            chatid,
+            "Вот ваше меню господин",
+            reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
         )
     except Exception as e:
         await err(e, chatid)
@@ -382,7 +412,9 @@ async def marks_import(message: types.Message, state: FSMContext):
             if message.text == "-":
                 await state.set_state(ClientState.ADMIN)
                 await bot.send_message(
-                    chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+                    chatid,
+                    "Вот ваше меню господин",
+                    reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
                 )
                 return
         await state.set_state(ClientState.ADMIN)
@@ -396,7 +428,9 @@ async def marks_import(message: types.Message, state: FSMContext):
         state_data = await state.get_data()
         help.form_marks_mass(state_data["form_type"])
         await bot.send_message(
-            chatid, "Вот ваше меню господин", reply_markup=nav.admin_menu
+            chatid,
+            "Вот ваше меню господин",
+            reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
         )
     except Exception as e:
         await err(e, chatid)
@@ -700,6 +734,13 @@ async def new_task_finish(message: types.Message, state: FSMContext):
         chatid = message.chat.id
         await delete_msg(message, 2)
         if message.text == "-":
+            if chatid == cfg.teacher:
+                await bot.send_message(
+                    chatid,
+                    "Здравствуйте, Татьяна Алексеевна",
+                    reply_markup=nav.get_admin_menu("teacher"),
+                )
+                await state.set_state(ClientState.ADMIN)
             await bot.send_message(
                 chatid, "Так уж и быть, держи меню", reply_markup=nav.menu
             )
@@ -710,6 +751,13 @@ async def new_task_finish(message: types.Message, state: FSMContext):
             f"Новое обращение от {db.get_user(chatid)[1]}:\n{message.text}",
             reply_markup=nav.hide,
         )
+        if chatid == cfg.teacher:
+            await bot.send_message(
+                chatid,
+                "Спасибо за обращение, очень ответственный админ постарается рассмотреть его в ближайшее время",
+                reply_markup=nav.get_admin_menu("teacher"),
+            )
+            await state.set_state(ClientState.ADMIN)
         await bot.send_message(
             chatid,
             "Спасибо за обращение, очень ответственный админ постарается рассмотреть его в ближайшее время",

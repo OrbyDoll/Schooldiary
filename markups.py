@@ -10,22 +10,32 @@ menu = types.InlineKeyboardMarkup(row_width=3).add(
     types.InlineKeyboardButton("Поддержка", callback_data="support"),
 )
 
-admin_menu = (
-    types.InlineKeyboardMarkup(row_width=3)
-    .add(
-        types.InlineKeyboardButton("Оценки", callback_data="marks"),
-        types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
-        types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
-        types.InlineKeyboardButton("Импорт оценок", callback_data="marks_import"),
-        types.InlineKeyboardButton("Бан система", callback_data="bansystem"),
-        types.InlineKeyboardButton("Рассылка", callback_data="sendall"),
-    )
-    .row(
-        types.InlineKeyboardButton(
-            "Назад к обычным смертным", callback_data="back_to_start"
+
+def get_admin_menu(admin_type):
+    admin_menu = types.InlineKeyboardMarkup(row_width=3)
+    if admin_type == "all":
+        admin_menu.add(
+            types.InlineKeyboardButton("Оценки", callback_data="marks"),
+            types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
+            types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
+            types.InlineKeyboardButton("Импорт оценок", callback_data="marks_import"),
+            types.InlineKeyboardButton("Бан система", callback_data="bansystem"),
+            types.InlineKeyboardButton("Рассылка", callback_data="sendall"),
+        ).row(
+            types.InlineKeyboardButton(
+                "Назад к обычным смертным", callback_data="back_to_start"
+            )
         )
-    )
-)
+    elif admin_type == "teacher":
+        admin_menu.add(
+            types.InlineKeyboardButton("Оценки", callback_data="marks"),
+            types.InlineKeyboardButton("Расписание", callback_data="schedule"),
+        ).row(
+            types.InlineKeyboardButton("Поддержка", callback_data="support"),
+        )
+
+    return admin_menu
+
 
 marks_choose = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Добавить оценки", callback_data="importmarks_add"),
@@ -202,14 +212,14 @@ def get_students_page(page, students, rates, type):
             8 * page,
             8 * (page + 1) if 8 * (page + 1) < 24 else 24,
         ):
-            text = (
-                f"{students[student][1]}: {rates[student][1]}"
-                if type == "changerate"
-                else f"{students[student][1]}"
-            )
+            text = {
+                "changerate": f"{students[student][1]}: {rates[student][1] if len(rates) > 0 else ''}",
+                "bansyschoose": f"{students[student][1]}: {'Забанен' if students[student][3] == '1' else 'Не забанен'}",
+                "getmarks": f"{students[student][1]}",
+            }
             item_choose.insert(
                 types.InlineKeyboardButton(
-                    text=text,
+                    text=text[type],
                     callback_data=f"{type}_{students[student][1].split()[1]}",
                 )
             )

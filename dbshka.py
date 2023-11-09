@@ -13,7 +13,8 @@ class Database:
                     user_id TEXT,
                     info TEXT,
                     nickname TEXT,
-                    ban TEXT);
+                    ban TEXT,
+                    admin_type TEXT);
                 """
             )
             hometask = self.cursor.execute(

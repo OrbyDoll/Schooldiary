@@ -5,4 +5,5 @@ social_admin = 0
 db_file = "data/basa.sqlite3"
 admin = 1245273271
 glav_admin = 1993703674
+teacher = 1523509253
 admin_nick = "@dimka_ryaz"
