@@ -75,7 +75,7 @@ async def start(message: types.Message, state: FSMContext):
                 f"Ты не прошел предварительную регистрацию, обратись к админу - {cfg.admin_nick}",
             )
             return
-        if db.get_user(chatid)[3] == 1:
+        if db.get_user(chatid)[3] == "1":
             await bot.send_message(
                 chatid,
                 "К сожалению вы получили блокировку.",
@@ -546,7 +546,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
         await bot.answer_callback_query(callback_query_id=call.id)
         chatid = call.message.chat.id
         messageid = call.message.message_id
-        if db.get_user(chatid)[3] == 1:
+        if db.get_user(chatid)[3] == "1":
             await bot.edit_message_text("Вы получили блокировку.", chatid, messageid)
             return
         if call.data == "marks":
@@ -733,6 +733,9 @@ async def new_task_finish(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 2)
+        if db.get_user(chatid)[3] == "1":
+            await bot.send_message(chatid, "Вы получили блокировку.")
+            return
         if message.text == "-":
             if chatid == cfg.teacher:
                 await bot.send_message(
@@ -773,7 +776,7 @@ async def text(message: types.Message, state: FSMContext):
     try:
         chatid = message.chat.id
         await delete_msg(message, 1)
-        if db.get_user(chatid)[3] == 1:
+        if db.get_user(chatid)[3] == "1":
             await bot.send_message(chatid, "Вы получили блокировку.")
             return
         await bot.send_message(

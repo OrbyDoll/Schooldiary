@@ -205,7 +205,8 @@ def get_bansystem_markup(student):
 
 def get_students_page(page, students, rates, type):
     students.sort(key=lambda x: x[1].split()[1][0])
-    students.pop(1)
+    if len(students) == 25:
+        students.pop(1)
     rates.sort(key=lambda x: x[0][0])
     item_choose = types.InlineKeyboardMarkup(row_width=1)
     if 8 * page <= 16 and 8 * page >= 0:
