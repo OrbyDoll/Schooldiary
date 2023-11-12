@@ -285,6 +285,8 @@ def form_marks_mass(type):
                 key_name = "Английский"
             elif subject[keys[-1]] == "Физическая культура":
                 key_name = "Физкультура"
+            elif subject[keys[-1]] == 'Русский язык':
+                key_name = "Русский"
             student_marks[key_name] = marks
         all_marks[student[0]["Ученик"].split()[0]] = student_marks
 
@@ -304,3 +306,17 @@ def get_marks_mass(lastname):
     with open("final_marks.json", "r", encoding="utf-8") as main_file:
         old_marks = json.load(main_file)
     return old_marks[lastname]
+
+def insert_marks(lastname, subject, date, mark):
+    actual_marks = get_marks_mass(lastname)
+    actual_marks[subject].append({date:mark})
+    actual_marks[subject].sort(key=lambda x: int(list(x.keys())[0].split('.')[0]))
+    actual_marks[subject].sort(key=lambda x: int(list(x.keys())[0].split('.')[1]))
+    with open("final_marks.json", "r", encoding="utf-8") as main_file:
+        old_marks = json.load(main_file)
+    with open("final_marks.json", "w", encoding="utf-8") as main_file:
+        json.dump(actual_marks, main_file, ensure_ascii=False)
+
+form_marks_mass('replace')
+insert_marks('Хазин', 'Русский', '11.10', 5)
+

@@ -28,7 +28,7 @@ import markups as nav
 import helpers as help
 from dbshka import Database
 
-storage = RedisStorage2()
+storage = MemoryStorage()#RedisStorage2()
 bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
@@ -83,7 +83,7 @@ async def start(message: types.Message, state: FSMContext):
             return
         await bot.send_message(
             chatid,
-            f"Добро пожаловать в наш электронный дневкик, {db.get_user(chatid) if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}",
+            f"Добро пожаловать в наш электронный дневкик, {db.get_user(chatid)[1] if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}",
             reply_markup=nav.menu,
             parse_mode="HTML",
         )
