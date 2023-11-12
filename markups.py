@@ -16,6 +16,7 @@ def get_admin_menu(admin_type):
     if admin_type == "all":
         admin_menu.add(
             types.InlineKeyboardButton("Оценки", callback_data="marks"),
+            types.InlineKeyboardButton("Изменить оценки", callback_data="edit_marks"),
             types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
             types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
             types.InlineKeyboardButton("Импорт оценок", callback_data="marks_import"),
@@ -41,7 +42,11 @@ marks_choose = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Добавить оценки", callback_data="importmarks_add"),
     types.InlineKeyboardButton("Заменить оценки", callback_data="importmarks_replace"),
 )
-
+edit_marks_choose = types.InlineKeyboardMarkup(row_width=2).add(
+    types.InlineKeyboardButton("Добавить оценки", callback_data="add_marks"),
+    types.InlineKeyboardButton("Удалить оценки", callback_data="del_marks"),
+    types.InlineKeyboardButton("Назад к выбору учеников", callback_data="edit_marks"),
+)
 admin_task = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Добавить дз", callback_data="add_hometask"),
     types.InlineKeyboardButton("Удалить дз", callback_data="del_hometask"),
@@ -218,6 +223,7 @@ def get_students_page(page, students, rates, type):
                 "changerate": f"{students[student][1]}: {rates[student][1] if len(rates) > 0 else ''}",
                 "bansyschoose": f"{students[student][1]}: {'Забанен' if students[student][3] == '1' else 'Не забанен'}",
                 "getmarks": f"{students[student][1]}",
+                "editmarks": f"{students[student][1]}",
             }
             item_choose.insert(
                 types.InlineKeyboardButton(

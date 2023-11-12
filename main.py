@@ -20,6 +20,7 @@ class ClientState(StatesGroup):
     CHANGERATE_DESC = State()
     SENDALL = State()
     SUPPORT = State()
+    ADD_MARKS = State()
 
 
 import os
@@ -28,7 +29,7 @@ import markups as nav
 import helpers as help
 from dbshka import Database
 
-storage = MemoryStorage()#RedisStorage2()
+storage = RedisStorage2()
 bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
@@ -123,6 +124,22 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.get_students_page(0, students, [], "getmarks"),
             )
+        elif call.data == "edit_marks":
+            students = db.get_all_users()
+            await bot.edit_message_text(
+                "Выбери ученика",
+                chatid,
+                messageid,
+                reply_markup=nav.get_students_page(0, students, [], "editmarks"),
+            )
+        elif call.data == "add_marks":
+            state_data = await state.get_data()
+            await bot.edit_message_text(
+                "Присылай оценки в формате:\nПредмет Дата(обязательно через точку) Оценка\nПример: Английский 11.11 5\nКак закончишь, пришли '-' без кавычек",
+                chatid,
+                messageid,
+            )
+            await state.set_state(ClientState.ADD_MARKS)
         elif call.data == "edit_hometask":
             await bot.edit_message_text(
                 "Выбери действие", chatid, messageid, reply_markup=nav.admin_task
@@ -232,6 +249,14 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.get_bansystem_markup(student),
             )
+        elif "editmarks" in call.data:
+            await state.update_data(edit_marks_student=call.data.split("_")[1])
+            await bot.edit_message_text(
+                f"Что вы хотите сделать с оценками ученика: {call.data.split('_')[1]}",
+                chatid,
+                messageid,
+                reply_markup=nav.edit_marks_choose,
+            )
         elif "ban" in call.data:
             data_split = call.data.split("_")
             user_id = db.get_id_from_lastname(data_split[1])
@@ -317,6 +342,29 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.get_del_task_markup(all_task, task_info[1]),
             )
+    except Exception as e:
+        await err(e, chatid)
+
+
+@dp.message_handler(state=ClientState.ADD_MARKS)
+async def changerate_number(message: types.Message, state: FSMContext):
+    chatid = message.chat.id
+    try:
+        state_data = await state.get_data()
+        await delete_msg(message, 1)
+        if message.text == "-":
+            await delete_msg(message, 1)
+            await bot.send_message(
+                chatid,
+                f"Что вы хотите сделать с оценками ученика: {state_data['edit_marks_student']}",
+                reply_markup=nav.edit_marks_choose,
+            )
+            await state.set_state(ClientState.ADMIN)
+            return
+        data = message.text.split()
+        help.insert_marks(
+            state_data["edit_marks_student"], data[0], data[1], int(data[2])
+        )
     except Exception as e:
         await err(e, chatid)
 
