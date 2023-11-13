@@ -63,29 +63,39 @@ schedule = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
-marks_with_dates = (
-    types.InlineKeyboardMarkup(row_width=3)
-    .add(
-        types.InlineKeyboardButton("Математика", callback_data="gradeМатематика"),
-        types.InlineKeyboardButton("Физика", callback_data="gradeФизика"),
-        types.InlineKeyboardButton("Информатика", callback_data="gradeИнформатика"),
-        types.InlineKeyboardButton("Русский", callback_data="gradeРусский"),
-        types.InlineKeyboardButton("Литература", callback_data="gradeЛитература"),
-        types.InlineKeyboardButton("Биология", callback_data="gradeБиология"),
-        types.InlineKeyboardButton("Химия", callback_data="gradeХимия"),
-        types.InlineKeyboardButton("История", callback_data="gradeИстория"),
-        types.InlineKeyboardButton(
-            "Обществознание", callback_data="gradeОбществознание"
-        ),
-        types.InlineKeyboardButton("Английский", callback_data="gradeАнглийский"),
-        types.InlineKeyboardButton("Астрономия", callback_data="gradeАстрономия"),
-        types.InlineKeyboardButton("ОБЖ", callback_data="gradeОБЖ"),
-        types.InlineKeyboardButton("Физкультура", callback_data="gradeФизкультура"),
+
+def get_subjects_markup(type):
+    return (
+        types.InlineKeyboardMarkup(row_width=3)
+        .add(
+            types.InlineKeyboardButton("Математика", callback_data=f"{type}Математика"),
+            types.InlineKeyboardButton("Физика", callback_data=f"{type}Физика"),
+            types.InlineKeyboardButton(
+                "Информатика", callback_data=f"{type}Информатика"
+            ),
+            types.InlineKeyboardButton("Русский", callback_data=f"{type}Русский"),
+            types.InlineKeyboardButton("Литература", callback_data=f"{type}Литература"),
+            types.InlineKeyboardButton("Биология", callback_data=f"{type}Биология"),
+            types.InlineKeyboardButton("Химия", callback_data=f"{type}Химия"),
+            types.InlineKeyboardButton("История", callback_data=f"{type}История"),
+            types.InlineKeyboardButton(
+                "Обществознание", callback_data=f"{type}Обществознание"
+            ),
+            types.InlineKeyboardButton("Английский", callback_data=f"{type}Английский"),
+            types.InlineKeyboardButton("Астрономия", callback_data=f"{type}Астрономия"),
+            types.InlineKeyboardButton("ОБЖ", callback_data=f"{type}ОБЖ"),
+            types.InlineKeyboardButton(
+                "Физкультура", callback_data=f"{type}Физкультура"
+            ),
+        )
+        .row(
+            types.InlineKeyboardButton("Назад ко всем оценкам", callback_data="marks")
+            if type == "grade"
+            else types.InlineKeyboardButton(
+                "Назад к выбору действия", callback_data="editmarks"
+            )
+        )
     )
-    .row(
-        types.InlineKeyboardButton("Назад ко всем оценкам", callback_data="marks"),
-    )
-)
 
 
 all_marks = types.InlineKeyboardMarkup(row_width=1).add(
@@ -249,3 +259,19 @@ def get_students_page(page, students, rates, type):
         return get_students_page(0, students, rates, type)
     elif page < 0:
         return get_students_page(2, students, rates, type)
+
+
+def get_del_marks_markup(marks):
+    del_marks_markup = types.InlineKeyboardMarkup(row_width=4)
+    for mark in marks:
+        key = list(mark.keys())[0]
+        value = list(mark.values())[0]
+        del_marks_markup.insert(
+            types.InlineKeyboardButton(
+                f"{key} : {value}", callback_data=f"delmarks_{key}_{value}"
+            )
+        )
+    del_marks_markup.row(
+        types.InlineKeyboardButton("Назад к выбору предмета", callback_data="del_marks")
+    )
+    return del_marks_markup

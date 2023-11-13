@@ -1,3 +1,4 @@
+import time
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
@@ -49,6 +50,23 @@ def smart_sort(mass: list):
     mass.sort(key=lambda x: x[0].split(".")[0])
     mass.sort(key=lambda x: x[0].split(".")[1])
     return mass
+
+
+def is_correct(text):
+    text_split = text.split()
+    if len(text_split) > 3:
+        return "Вы ввели лишний пробел. Попробуйте еще раз"
+    elif not help.check_subject(text_split[0]):
+        subj = '\n'.join(help.subjects)
+        return f"Проверьте правильность предмета. Пишите пожалуйста с большой буквы. Предметы:\n{subj}"
+    elif "." not in text_split[1]:
+        return "Проверьте правильность даты. Пишите пожалуйста через точку, например, 11.11"
+    else:
+        try:
+            int(text_split[2])
+        except:
+            return "Проверьте правильность оценки. Вводите только числа"
+    return True
 
 
 async def err(e, chat):
@@ -133,13 +151,20 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 reply_markup=nav.get_students_page(0, students, [], "editmarks"),
             )
         elif call.data == "add_marks":
-            state_data = await state.get_data()
             await bot.edit_message_text(
-                "Присылай оценки в формате:\nПредмет Дата(обязательно через точку) Оценка\nПример: Английский 11.11 5\nКак закончишь, пришли '-' без кавычек",
+                "Присылай оценки в формате:\nПредмет Дата Оценка\nПример: Английский 11.11 5\nКак закончишь, пришли '-' без кавычек",
                 chatid,
                 messageid,
             )
+            await state.update_data(add_marks_message=messageid)
             await state.set_state(ClientState.ADD_MARKS)
+        elif call.data == "del_marks":
+            await bot.edit_message_text(
+                "Выбери предмет",
+                chatid,
+                messageid,
+                reply_markup=nav.get_subjects_markup("delmarks"),
+            )
         elif call.data == "edit_hometask":
             await bot.edit_message_text(
                 "Выбери действие", chatid, messageid, reply_markup=nav.admin_task
@@ -249,10 +274,43 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.get_bansystem_markup(student),
             )
-        elif "editmarks" in call.data:
-            await state.update_data(edit_marks_student=call.data.split("_")[1])
+        elif "delmarks" in call.data:
+            state_data = await state.get_data()
+            student_lastname = state_data["edit_marks_student"]
+            if len(call.data.split("_")) == 3:
+                data_split = call.data.split("_")
+                subject = state_data["del_mark_subject"]
+                # print(
+                #     student_lastname,
+                #     subject,
+                #     data_split[1],
+                #     int(call.data.split("_")[2]),
+                # )
+                help.delete_mark(
+                    student_lastname,
+                    subject,
+                    data_split[1],
+                    int(data_split[2]),
+                )
+            else:
+                subject = call.data[8:]
+                await state.update_data(del_mark_subject=subject)
+            student_marks = help.get_marks_mass(student_lastname)[subject]
             await bot.edit_message_text(
-                f"Что вы хотите сделать с оценками ученика: {call.data.split('_')[1]}",
+                "Выбери оценку, которую хочешь удалить",
+                chatid,
+                messageid,
+                reply_markup=nav.get_del_marks_markup(student_marks),
+            )
+        elif "editmarks" in call.data:
+            if len(call.data.split("_")) != 1:
+                lastname = call.data.split("_")[1]
+                await state.update_data(edit_marks_student=call.data.split("_")[1])
+            else:
+                state_data = await state.get_data()
+                lastname = state_data["edit_marks_student"]
+            await bot.edit_message_text(
+                f"Что вы хотите сделать с оценками ученика: {lastname}",
                 chatid,
                 messageid,
                 reply_markup=nav.edit_marks_choose,
@@ -354,12 +412,18 @@ async def changerate_number(message: types.Message, state: FSMContext):
         await delete_msg(message, 1)
         if message.text == "-":
             await delete_msg(message, 1)
+            await bot.delete_message(chatid, state_data["add_marks_message"])
             await bot.send_message(
                 chatid,
                 f"Что вы хотите сделать с оценками ученика: {state_data['edit_marks_student']}",
                 reply_markup=nav.edit_marks_choose,
             )
             await state.set_state(ClientState.ADMIN)
+            return
+        elif is_correct(message.text) != True:
+            msg = await bot.send_message(chatid, is_correct(message.text))
+            time.sleep(5)
+            await bot.delete_message(chatid, msg.message_id)
             return
         data = message.text.split()
         help.insert_marks(
@@ -511,7 +575,7 @@ async def new_task_subject(message: types.Message, state: FSMContext):
         if not help.check_subject(message.text):
             await bot.send_message(
                 chatid,
-                "Такого предмета у нас нет. Вводи пожалуйста с большой буквы, например, Алгебра",
+                "Такого предмета у нас нет. Вводи, пожалуйста, с большой буквы, например, Алгебра",
             )
             return
         await state.update_data(subject=message.text)
@@ -615,7 +679,10 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "marks_with_dates":
             await bot.edit_message_text(
-                "Выберите предмет", chatid, messageid, reply_markup=nav.marks_with_dates
+                "Выберите предмет",
+                chatid,
+                messageid,
+                reply_markup=nav.get_subjects_markup("grade"),
             )
         elif call.data == "support":
             await bot.edit_message_text(

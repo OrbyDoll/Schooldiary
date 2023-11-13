@@ -87,24 +87,26 @@ def func_chunk(lst, part_len):
         yield part
 
 
+subjects = [
+    "Русский",
+    "Алгебра",
+    "Геометрия",
+    "Литература",
+    "Физика",
+    "История",
+    "Обществознание",
+    "Биология",
+    "Химия",
+    "ОБЖ",
+    "Английский",
+    "Астрономия",
+    "Информатика",
+    "Физкультура",
+    "ЕГЭ Математика",
+]
+
+
 def check_subject(subject):
-    subjects = [
-        "Русский",
-        "Алгебра",
-        "Геометрия",
-        "Литература",
-        "Физика",
-        "История",
-        "Обществознание",
-        "Биология",
-        "Химия",
-        "ОБЖ",
-        "Английский",
-        "Астрономия",
-        "Информатика",
-        "Физкультура",
-        "ЕГЭ Математика",
-    ]
     if subject in subjects:
         return True
     return False
@@ -334,5 +336,3 @@ def delete_mark(lastname, subject, date, mark):
         old_marks = json.load(main_file)
     with open("final_marks.json", "w", encoding="utf-8") as main_file:
         json.dump(actual_marks, main_file, ensure_ascii=False)
-
-
