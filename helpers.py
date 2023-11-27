@@ -336,3 +336,15 @@ def delete_mark(lastname, subject, date, mark):
         old_marks = json.load(main_file)
     with open("final_marks.json", "w", encoding="utf-8") as main_file:
         json.dump(actual_marks, main_file, ensure_ascii=False)
+
+
+def nullify_marks(students):
+    marks = {}
+    marks_source = {}
+    for subject in mark_subjects:
+        marks_source[subject] = []
+    for student in students:
+        if student[4] != "teacher":
+            marks[student[1].split()[1]] = marks_source
+    with open("final_marks.json", "w", encoding="utf-8") as main_file:
+        json.dump(marks, main_file, ensure_ascii=False)

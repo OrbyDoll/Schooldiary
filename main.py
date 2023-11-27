@@ -57,7 +57,7 @@ def is_correct(text):
     if len(text_split) > 3:
         return "Вы ввели лишний пробел. Попробуйте еще раз"
     elif not help.check_subject(text_split[0]):
-        subj = '\n'.join(help.subjects)
+        subj = "\n".join(help.subjects)
         return f"Проверьте правильность предмета. Пишите пожалуйста с большой буквы. Предметы:\n{subj}"
     elif "." not in text_split[1]:
         return "Проверьте правильность даты. Пишите пожалуйста через точку, например, 11.11"
@@ -72,6 +72,18 @@ def is_correct(text):
 async def err(e, chat):
     print(e)
     await bot.send_message(chat, "Что-то пошло не так")
+
+
+@dp.message_handler(commands=["clearmarks"], state=ClientState.all_states)
+async def start(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 1)
+        if db.get_user(chatid)[4] != "user":
+            all_students = db.get_all_users()
+            help.nullify_marks(all_students)
+    except Exception as e:
+        await err(e, chatid)
 
 
 # Старт
@@ -517,36 +529,38 @@ async def changerate_desc(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document", "text"])
 async def marks_import(message: types.Message, state: FSMContext):
-    try:
-        chatid = message.chat.id
-        await delete_msg(message, 2)
-        if message.content_type == "text":
-            if message.text == "-":
-                await state.set_state(ClientState.ADMIN)
-                await bot.send_message(
-                    chatid,
-                    "Вот ваше меню господин",
-                    reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
-                )
-                return
-        await state.set_state(ClientState.ADMIN)
-        file_info = await bot.get_file(message.document.file_id)
-        downloaded_file = await bot.download_file(file_info.file_path)
-        shutil.rmtree("convert/")
-        os.mkdir("convert/")
-        with open("convert/interim_word.docx", "wb") as new_file:
-            new_file.write(downloaded_file.getvalue())
-        help.convert_to_json()
-        state_data = await state.get_data()
-        help.form_marks_mass(state_data["form_type"])
-        await bot.send_message(
-            chatid,
-            "Вот ваше меню господин",
-            reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
-        )
-    except Exception as e:
-        await err(e, chatid)
-        print("marks_import")
+    # try:
+    chatid = message.chat.id
+    await delete_msg(message, 2)
+    if message.content_type == "text":
+        if message.text == "-":
+            await state.set_state(ClientState.ADMIN)
+            await bot.send_message(
+                chatid,
+                "Вот ваше меню господин",
+                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
+            )
+            return
+    await state.set_state(ClientState.ADMIN)
+    file_info = await bot.get_file(message.document.file_id)
+    downloaded_file = await bot.download_file(file_info.file_path)
+    shutil.rmtree("convert/")
+    os.mkdir("convert/")
+    with open("convert/interim_word.docx", "wb") as new_file:
+        new_file.write(downloaded_file.getvalue())
+    help.convert_to_json()
+    state_data = await state.get_data()
+    help.form_marks_mass(state_data["form_type"])
+    await bot.send_message(
+        chatid,
+        "Вот ваше меню господин",
+        reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
+    )
+
+
+# except Exception as e:
+#     await err(e, chatid)
+#     print("marks_import")
 
 
 @dp.message_handler(state=ClientState.NEW_TASK_DATE)
