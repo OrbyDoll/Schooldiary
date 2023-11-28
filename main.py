@@ -908,11 +908,15 @@ async def text(message: types.Message, state: FSMContext):
         if db.get_user(chatid)[3] == "1":
             await bot.send_message(chatid, "Вы получили блокировку.")
             return
-        await bot.send_message(
-            chatid,
-            "Не знаю что ты хотел сделать, держи меню",
-            reply_markup=nav.menu,
-        )
+        try:
+            await bot.send_message(
+                chatid,
+                "Не знаю что ты хотел сделать, держи меню",
+                reply_markup=nav.menu,
+            )
+        except Exception as e:
+            print(e, chatid)
+            await state.set_state(ClientState.START)
         await state.set_state(ClientState.START)
     except Exception as e:
         await err(e, chatid)
@@ -927,6 +931,7 @@ async def text(message: types.Message, state: FSMContext):
             message.chat.id,
             "Бота видимо перезапустили, поэтому напиши /start пожалуйста",
         )
+
     except Exception as e:
         await err(e, chatid)
 
