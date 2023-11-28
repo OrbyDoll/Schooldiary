@@ -151,6 +151,10 @@ back_to_menu = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu")
 )
 
+circle_hide = types.InlineKeyboardMarkup().add(
+    types.InlineKeyboardButton("Скрыть", callback_data="circle_hide")
+)
+
 hide = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Скрыть", callback_data="hide")
 )

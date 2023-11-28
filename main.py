@@ -7,6 +7,7 @@ from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from pathlib import Path
 import datetime
 import shutil
+from moviepy.editor import *
 
 
 class ClientState(StatesGroup):
@@ -22,6 +23,7 @@ class ClientState(StatesGroup):
     SENDALL = State()
     SUPPORT = State()
     ADD_MARKS = State()
+    CONVERT = State()
 
 
 import os
@@ -83,6 +85,22 @@ async def start(message: types.Message, state: FSMContext):
             all_students = db.get_all_users()
             help.nullify_marks(all_students)
     except Exception as e:
+        await err(e, chatid)
+
+
+@dp.message_handler(commands=["convert"], state=ClientState.all_states)
+async def convert(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 1)
+        await bot.send_message(
+            chatid,
+            "Пришли видео до 20Мб. Видео, длительностью более минуты будут обрезаны до минуты начиная с начала.",
+            reply_markup=nav.back_to_menu,
+        )
+        await state.set_state(ClientState.CONVERT)
+    except Exception as e:
+        print("convert")
         await err(e, chatid)
 
 
@@ -414,6 +432,25 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             )
     except Exception as e:
         await err(e, chatid)
+
+
+@dp.message_handler(state=ClientState.CONVERT, content_types=["video"])
+async def convert_video_to_circle(message: types.Message, state: FSMContext):
+    chatid = message.chat.id
+    file_info = await bot.get_file(message.video.file_id)
+    downloaded_file = await bot.download_file(file_info.file_path)
+    with open("convert/source.mp4", "wb") as new_file:
+        new_file.write(downloaded_file.getvalue())
+    clip = VideoFileClip("convert/source.mp4")
+    clip = clip.subclip(0, min(clip.duration, 60))
+    fl_size = min(clip.size + tuple([630]))
+    final_clip = CompositeVideoClip(
+        [clip.set_position(("center"))],
+        size=(fl_size, fl_size),
+    )
+    final_clip.write_videofile(r"convert/cropped_video.mp4", logger=None)
+    with open("convert/cropped_video.mp4", "rb") as circle:
+        await bot.send_video_note(chatid, circle, reply_markup=nav.circle_hide)
 
 
 @dp.message_handler(state=ClientState.ADD_MARKS)
@@ -762,8 +799,11 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 messageid,
                 reply_markup=nav.menu,
             )
+            await state.set_state(ClientState.START)
         elif call.data == "hide":
             await delete_msg(call.message, 1)
+        elif call.data == "circle_hide":
+            await delete_msg(call.message, 2)
         elif call.data == "get_all_marks":
             all_marks = help.get_marks_mass(db.get_user(chatid)[1].split()[1])
             marks_text = f"<b>Ваши оценки</b>\n"
@@ -873,6 +913,7 @@ async def new_task_finish(message: types.Message, state: FSMContext):
                     reply_markup=nav.get_admin_menu("teacher"),
                 )
                 await state.set_state(ClientState.ADMIN)
+                return
             await bot.send_message(
                 chatid, "Так уж и быть, держи меню", reply_markup=nav.menu
             )
