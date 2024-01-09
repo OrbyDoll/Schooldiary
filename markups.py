@@ -165,7 +165,7 @@ def get_dates_markup(date_list):
     for date in date_list:
         try:
             day_num = datetime.datetime(
-                2023, int(date[0].split(".")[1]), int(date[0].split(".")[0])
+                2024, int(date[0].split(".")[1]), int(date[0].split(".")[0])
             ).weekday()
         except:
             pass

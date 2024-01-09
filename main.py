@@ -33,11 +33,11 @@ import helpers as help
 from dbshka import Database
 
 storage = RedisStorage2()
-bot = Bot(token=cfg.TOKEN_TEST)
+bot = Bot(token=cfg.TOKEN)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
-flag = 0
+flag = 1
 
 
 async def delete_msg(message, count):
@@ -49,8 +49,9 @@ async def delete_msg(message, count):
 
 
 def smart_sort(mass: list):
-    mass.sort(key=lambda x: x[0].split(".")[0])
-    mass.sort(key=lambda x: x[0].split(".")[1])
+    mass.sort(key=lambda x: int(x[0].split(".")[0]) + int(x[0].split(".")[1]))
+    # mass.sort(key=lambda x: x[0].split(".")[0])
+    # mass.sort(key=lambda x: x[0].split(".")[1])
     return mass
 
 
@@ -705,9 +706,9 @@ async def new_task_finish(message: types.Message, state: FSMContext):
 # Часть обычных смертных
 @dp.callback_query_handler(state=ClientState.all_states)
 async def callback(call: types.CallbackQuery, state: FSMContext):
+    chatid = call.message.chat.id
     try:
         await bot.answer_callback_query(callback_query_id=call.id)
-        chatid = call.message.chat.id
         messageid = call.message.message_id
         if db.get_user(chatid)[3] == "1":
             await bot.edit_message_text("Вы получили блокировку.", chatid, messageid)
