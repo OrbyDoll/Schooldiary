@@ -49,9 +49,9 @@ async def delete_msg(message, count):
 
 
 def smart_sort(mass: list):
-    mass.sort(key=lambda x: int(x[0].split(".")[0]) + int(x[0].split(".")[1]))
-    # mass.sort(key=lambda x: x[0].split(".")[0])
-    # mass.sort(key=lambda x: x[0].split(".")[1])
+    # mass.sort(key=lambda x: int(x[0].split(".")[0]) + int(x[0].split(".")[1]))
+    mass.sort(key=lambda x: x[0].split(".")[0])
+    mass.sort(key=lambda x: x[0].split(".")[1])
     return mass
 
 
@@ -134,7 +134,7 @@ async def start(message: types.Message, state: FSMContext):
         await bot.send_message(
             chatid,
             f"Добро пожаловать в наш электронный дневкик, {db.get_user(chatid)[1] if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-<s>Куст</s>'}",
-            reply_markup=nav.menu,
+            reply_markup=nav.get_menu(db.get_user(chatid)[4]),
             parse_mode="HTML",
         )
         await state.set_state(ClientState.START)
@@ -284,7 +284,7 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "back_to_start":
             await bot.edit_message_text(
-                "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.menu
+                "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.get_menu(db.get_user(chatid)[4])
             )
             await state.set_state(ClientState.START)
         elif "page" in call.data:
@@ -311,12 +311,6 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             if len(call.data.split("_")) == 3:
                 data_split = call.data.split("_")
                 subject = state_data["del_mark_subject"]
-                # print(
-                #     student_lastname,
-                #     subject,
-                #     data_split[1],
-                #     int(call.data.split("_")[2]),
-                # )
                 help.delete_mark(
                     student_lastname,
                     subject,
@@ -567,38 +561,36 @@ async def changerate_desc(message: types.Message, state: FSMContext):
 
 @dp.message_handler(state=ClientState.MARKS_IMPORT, content_types=["document", "text"])
 async def marks_import(message: types.Message, state: FSMContext):
-    # try:
-    chatid = message.chat.id
-    await delete_msg(message, 2)
-    if message.content_type == "text":
-        if message.text == "-":
-            await state.set_state(ClientState.ADMIN)
-            await bot.send_message(
-                chatid,
-                "Вот ваше меню господин",
-                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
-            )
-            return
-    await state.set_state(ClientState.ADMIN)
-    file_info = await bot.get_file(message.document.file_id)
-    downloaded_file = await bot.download_file(file_info.file_path)
-    shutil.rmtree("convert/")
-    os.mkdir("convert/")
-    with open("convert/interim_word.docx", "wb") as new_file:
-        new_file.write(downloaded_file.getvalue())
-    help.convert_to_json()
-    state_data = await state.get_data()
-    help.form_marks_mass(state_data["form_type"])
-    await bot.send_message(
-        chatid,
-        "Вот ваше меню господин",
-        reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
-    )
-
-
-# except Exception as e:
-#     await err(e, chatid)
-#     print("marks_import")
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 2)
+        if message.content_type == "text":
+            if message.text == "-":
+                await state.set_state(ClientState.ADMIN)
+                await bot.send_message(
+                    chatid,
+                    "Вот ваше меню господин",
+                    reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
+                )
+                return
+        await state.set_state(ClientState.ADMIN)
+        file_info = await bot.get_file(message.document.file_id)
+        downloaded_file = await bot.download_file(file_info.file_path)
+        shutil.rmtree("convert/")
+        os.mkdir("convert/")
+        with open("convert/interim_word.docx", "wb") as new_file:
+            new_file.write(downloaded_file.getvalue())
+        help.convert_to_json()
+        state_data = await state.get_data()
+        help.form_marks_mass(state_data["form_type"])
+        await bot.send_message(
+            chatid,
+            "Вот ваше меню господин",
+            reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
+        )
+    except Exception as e:
+        await err(e, chatid)
+        print("marks_import")
 
 
 @dp.message_handler(state=ClientState.NEW_TASK_DATE)
@@ -729,6 +721,9 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 parse_mode="HTML",
                 reply_markup=nav.all_marks,
             )
+        elif call.data == 'become_admin':
+            await state.set_state(ClientState.ADMIN)
+            await bot.edit_message_text('Вот ваше меню господин', chatid, messageid, reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]))
         elif call.data == "marks_with_dates":
             await bot.edit_message_text(
                 "Выберите предмет",
@@ -795,10 +790,10 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "back_to_menu":
             await bot.edit_message_text(
-                f"Добро пожаловать в меню, {db.get_user(chatid)[2] if db.get_user(chatid)[1] != 'Виктория Горюнова' else 'Вика Морозова-Дементьева-Куст'}",
+                f"Добро пожаловать в меню, {db.get_user(chatid)[2]}",
                 chatid,
                 messageid,
-                reply_markup=nav.menu,
+                reply_markup=nav.get_menu(db.get_user(chatid)[4]),
             )
             await state.set_state(ClientState.START)
         elif call.data == "hide":
@@ -916,7 +911,7 @@ async def new_task_finish(message: types.Message, state: FSMContext):
                 await state.set_state(ClientState.ADMIN)
                 return
             await bot.send_message(
-                chatid, "Так уж и быть, держи меню", reply_markup=nav.menu
+                chatid, "Так уж и быть, держи меню", reply_markup=nav.get_menu(db.get_user(chatid)[4])
             )
             await state.set_state(ClientState.START)
             return
@@ -935,7 +930,7 @@ async def new_task_finish(message: types.Message, state: FSMContext):
         await bot.send_message(
             chatid,
             "Спасибо за обращение, очень ответственный админ постарается рассмотреть его в ближайшее время",
-            reply_markup=nav.menu,
+            reply_markup=nav.get_menu(db.get_user(chatid)[4]),
         )
         await state.set_state(ClientState.START)
     except Exception as e:
@@ -954,7 +949,7 @@ async def text(message: types.Message, state: FSMContext):
             await bot.send_message(
                 chatid,
                 "Не знаю что ты хотел сделать, держи меню",
-                reply_markup=nav.menu,
+                reply_markup=nav.get_menu(db.get_user(chatid)[4]),
             )
         except Exception as e:
             print(e, chatid)

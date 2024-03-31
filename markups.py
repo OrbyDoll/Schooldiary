@@ -2,13 +2,17 @@ from aiogram import types
 import helpers as help
 import datetime
 
-menu = types.InlineKeyboardMarkup(row_width=3).add(
-    types.InlineKeyboardButton("Оценки", callback_data="marks"),
-    types.InlineKeyboardButton("Домашка", callback_data="hometask"),
-    types.InlineKeyboardButton("Расписание", callback_data="schedule"),
-    types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
-    types.InlineKeyboardButton("Поддержка", callback_data="support"),
-)
+def get_menu(type):
+    menu = types.InlineKeyboardMarkup(row_width=3).add(
+        types.InlineKeyboardButton("Оценки", callback_data="marks"),
+        types.InlineKeyboardButton("Домашка", callback_data="hometask"),
+        types.InlineKeyboardButton("Расписание", callback_data="schedule"),
+        types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
+        types.InlineKeyboardButton("Поддержка", callback_data="support"),
+    ).row(
+        types.InlineKeyboardButton('Стать админом', callback_data='become_admin') if type != 'user' else ''
+    )
+    return menu
 
 
 def get_admin_menu(admin_type):
