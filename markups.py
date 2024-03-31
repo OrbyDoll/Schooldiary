@@ -3,15 +3,17 @@ import helpers as help
 import datetime
 
 def get_menu(type):
-    menu = types.InlineKeyboardMarkup(row_width=3).add(
+    menu = types.InlineKeyboardMarkup(row_width=2).add(
         types.InlineKeyboardButton("Оценки", callback_data="marks"),
         types.InlineKeyboardButton("Домашка", callback_data="hometask"),
         types.InlineKeyboardButton("Расписание", callback_data="schedule"),
-        types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
-        types.InlineKeyboardButton("Поддержка", callback_data="support"),
-    ).row(
-        types.InlineKeyboardButton('Стать админом', callback_data='become_admin') if type != 'user' else ''
+        # types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
+        # types.InlineKeyboardButton("Поддержка", callback_data="support"),
     )
+    if type != 'user':
+        menu.row(
+            types.InlineKeyboardButton('Стать админом', callback_data='become_admin')
+        )
     return menu
 
 
@@ -22,7 +24,7 @@ def get_admin_menu(admin_type):
             types.InlineKeyboardButton("Оценки", callback_data="marks"),
             types.InlineKeyboardButton("Изменить оценки", callback_data="edit_marks"),
             types.InlineKeyboardButton("Изменить дз", callback_data="edit_hometask"),
-            types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
+            # types.InlineKeyboardButton("Соц. рейтинг", callback_data="edit_socialrate"),
             types.InlineKeyboardButton("Импорт оценок", callback_data="marks_import"),
             types.InlineKeyboardButton("Бан система", callback_data="bansystem"),
             types.InlineKeyboardButton("Рассылка", callback_data="sendall"),
@@ -36,7 +38,7 @@ def get_admin_menu(admin_type):
             types.InlineKeyboardButton("Оценки", callback_data="marks"),
             types.InlineKeyboardButton("Расписание", callback_data="schedule"),
         ).row(
-            types.InlineKeyboardButton("Поддержка", callback_data="support"),
+            # types.InlineKeyboardButton("Поддержка", callback_data="support"),
         )
 
     return admin_menu
