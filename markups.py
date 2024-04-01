@@ -2,6 +2,7 @@ from aiogram import types
 import helpers as help
 import datetime
 
+
 def get_menu(type):
     menu = types.InlineKeyboardMarkup(row_width=2).add(
         types.InlineKeyboardButton("Оценки", callback_data="marks"),
@@ -10,9 +11,9 @@ def get_menu(type):
         # types.InlineKeyboardButton("Социальная активность", callback_data="socialrate"),
         # types.InlineKeyboardButton("Поддержка", callback_data="support"),
     )
-    if type != 'user':
+    if type != "user":
         menu.row(
-            types.InlineKeyboardButton('Стать админом', callback_data='become_admin')
+            types.InlineKeyboardButton("Стать админом", callback_data="become_admin")
         )
     return menu
 
@@ -164,6 +165,22 @@ circle_hide = types.InlineKeyboardMarkup().add(
 hide = types.InlineKeyboardMarkup().add(
     types.InlineKeyboardButton("Скрыть", callback_data="hide")
 )
+
+
+def get_lessons_markup(date):
+    day = datetime.datetime(
+        2024, int(date.split(".")[1]), int(date.split(".")[0])
+    ).weekday()
+    day_schedule = help.get_schedule(1)[help.weekdays[day]]
+    lessons_markup = types.InlineKeyboardMarkup(row_width=1)
+    for lesson in day_schedule:
+        lessons_markup.insert(
+            types.InlineKeyboardButton(lesson, callback_data=f"{lesson}")
+        )
+    lessons_markup.insert(
+        types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu")
+    )
+    return lessons_markup
 
 
 def get_dates_markup(date_list):

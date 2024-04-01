@@ -32,8 +32,8 @@ import markups as nav
 import helpers as help
 from dbshka import Database
 
-storage = RedisStorage2()
-bot = Bot(token=cfg.TOKEN)
+storage = MemoryStorage()  # RedisStorage2
+bot = Bot(token=cfg.TOKEN_TEST)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -284,7 +284,10 @@ async def admin_callback(call: types.CallbackQuery, state: FSMContext):
             )
         elif call.data == "back_to_start":
             await bot.edit_message_text(
-                "Удачи в этом суровом мире", chatid, messageid, reply_markup=nav.get_menu(db.get_user(chatid)[4])
+                "Удачи в этом суровом мире",
+                chatid,
+                messageid,
+                reply_markup=nav.get_menu(db.get_user(chatid)[4]),
             )
             await state.set_state(ClientState.START)
         elif "page" in call.data:
@@ -528,9 +531,11 @@ async def changerate_number(message: types.Message, state: FSMContext):
         await state.update_data(change_number=message.text)
         await bot.send_message(
             chatid,
-            "За что его так?"
-            if message.text[0] == "-"
-            else "И что же такого хорошего он сделал?",
+            (
+                "За что его так?"
+                if message.text[0] == "-"
+                else "И что же такого хорошего он сделал?"
+            ),
         )
         await state.set_state(ClientState.CHANGERATE_DESC)
     except Exception as e:
@@ -605,26 +610,39 @@ async def new_task_date(message: types.Message, state: FSMContext):
             )
             return
         await state.update_data(date=message.text)
-        await bot.send_message(chatid, "По какому предмету это дз?")
+        await bot.send_message(
+            chatid,
+            "По какому предмету это дз?",
+            reply_markup=nav.get_lessons_markup(message.text),
+        )
         await state.set_state(ClientState.NEW_TASK_SUBJECT)
     except Exception as e:
         await err(e, chatid)
 
 
-@dp.message_handler(state=ClientState.NEW_TASK_SUBJECT)
-async def new_task_subject(message: types.Message, state: FSMContext):
+@dp.callback_query_handler(state=ClientState.NEW_TASK_SUBJECT)
+async def new_task_subject(call: types.CallbackQuery, state: FSMContext):
     try:
-        chatid = message.chat.id
-        await delete_msg(message, 2)
-        if not help.check_subject(message.text):
+        chatid = call.message.chat.id
+        lesson = call.data
+        await delete_msg(call.message, 2)
+        if lesson == "back_to_menu":
             await bot.send_message(
                 chatid,
-                "Такого предмета у нас нет. Вводи, пожалуйста, с большой буквы, например, Алгебра",
+                "Вот ваше меню господин админ",
+                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
             )
+            await state.set_state(ClientState.ADMIN)
             return
-        await state.update_data(subject=message.text)
-        if message.text == "Английский" or message.text == "Информатика":
-            markup = nav.en_group if message.text == "Английский" else nav.info_group
+        # if not help.check_subject(message.text):
+        #     await bot.send_message(
+        #         chatid,
+        #         "Такого предмета у нас нет. Вводи, пожалуйста, с большой буквы, например, Алгебра",
+        #     )
+        #     return
+        await state.update_data(subject=lesson)
+        if lesson == "Английский" or lesson == "Информатика":
+            markup = nav.en_group if lesson == "Английский" else nav.info_group
             await bot.send_message(chatid, "Какой группе это дз?", reply_markup=markup)
             await state.set_state(ClientState.ADMIN)
             return
@@ -721,9 +739,14 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 parse_mode="HTML",
                 reply_markup=nav.all_marks,
             )
-        elif call.data == 'become_admin':
+        elif call.data == "become_admin":
             await state.set_state(ClientState.ADMIN)
-            await bot.edit_message_text('Вот ваше меню господин', chatid, messageid, reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]))
+            await bot.edit_message_text(
+                "Вот ваше меню господин",
+                chatid,
+                messageid,
+                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
+            )
         elif call.data == "marks_with_dates":
             await bot.edit_message_text(
                 "Выберите предмет",
@@ -864,7 +887,7 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
         elif "gettasklist" in call.data:
             date = call.data[12:]
             day = datetime.datetime(
-                2023, int(date.split(".")[1]), int(date.split(".")[0])
+                2024, int(date.split(".")[1]), int(date.split(".")[0])
             )
             task_list = db.get_date_tasks(date)
             task_text = f"{help.weekdays[day.weekday()]} - {date}\n"
@@ -911,7 +934,9 @@ async def new_task_finish(message: types.Message, state: FSMContext):
                 await state.set_state(ClientState.ADMIN)
                 return
             await bot.send_message(
-                chatid, "Так уж и быть, держи меню", reply_markup=nav.get_menu(db.get_user(chatid)[4])
+                chatid,
+                "Так уж и быть, держи меню",
+                reply_markup=nav.get_menu(db.get_user(chatid)[4]),
             )
             await state.set_state(ClientState.START)
             return
