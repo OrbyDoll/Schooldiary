@@ -32,8 +32,8 @@ import markups as nav
 import helpers as help
 from dbshka import Database
 
-storage = MemoryStorage()  # RedisStorage2
-bot = Bot(token=cfg.TOKEN_TEST)
+storage = RedisStorage2
+bot = Bot(token=cfg.TOKEN)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
 db.create_tables()
@@ -161,275 +161,280 @@ async def admin(message: types.Message, state: FSMContext):
 
 @dp.callback_query_handler(state=ClientState.ADMIN)
 async def admin_callback(call: types.CallbackQuery, state: FSMContext):
-    try:
-        await bot.answer_callback_query(callback_query_id=call.id)
-        chatid = call.message.chat.id
-        messageid = call.message.message_id
-        if call.data == "marks":
-            students = db.get_all_users()
+    # try:
+    await bot.answer_callback_query(callback_query_id=call.id)
+    chatid = call.message.chat.id
+    messageid = call.message.message_id
+    if call.data == "marks":
+        students = db.get_all_users()
+        await bot.edit_message_text(
+            "Выбери ученика",
+            chatid,
+            messageid,
+            reply_markup=nav.get_students_page(0, students, [], "getmarks"),
+        )
+    elif call.data == "edit_marks":
+        students = db.get_all_users()
+        await bot.edit_message_text(
+            "Выбери ученика",
+            chatid,
+            messageid,
+            reply_markup=nav.get_students_page(0, students, [], "editmarks"),
+        )
+    elif call.data == "add_marks":
+        await bot.edit_message_text(
+            "Присылай оценки в формате:\nПредмет Дата Оценка\nПример: Английский 11.11 5\nКак закончишь, пришли '-' без кавычек",
+            chatid,
+            messageid,
+        )
+        await state.update_data(add_marks_message=messageid)
+        await state.set_state(ClientState.ADD_MARKS)
+    elif call.data == "del_marks":
+        await bot.edit_message_text(
+            "Выбери предмет",
+            chatid,
+            messageid,
+            reply_markup=nav.get_subjects_markup("delmarks"),
+        )
+    elif call.data == "edit_hometask":
+        await bot.edit_message_text(
+            "Выбери действие", chatid, messageid, reply_markup=nav.admin_task
+        )
+    elif call.data == "marks_import":
+        await bot.edit_message_text(
+            "Выбери действие", chatid, messageid, reply_markup=nav.marks_choose
+        )
+    elif call.data == "sendall":
+        await bot.edit_message_text(
+            'Напиши текст для рассылки или отправь "-" для отмены',
+            chatid,
+            messageid,
+        )
+        await state.set_state(ClientState.SENDALL)
+    elif call.data == "schedule":
+        await bot.edit_message_text(
+            "Выберите день", chatid, messageid, reply_markup=nav.schedule
+        )
+    elif call.data == "add_hometask":
+        await state.update_data(doc_path=[])
+        await state.update_data(group="")
+        await bot.edit_message_text(
+            "Выбери день или напиши дату в формате 27.10!",
+            chatid,
+            messageid,
+            reply_markup=nav.get_in_advance_markup(),
+        )
+        await state.set_state(ClientState.NEW_TASK_DATE)
+    elif call.data == "del_hometask":
+        all_dates = smart_sort(list(set(db.get_all_dates())))
+        if len(all_dates) == 0:
             await bot.edit_message_text(
-                "Выбери ученика",
+                "Пока что нет домашнего задания",
                 chatid,
                 messageid,
-                reply_markup=nav.get_students_page(0, students, [], "getmarks"),
+                reply_markup=nav.back_to_menu,
             )
-        elif call.data == "edit_marks":
-            students = db.get_all_users()
-            await bot.edit_message_text(
-                "Выбери ученика",
-                chatid,
-                messageid,
-                reply_markup=nav.get_students_page(0, students, [], "editmarks"),
-            )
-        elif call.data == "add_marks":
-            await bot.edit_message_text(
-                "Присылай оценки в формате:\nПредмет Дата Оценка\nПример: Английский 11.11 5\nКак закончишь, пришли '-' без кавычек",
-                chatid,
-                messageid,
-            )
-            await state.update_data(add_marks_message=messageid)
-            await state.set_state(ClientState.ADD_MARKS)
-        elif call.data == "del_marks":
-            await bot.edit_message_text(
-                "Выбери предмет",
-                chatid,
-                messageid,
-                reply_markup=nav.get_subjects_markup("delmarks"),
-            )
-        elif call.data == "edit_hometask":
-            await bot.edit_message_text(
-                "Выбери действие", chatid, messageid, reply_markup=nav.admin_task
-            )
-        elif call.data == "marks_import":
-            await bot.edit_message_text(
-                "Выбери действие", chatid, messageid, reply_markup=nav.marks_choose
-            )
-        elif call.data == "sendall":
-            await bot.edit_message_text(
-                'Напиши текст для рассылки или отправь "-" для отмены',
-                chatid,
-                messageid,
-            )
-            await state.set_state(ClientState.SENDALL)
-        elif call.data == "schedule":
-            await bot.edit_message_text(
-                "Выберите день", chatid, messageid, reply_markup=nav.schedule
-            )
-        elif call.data == "add_hometask":
-            await state.update_data(doc_path=[])
-            await state.update_data(group="")
-            await bot.edit_message_text(
-                "Напиши дату в формате 27.10 обязательно с точкой!!!", chatid, messageid
-            )
-            await state.set_state(ClientState.NEW_TASK_DATE)
-        elif call.data == "del_hometask":
-            all_dates = smart_sort(list(set(db.get_all_dates())))
-            if len(all_dates) == 0:
-                await bot.edit_message_text(
-                    "Пока что нет домашнего задания",
-                    chatid,
-                    messageid,
-                    reply_markup=nav.back_to_menu,
-                )
-                return
-            await bot.edit_message_text(
-                "Выбери день",
-                chatid,
-                messageid,
-                reply_markup=nav.get_dates_markup(all_dates),
-            )
-        elif call.data == "support":
-            await bot.edit_message_text(
-                'Напишите ниже ваши пожелания или возникшие ошибки. Для отмены отправьте "-" без кавычек',
-                chatid,
-                messageid,
-            )
-            await state.set_state(ClientState.SUPPORT)
-        elif call.data == "bansystem":
-            await bot.edit_message_text(
-                "Выбери ученика",
-                chatid,
-                messageid,
-                reply_markup=nav.get_students_page(
-                    0, db.get_all_users(), [], "bansyschoose"
-                ),
-            )
-        elif call.data == "file_exists":
-            await delete_msg(call.message, 1)
-            await bot.send_message(
-                chatid,
-                'Пришли один или несколько файлов без лишнего текста и т.п. Как закончишь, напиши "-" без кавычек',
-            )
-            await state.set_state(ClientState.NEW_TASK_FILE)
-        elif call.data == "file_not_exists":
-            await delete_msg(call.message, 1)
-            await bot.send_message(chatid, "Напиши текст дз")
-            await state.set_state(ClientState.NEW_TASK_FINISH)
-            await state.update_data(doc_path=["None"])
-        elif call.data == "back_to_menu":
-            await bot.edit_message_text(
-                "Вот ваше меню господин админ",
-                chatid,
-                messageid,
-                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
-            )
-        elif call.data == "edit_socialrate":
-            students = db.get_all_users()
-            rates = db.get_all_rates()
-            await bot.edit_message_text(
-                "Выбери ученика",
-                chatid,
-                messageid,
-                reply_markup=nav.get_students_page(0, students, rates, "changerate"),
-            )
-        elif call.data == "back_to_start":
-            await bot.edit_message_text(
-                "Удачи в этом суровом мире",
-                chatid,
-                messageid,
-                reply_markup=nav.get_menu(db.get_user(chatid)[4]),
-            )
-            await state.set_state(ClientState.START)
-        elif "page" in call.data:
-            students = db.get_all_users()
-            rates = db.get_all_rates()
-            await bot.edit_message_reply_markup(
-                chatid,
-                messageid,
-                reply_markup=nav.get_students_page(
-                    int(call.data.split()[1]), students, rates, call.data.split()[2]
-                ),
-            )
-        elif "bansyschoose" in call.data:
-            student = call.data.split("_")[1]
-            await bot.edit_message_text(
-                "Выбери действие",
-                chatid,
-                messageid,
-                reply_markup=nav.get_bansystem_markup(student),
-            )
-        elif "delmarks" in call.data:
-            state_data = await state.get_data()
-            student_lastname = state_data["edit_marks_student"]
-            if len(call.data.split("_")) == 3:
-                data_split = call.data.split("_")
-                subject = state_data["del_mark_subject"]
-                help.delete_mark(
-                    student_lastname,
-                    subject,
-                    data_split[1],
-                    int(data_split[2]),
-                )
-            else:
-                subject = call.data[8:]
-                await state.update_data(del_mark_subject=subject)
-            student_marks = help.get_marks_mass(student_lastname)[subject]
-            await bot.edit_message_text(
-                "Выбери оценку, которую хочешь удалить",
-                chatid,
-                messageid,
-                reply_markup=nav.get_del_marks_markup(student_marks),
-            )
-        elif "editmarks" in call.data:
-            if len(call.data.split("_")) != 1:
-                lastname = call.data.split("_")[1]
-                await state.update_data(edit_marks_student=call.data.split("_")[1])
-            else:
-                state_data = await state.get_data()
-                lastname = state_data["edit_marks_student"]
-            await bot.edit_message_text(
-                f"Что вы хотите сделать с оценками ученика: {lastname}",
-                chatid,
-                messageid,
-                reply_markup=nav.edit_marks_choose,
-            )
-        elif "ban" in call.data:
+            return
+        await bot.edit_message_text(
+            "Выбери день",
+            chatid,
+            messageid,
+            reply_markup=nav.get_dates_markup(all_dates),
+        )
+    elif call.data == "support":
+        await bot.edit_message_text(
+            'Напишите ниже ваши пожелания или возникшие ошибки. Для отмены отправьте "-" без кавычек',
+            chatid,
+            messageid,
+        )
+        await state.set_state(ClientState.SUPPORT)
+    elif call.data == "bansystem":
+        await bot.edit_message_text(
+            "Выбери ученика",
+            chatid,
+            messageid,
+            reply_markup=nav.get_students_page(
+                0, db.get_all_users(), [], "bansyschoose"
+            ),
+        )
+    elif call.data == "file_exists":
+        await delete_msg(call.message, 1)
+        await bot.send_message(
+            chatid,
+            'Пришли один или несколько файлов без лишнего текста и т.п. Как закончишь, напиши "-" без кавычек',
+        )
+        await state.set_state(ClientState.NEW_TASK_FILE)
+    elif call.data == "file_not_exists":
+        await delete_msg(call.message, 1)
+        await bot.send_message(chatid, "Напиши текст дз")
+        await state.set_state(ClientState.NEW_TASK_FINISH)
+        await state.update_data(doc_path=["None"])
+    elif call.data == "back_to_menu":
+        await bot.edit_message_text(
+            "Вот ваше меню господин админ",
+            chatid,
+            messageid,
+            reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
+        )
+    elif call.data == "edit_socialrate":
+        students = db.get_all_users()
+        rates = db.get_all_rates()
+        await bot.edit_message_text(
+            "Выбери ученика",
+            chatid,
+            messageid,
+            reply_markup=nav.get_students_page(0, students, rates, "changerate"),
+        )
+    elif call.data == "back_to_start":
+        await bot.edit_message_text(
+            "Удачи в этом суровом мире",
+            chatid,
+            messageid,
+            reply_markup=nav.get_menu(db.get_user(chatid)[4]),
+        )
+        await state.set_state(ClientState.START)
+    elif "page" in call.data:
+        students = db.get_all_users()
+        rates = db.get_all_rates()
+        await bot.edit_message_reply_markup(
+            chatid,
+            messageid,
+            reply_markup=nav.get_students_page(
+                int(call.data.split()[1]), students, rates, call.data.split()[2]
+            ),
+        )
+    elif "bansyschoose" in call.data:
+        student = call.data.split("_")[1]
+        await bot.edit_message_text(
+            "Выбери действие",
+            chatid,
+            messageid,
+            reply_markup=nav.get_bansystem_markup(student),
+        )
+    elif "delmarks" in call.data:
+        state_data = await state.get_data()
+        student_lastname = state_data["edit_marks_student"]
+        if len(call.data.split("_")) == 3:
             data_split = call.data.split("_")
-            user_id = db.get_id_from_lastname(data_split[1])
-            if data_split[0] == "ban":
-                db.ban(user_id)
-                await bot.edit_message_text(
-                    "Ученик успешно забанен",
-                    chatid,
-                    messageid,
-                    reply_markup=nav.back_to_menu,
-                )
-            else:
-                db.unban(user_id)
-                await bot.edit_message_text(
-                    "Ученик успешно разбанен",
-                    chatid,
-                    messageid,
-                    reply_markup=nav.back_to_menu,
-                )
-        elif "getmarks_" in call.data:
-            data = call.data.split("_")
-            all_marks = help.get_marks_mass(data[1])
-            marks_text = f"<b>{data[1]}</b>\n"
-            for subject in all_marks:
-                student_marks = []
-                for mark in all_marks[subject]:
-                    student_marks.append(list(mark.values())[0])
-                student_marks_str = map(str, student_marks)
-                marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
+            subject = state_data["del_mark_subject"]
+            help.delete_mark(
+                student_lastname,
+                subject,
+                data_split[1],
+                int(data_split[2]),
+            )
+        else:
+            subject = call.data[8:]
+            await state.update_data(del_mark_subject=subject)
+        student_marks = help.get_marks_mass(student_lastname)[subject]
+        await bot.edit_message_text(
+            "Выбери оценку, которую хочешь удалить",
+            chatid,
+            messageid,
+            reply_markup=nav.get_del_marks_markup(student_marks),
+        )
+    elif "editmarks" in call.data:
+        if len(call.data.split("_")) != 1:
+            lastname = call.data.split("_")[1]
+            await state.update_data(edit_marks_student=call.data.split("_")[1])
+        else:
+            state_data = await state.get_data()
+            lastname = state_data["edit_marks_student"]
+        await bot.edit_message_text(
+            f"Что вы хотите сделать с оценками ученика: {lastname}",
+            chatid,
+            messageid,
+            reply_markup=nav.edit_marks_choose,
+        )
+    elif "ban" in call.data:
+        data_split = call.data.split("_")
+        user_id = db.get_id_from_lastname(data_split[1])
+        if data_split[0] == "ban":
+            db.ban(user_id)
             await bot.edit_message_text(
-                marks_text,
+                "Ученик успешно забанен",
                 chatid,
                 messageid,
-                parse_mode="HTML",
-                reply_markup=nav.back_to_marks_students,
+                reply_markup=nav.back_to_menu,
             )
+        else:
+            db.unban(user_id)
+            await bot.edit_message_text(
+                "Ученик успешно разбанен",
+                chatid,
+                messageid,
+                reply_markup=nav.back_to_menu,
+            )
+    elif "getmarks_" in call.data:
+        data = call.data.split("_")
+        all_marks = help.get_marks_mass(data[1])
+        marks_text = f"<b>{data[1]}</b>\n"
+        for subject in all_marks:
+            student_marks = []
+            for mark in all_marks[subject]:
+                student_marks.append(list(mark.values())[0])
+            student_marks_str = map(str, student_marks)
+            marks_text += f'<i>{subject}:</i> {"Нет оценок" if len(student_marks) == 0 else " ".join(student_marks_str)} - <b>{0 if len(student_marks) == 0 else round(sum(student_marks)/len(student_marks), 2)}</b>\n'
+        await bot.edit_message_text(
+            marks_text,
+            chatid,
+            messageid,
+            parse_mode="HTML",
+            reply_markup=nav.back_to_marks_students,
+        )
 
-        elif "changerate_" in call.data:
-            await state.update_data(change_student=call.data.split("_")[1])
+    elif "changerate_" in call.data:
+        await state.update_data(change_student=call.data.split("_")[1])
+        await bot.edit_message_text(
+            "Напиши насколько ты хочешь изменить рейтинг этого ученика. Например, +3 или -5, знак обязателен",
+            chatid,
+            messageid,
+        )
+        await state.set_state(ClientState.CHANGERATE_NUMBER)
+    elif "importmarks" in call.data:
+        await state.update_data(form_type=call.data.split("_")[1])
+        await bot.edit_message_text(
+            "Пришли файл в формате '.docx' или введи '-' для отмены.",
+            chatid,
+            messageid,
+        )
+        await state.set_state(ClientState.MARKS_IMPORT)
+    elif "group" in call.data:
+        await delete_msg(call.message, 1)
+        await state.update_data(group=call.data.split("_")[1])
+        await bot.send_message(
+            chatid, "Добавить файл к заданию?", reply_markup=nav.file_exist
+        )
+    elif "gettasklist" in call.data:
+        date = call.data[12:]
+        task_list = db.get_date_tasks(date)
+        await bot.edit_message_text(
+            "Что будем делать?",
+            chatid,
+            messageid,
+            reply_markup=nav.get_del_task_markup(task_list, date),
+        )
+    elif "deltask" in call.data:
+        task_info = call.data.split("_")
+        db.del_task(task_info[1], task_info[2])
+        all_task = db.get_date_tasks(task_info[1])
+        if len(all_task) == 0:
             await bot.edit_message_text(
-                "Напиши насколько ты хочешь изменить рейтинг этого ученика. Например, +3 или -5, знак обязателен",
+                "На этот день больше нет домашнего задания",
                 chatid,
                 messageid,
+                reply_markup=nav.admin_back_to_dates,
             )
-            await state.set_state(ClientState.CHANGERATE_NUMBER)
-        elif "importmarks" in call.data:
-            await state.update_data(form_type=call.data.split("_")[1])
-            await bot.edit_message_text(
-                "Пришли файл в формате '.docx' или введи '-' для отмены.",
-                chatid,
-                messageid,
-            )
-            await state.set_state(ClientState.MARKS_IMPORT)
-        elif "group" in call.data:
-            await delete_msg(call.message, 1)
-            await state.update_data(group=call.data.split("_")[1])
-            await bot.send_message(
-                chatid, "Добавить файл к заданию?", reply_markup=nav.file_exist
-            )
-        elif "gettasklist" in call.data:
-            date = call.data[12:]
-            task_list = db.get_date_tasks(date)
-            await bot.edit_message_text(
-                "Что будем делать?",
-                chatid,
-                messageid,
-                reply_markup=nav.get_del_task_markup(task_list, date),
-            )
-        elif "deltask" in call.data:
-            task_info = call.data.split("_")
-            db.del_task(task_info[1], task_info[2])
-            all_task = db.get_date_tasks(task_info[1])
-            if len(all_task) == 0:
-                await bot.edit_message_text(
-                    "На этот день больше нет домашнего задания",
-                    chatid,
-                    messageid,
-                    reply_markup=nav.admin_back_to_dates,
-                )
-                return
-            await bot.edit_message_reply_markup(
-                chatid,
-                messageid,
-                reply_markup=nav.get_del_task_markup(all_task, task_info[1]),
-            )
-    except Exception as e:
-        await err(e, chatid)
+            return
+        await bot.edit_message_reply_markup(
+            chatid,
+            messageid,
+            reply_markup=nav.get_del_task_markup(all_task, task_info[1]),
+        )
+
+
+# except Exception as e:
+#     await err(e, chatid)
 
 
 @dp.message_handler(state=ClientState.CONVERT, content_types=["video"])
@@ -596,6 +601,22 @@ async def marks_import(message: types.Message, state: FSMContext):
     except Exception as e:
         await err(e, chatid)
         print("marks_import")
+
+
+@dp.callback_query_handler(state=ClientState.NEW_TASK_DATE)
+async def new_task_date(call: types.CallbackQuery, state: FSMContext):
+    try:
+        chatid = call.message.chat.id
+        await state.update_data(date=call.data)
+        await delete_msg(call.message, 1)
+        await bot.send_message(
+            chatid,
+            "По какому предмету это дз?",
+            reply_markup=nav.get_lessons_markup(call.data),
+        )
+        await state.set_state(ClientState.NEW_TASK_SUBJECT)
+    except Exception as e:
+        await err(e, chatid)
 
 
 @dp.message_handler(state=ClientState.NEW_TASK_DATE)

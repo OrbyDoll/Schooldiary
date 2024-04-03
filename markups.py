@@ -167,6 +167,23 @@ hide = types.InlineKeyboardMarkup().add(
 )
 
 
+def get_in_advance_markup():
+    date_markup = types.InlineKeyboardMarkup(row_width=3)
+    for week in help.get_schedule_in_advance():
+        for date in week:
+            day_num = datetime.datetime(
+                2024, int(date.split(".")[1]), int(date.split(".")[0])
+            ).weekday()
+            date_markup.insert(
+                types.InlineKeyboardButton(
+                    f"{help.weekdays_short[day_num]} - {date}",
+                    callback_data=f"{date}",
+                )
+            )
+        date_markup.row()
+    return date_markup
+
+
 def get_lessons_markup(date):
     day = datetime.datetime(
         2024, int(date.split(".")[1]), int(date.split(".")[0])
