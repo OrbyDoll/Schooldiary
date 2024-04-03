@@ -32,7 +32,7 @@ import markups as nav
 import helpers as help
 from dbshka import Database
 
-storage = RedisStorage2
+storage = RedisStorage2()
 bot = Bot(token=cfg.TOKEN)
 dp = Dispatcher(bot, storage=storage)
 db = Database(os.path.abspath(cfg.db_file))
