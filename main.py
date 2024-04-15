@@ -607,6 +607,14 @@ async def new_task_date(call: types.CallbackQuery, state: FSMContext):
         chatid = call.message.chat.id
         await state.update_data(date=call.data)
         await delete_msg(call.message, 1)
+        if call.data == 'back_to_menu':
+            await bot.send_message(
+                chatid,
+                "Вот ваше меню господин админ",
+                reply_markup=nav.get_admin_menu(db.get_user(chatid)[4]),
+            )
+            await state.set_state(ClientState.ADMIN)
+            return
         await bot.send_message(
             chatid,
             "По какому предмету это дз?",

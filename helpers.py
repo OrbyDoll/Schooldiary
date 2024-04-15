@@ -138,19 +138,19 @@ def get_schedule(flag):
             "Физика",
             "Перерыв",
             "Русский",
-            "Русский"
+            "Русский",
         ],
         "Четверг": [
-            "",
-            "",
+            "Спим",
+            "Спим",
             "Обществознание",
             "Обществознание",
             "Физика",
             "Физика",
         ],
         "Пятница": [
-            "",
-            "",
+            "Спим",
+            "Спим",
             "Математика",
             "Математика",
             "Информатика",
@@ -188,20 +188,21 @@ def get_schedule_in_advance():
     today = datetime.date.today()
     td = today.weekday()
     days = (
-        [weekdays[td + 1 : -1], weekdays[:-1]]
-        if td < 6
-        else [weekdays[:-1], weekdays[:-1]]
+        [weekdays[td + 1 : -2], weekdays[:-2]]
+        if td < 5
+        else [weekdays[:-2], weekdays[:-1]]
     )
     for week in range(len(days)):
         for day in range(len(days[week])):
             new_day = today + datetime.timedelta(
-                days=week * (len(days[0]) + 1) + day + 1
+                days=week * (len(days[0]) + 2) + day + 1
             )
             days[week][
                 day
             ] = f"{str(new_day.day).zfill(2)}.{str(new_day.month).zfill(2)}"
     if [] in days:
         days.remove([])
+    print(days)
 
     return days
 

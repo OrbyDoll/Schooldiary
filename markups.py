@@ -60,14 +60,17 @@ admin_task = types.InlineKeyboardMarkup(row_width=2).add(
     types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
 )
 
-schedule = types.InlineKeyboardMarkup(row_width=2).add(
-    types.InlineKeyboardButton("Понедельник", callback_data="dayПонедельник"),
-    types.InlineKeyboardButton("Вторник", callback_data="dayВторник"),
-    types.InlineKeyboardButton("Среда", callback_data="dayСреда"),
-    types.InlineKeyboardButton("Четверг", callback_data="dayЧетверг"),
-    types.InlineKeyboardButton("Пятница", callback_data="dayПятница"),
-    types.InlineKeyboardButton("Суббота", callback_data="dayСуббота"),
-    types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"),
+schedule = (
+    types.InlineKeyboardMarkup(row_width=2)
+    .add(
+        types.InlineKeyboardButton("Понедельник", callback_data="dayПонедельник"),
+        types.InlineKeyboardButton("Вторник", callback_data="dayВторник"),
+        types.InlineKeyboardButton("Среда", callback_data="dayСреда"),
+        types.InlineKeyboardButton("Четверг", callback_data="dayЧетверг"),
+        types.InlineKeyboardButton("Пятница", callback_data="dayПятница"),
+        # types.InlineKeyboardButton("Суббота", callback_data="dayСуббота"),
+    )
+    .row(types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu"))
 )
 
 
@@ -181,6 +184,9 @@ def get_in_advance_markup():
                 )
             )
         date_markup.row()
+    date_markup.row(
+        types.InlineKeyboardButton("Назад в меню", callback_data="back_to_menu")
+    )
     return date_markup
 
 
