@@ -202,9 +202,34 @@ def get_schedule_in_advance():
             ] = f"{str(new_day.day).zfill(2)}.{str(new_day.month).zfill(2)}"
     if [] in days:
         days.remove([])
-    print(days)
-
     return days
+
+
+def append_in_audit(action: str):
+    now = str(datetime.datetime.now()).split()
+    day = now[0]
+    time = ":".join(list(map(lambda x: x[:2], now[1].split(":"))))
+    with open("audit.json", "r", encoding="utf-8") as file:
+        audit = json.load(file)
+        if day not in audit:
+            audit[day] = [[time, action]]
+        else:
+            audit[day].append([time, action])
+    with open("audit.json", "w", encoding="utf-8") as file:
+        json.dump(audit, file, ensure_ascii=False)
+
+
+def form_audit_to_txt():
+    with open("audit.json", encoding="utf-8") as file:
+        audit = json.load(file)
+    audit_str = ""
+    for date in audit:
+        audit_str += f"{date}: \n"
+        for action in audit[date]:
+            audit_str += f"   {action[0]} - {action[1]}\n"
+        audit_str += "\n"
+    with open("audit.txt", "w", encoding="utf-8") as file:
+        file.write(audit_str)
 
 
 def convert_to_json():

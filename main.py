@@ -89,6 +89,19 @@ async def start(message: types.Message, state: FSMContext):
         await err(e, chatid)
 
 
+@dp.message_handler(commands=["audit"], state=ClientState.all_states)
+async def audit(message: types.Message, state: FSMContext):
+    try:
+        chatid = message.chat.id
+        await delete_msg(message, 1)
+        if db.get_user(chatid)[1] == "Антон Хазин":
+            help.form_audit_to_txt()
+            with open("audit.txt", "rb") as file:
+                await bot.send_document(chatid, file, reply_markup=nav.hide)
+    except Exception as e:
+        await err(e, chatid)
+
+
 @dp.message_handler(commands=["convert"], state=ClientState.all_states)
 async def convert(message: types.Message, state: FSMContext):
     try:
@@ -607,7 +620,7 @@ async def new_task_date(call: types.CallbackQuery, state: FSMContext):
         chatid = call.message.chat.id
         await state.update_data(date=call.data)
         await delete_msg(call.message, 1)
-        if call.data == 'back_to_menu':
+        if call.data == "back_to_menu":
             await bot.send_message(
                 chatid,
                 "Вот ваше меню господин админ",
@@ -901,6 +914,11 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 parse_mode="HTML",
                 reply_markup=nav.back_to_schedule,
             )
+            try:
+                action_for_audit = f"{db.get_user(chatid)[1].split()[1]} посмотрел(а) расписание на {desired_day}"
+                help.append_in_audit(action_for_audit)
+            except Exception as e:
+                print("audit", e)
         elif "file" in call.data:
             data = call.data.split("_")
             files = db.get_subject_files(data[1], data[2])[0][1:].split("|")
@@ -939,6 +957,12 @@ async def callback(call: types.CallbackQuery, state: FSMContext):
                 reply_markup=nav.get_files_markup(task_list),
                 parse_mode="HTML",
             )
+            try:
+                action_for_audit = f"{second_name} посмотрел(а) дз на {date}"
+                help.append_in_audit(action_for_audit)
+            except Exception as e:
+                print("audit", e)
+
     except Exception as e:
         await err(e, chatid)
 
