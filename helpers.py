@@ -8,6 +8,7 @@ import datetime
 import json
 import math
 import mammoth
+import pytz
 
 
 months_names = [
@@ -206,9 +207,11 @@ def get_schedule_in_advance():
 
 
 def append_in_audit(action: str):
-    now = str(datetime.datetime.now()).split()
+    moscow = pytz.timezone('Europe/Moscow')
+    now = str(datetime.datetime.now(moscow)).split()
+    print(now)
     day = now[0]
-    time = ":".join(list(map(lambda x: x[:2], now[1].split(":"))))
+    time = ":".join(list(map(lambda x: x[:2], now[1][:-7].split(":"))))
     with open("audit.json", "r", encoding="utf-8") as file:
         audit = json.load(file)
         if day not in audit:
